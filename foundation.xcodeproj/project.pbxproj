@@ -24,6 +24,7 @@
 		76B115152335405000542359 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B115142335405000542359 /* ColorExtension.swift */; };
 		76B115172335434800542359 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B115162335434800542359 /* UIImageExtension.swift */; };
 		76B11519233543C200542359 /* UIActivityIndicatorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B11518233543C200542359 /* UIActivityIndicatorExtension.swift */; };
+		76B1151B23355AE600542359 /* StringDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1151A23355AE600542359 /* StringDateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		76B115142335405000542359 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		76B115162335434800542359 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		76B11518233543C200542359 /* UIActivityIndicatorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorExtension.swift; sourceTree = "<group>"; };
+		76B1151A23355AE600542359 /* StringDateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				76B115142335405000542359 /* ColorExtension.swift */,
 				76B115162335434800542359 /* UIImageExtension.swift */,
 				76B11518233543C200542359 /* UIActivityIndicatorExtension.swift */,
+				76B1151A23355AE600542359 /* StringDateExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				76B11506233539E200542359 /* Network.swift in Sources */,
 				76B115152335405000542359 /* ColorExtension.swift in Sources */,
 				76B1150D233539EC00542359 /* ArrayCollection.swift in Sources */,
+				76B1151B23355AE600542359 /* StringDateExtension.swift in Sources */,
 				76B115172335434800542359 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

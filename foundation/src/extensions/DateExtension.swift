@@ -25,16 +25,27 @@ extension Date {
         return dayOfWeek;
     }
 
-    public func toDatetimeString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "Y-MM-dd H:mm"
-        return dateFormatter.string(from: self)
-    }
-
+    
     public func toUTCDatetimeString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "Y-MM-dd H:mm:ss"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         return dateFormatter.string(from: self)
+    }
+    
+    public func toSimpleDatetimeString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "Y-MM-dd H:mm"
+        return dateFormatter.string(from: self)
+    }
+    
+    public var toDatetimeString : String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: self)
+    }
+    
+    public var toDateTimeLocalized : String {
+        return DateFormatter.localizedString(from: self, dateStyle: .short, timeStyle: .none)
     }
 }

@@ -2,14 +2,14 @@ import Foundation
 
 extension Array where Element : NSObject {
 
-    func firstWhere(_ keyPath : String, value:Any) -> Element?{
+    public func firstWhere(_ keyPath : String, value:Any) -> Element?{
         return self.first ( where: { ($0.value(forKeyPath: keyPath) as! NSObject).isEqual(value) })
     }
 
     /**
     * Returns the first @count element of the array
     */
-    func slice(_ count: Int) -> ArraySlice<Element>{
+    public func slice(_ count: Int) -> ArraySlice<Element>{
         return self.prefix(count);
     }
     
@@ -17,7 +17,7 @@ extension Array where Element : NSObject {
     /**
      * Splits the array into chucks of size @size and returns an array of arrays
      */
-    func chunk(into size: Int) -> [[Element]] {
+    public func chunk(into size: Int) -> [[Element]] {
         return stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
@@ -26,7 +26,7 @@ extension Array where Element : NSObject {
     /**
     * Divides the array into chucks of size @size, and calls the @block with each splitted array
     */
-    func chunk(into size: Int, _ block: (ArraySlice<Element>) -> Void  ) {
+    public func chunk(into size: Int, _ block: (ArraySlice<Element>) -> Void  ) {
         stride(from: 0, to: count, by: size).forEach {
             block(self[$0 ..< Swift.min($0 + size, count)])
         }
@@ -51,16 +51,15 @@ extension Array where Element : NSObject {
         return result;
     }
     
-
     
-    
-    /*mutating func chunk(_ size:Int) -> [[Element]] {
+    // TODO: Make tests to see the difference with the other chunk
+    mutating func chunk(_ size:Int) -> [[Element]] {
         var result: [[Element]] = []
         while (self.count > 0) {
             result.append(self.splice(size))
         }
         return result;
-    }*/
+    }
     
     mutating public func splice(_ howMany:Int) -> [Element] {
         let chunk = self.take(howMany);
@@ -81,4 +80,5 @@ extension Array where Element : NSObject {
     public mutating func pop() -> Element? {
         return self.splice(1).first;
     }
+    
 }
