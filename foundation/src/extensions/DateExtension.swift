@@ -9,7 +9,7 @@ extension Date {
     }
     
     public var time: String {
-        var components: DateComponents = Calendar.current.dateComponents([.hour, .minute, .second], from: self)
+        let components: DateComponents = Calendar.current.dateComponents([.hour, .minute, .second], from: self)
         return "\(components.hour!):\(components.minute!):\(components.second!)"
     }
     
