@@ -1,18 +1,18 @@
 import UIKit
 
-protocol Schedulable{
+public protocol Schedulable{
     func onScheduled();
     func onScheduledCanceled();
 }
 
-class Scheduler: NSObject {
+public class Scheduler: NSObject {
 
     static var _scheduled: Array<Scheduler> = Array<Scheduler>();
     
     var everySeconds:Double;
     let schedulable:Schedulable;
     
-    static func schedule(_ object:Schedulable) -> Scheduler{
+    public static func schedule(_ object:Schedulable) -> Scheduler{
         _scheduled.append(Scheduler(object, seconds:0));
         return _scheduled.last!;
     }
@@ -22,34 +22,34 @@ class Scheduler: NSObject {
         everySeconds = seconds;
     }
     
-    func every(_ seconds :Double) -> Scheduler{
+    public func every(_ seconds :Double) -> Scheduler{
         self.everySeconds = seconds;
         return self.scheduleNext();
     }
     
-    func everyMinute() -> Scheduler{
+    public func everyMinute() -> Scheduler{
         return self.every(60);
     }
     
-    func everyFiveMinutes() -> Scheduler{
+    public func everyFiveMinutes() -> Scheduler{
         return self.every(60 * 5);
     }
     
-    func everyTenMinutes() -> Scheduler{
+    public func everyTenMinutes() -> Scheduler{
         return self.every(60 * 10);
     }
     
-    func every30Seconds() -> Scheduler{
+    public func every30Seconds() -> Scheduler{
         return self.every(30);
     }
         
-    @discardableResult func scheduleNext() -> Scheduler{
+    @discardableResult public func scheduleNext() -> Scheduler{
         self.cancel();
         self.perform(#selector(runScheduled), with: nil, afterDelay: self.everySeconds);
         return self;
     }
     
-    func run() -> Void {
+    public func run() -> Void {
         self.schedulable.onScheduled();
         self.scheduleNext();
     }
@@ -69,7 +69,7 @@ class Scheduler: NSObject {
         self.schedulable.onScheduledCanceled();
     }
     
-    static func cancelAll() {
+    public static func cancelAll() {
         _scheduled.forEach { scheduled in
             scheduled.cancel();
             scheduled.onScheduleCanceled();

@@ -1,3 +1,4 @@
+# EXAMPLE / TUTORIAL: https://www.raywenderlich.com/5823-how-to-create-a-cocoapod-in-swift
 #
 #  Be sure to run `pod spec lint RevoFoundation.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
@@ -89,7 +90,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "src", "src/**/*.{h,m}"
+  spec.source_files  = "foundation/src/**/*.{swift}"#, "src/**/*.{h,m}"
   #spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
