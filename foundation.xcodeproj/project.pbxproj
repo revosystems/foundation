@@ -18,7 +18,10 @@
 		76B1150C233539EC00542359 /* StringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B11508233539EC00542359 /* StringCollection.swift */; };
 		76B1150D233539EC00542359 /* ArrayCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B11509233539EC00542359 /* ArrayCollection.swift */; };
 		76B1150E233539EC00542359 /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1150A233539EC00542359 /* CodableExtension.swift */; };
-		76B1150F233539EC00542359 /* EasyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1150B233539EC00542359 /* EasyDate.swift */; };
+		76B1150F233539EC00542359 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1150B233539EC00542359 /* DateExtension.swift */; };
+		76B1151123353FB100542359 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1151023353FB100542359 /* Cache.swift */; };
+		76B115132335403000542359 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B115122335403000542359 /* UIViewExtension.swift */; };
+		76B115152335405000542359 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B115142335405000542359 /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +50,10 @@
 		76B11508233539EC00542359 /* StringCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCollection.swift; sourceTree = "<group>"; };
 		76B11509233539EC00542359 /* ArrayCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayCollection.swift; sourceTree = "<group>"; };
 		76B1150A233539EC00542359 /* CodableExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableExtension.swift; sourceTree = "<group>"; };
-		76B1150B233539EC00542359 /* EasyDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyDate.swift; sourceTree = "<group>"; };
+		76B1150B233539EC00542359 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		76B1151023353FB100542359 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		76B115122335403000542359 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		76B115142335405000542359 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +129,10 @@
 			children = (
 				76B11509233539EC00542359 /* ArrayCollection.swift */,
 				76B1150A233539EC00542359 /* CodableExtension.swift */,
-				76B1150B233539EC00542359 /* EasyDate.swift */,
+				76B1150B233539EC00542359 /* DateExtension.swift */,
 				76B11508233539EC00542359 /* StringCollection.swift */,
+				76B115122335403000542359 /* UIViewExtension.swift */,
+				76B115142335405000542359 /* ColorExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 			children = (
 				76B11504233539E200542359 /* Network.swift */,
 				76B11505233539E200542359 /* Scheduler.swift */,
+				76B1151023353FB100542359 /* Cache.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -239,13 +248,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B115132335403000542359 /* UIViewExtension.swift in Sources */,
 				76B1150E233539EC00542359 /* CodableExtension.swift in Sources */,
-				76B1150F233539EC00542359 /* EasyDate.swift in Sources */,
+				76B1151123353FB100542359 /* Cache.swift in Sources */,
+				76B1150F233539EC00542359 /* DateExtension.swift in Sources */,
 				76B114E42335390700542359 /* ViewController.swift in Sources */,
 				76B11507233539E200542359 /* Scheduler.swift in Sources */,
 				76B114E22335390700542359 /* AppDelegate.swift in Sources */,
 				76B1150C233539EC00542359 /* StringCollection.swift in Sources */,
 				76B11506233539E200542359 /* Network.swift in Sources */,
+				76B115152335405000542359 /* ColorExtension.swift in Sources */,
 				76B1150D233539EC00542359 /* ArrayCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

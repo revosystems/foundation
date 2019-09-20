@@ -1,9 +1,12 @@
 import Foundation
 
-
 extension Encodable {
     public func encode(with encoder: JSONEncoder = JSONEncoder()) throws -> Data {
         return try encoder.encode(self)
+    }
+    
+    public func encodedString(with encoder: JSONEncoder = JSONEncoder()) throws -> String {
+        return try String(data: encoder.encode(self), encoding: .utf8)!
     }
 }
 
