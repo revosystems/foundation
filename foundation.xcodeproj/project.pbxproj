@@ -60,6 +60,8 @@
 		76B115162335434800542359 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		76B11518233543C200542359 /* UIActivityIndicatorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorExtension.swift; sourceTree = "<group>"; };
 		76B1151A23355AE600542359 /* StringDateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDateExtension.swift; sourceTree = "<group>"; };
+		8D17BAA223366B9F0051DA71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8D17BAA423366BA40051DA71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				76B114E02335390700542359 /* foundation */,
 				76B114F52335390800542359 /* foundationTests */,
 				76B114DF2335390700542359 /* Products */,
+				8D17BAA123366B9F0051DA71 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,6 +157,15 @@
 				76B1151023353FB100542359 /* Cache.swift */,
 			);
 			path = services;
+			sourceTree = "<group>";
+		};
+		8D17BAA123366B9F0051DA71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D17BAA423366BA40051DA71 /* Foundation.framework */,
+				8D17BAA223366B9F0051DA71 /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
