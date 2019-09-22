@@ -1,5 +1,9 @@
 import Foundation
 
+//https://www.swiftbysundell.com/articles/the-power-of-key-paths-in-swift/
+//https://github.com/BadChoice/Collection/blob/master/Collection/Categories/NSArray%2BCollection/NSArray%2BCollection.m
+//https://laravel.com/docs/5.8/collections#method-slice
+
 extension Array {
     
     /**
