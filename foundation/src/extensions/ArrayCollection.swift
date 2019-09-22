@@ -3,10 +3,28 @@ import Foundation
 extension Array {
     
     /**
-    * Returns the first @count element of the array
+     * Returns the first element that the @keyPath is equal to the @value
+     */
+    public func firstWhere<T: Equatable>(_ keyPath:KeyPath<Element, T>, is value:T, defaultValue:Element? = nil) -> Element? {
+        return self.first {
+            return $0[keyPath: keyPath] == value;
+        } ?? defaultValue
+    }
+    
+    /**
+    * Returns a slice of the collection starting at the given index without modifiying the original one
     */
-    public func slice(_ count: Int) -> ArraySlice<Element>{
-        return self.prefix(count);
+    public func slice(_ from: Int) -> ArraySlice<Element>{
+        if ( from > self.count) { return [] }
+        return self.suffix(from: from)
+    }
+    
+    /**
+    * Returns a slice of the collection starting of length @howMany at the given index without modifiying the original one
+    */
+    public func slice(_ from: Int, howMany: Int) -> ArraySlice<Element>{
+        if ( count > self.count) { return [] }
+        return self[from...Swift.min(from+howMany - 1, self.count - 1)]
     }
     
     /**
@@ -24,6 +42,15 @@ extension Array {
     public func chunk(into size: Int, _ block: (ArraySlice<Element>) -> Void  ) {
         stride(from: 0, to: count, by: size).forEach {
             block(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+    
+    /**
+     * Returns the collection sorted by the @keyPath, this one keeps the original array intact
+     */
+    func sort<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
+        return sorted { a, b in
+            return a[keyPath: keyPath] < b[keyPath: keyPath]
         }
     }
     
