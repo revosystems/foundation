@@ -131,5 +131,11 @@ class ArrayCollectionTest: XCTestCase {
         
     }
     
+    /*func test_sum(){
+        let collection = [1, 2, 3, 4, 5]
+        
+        XCTAssertEqual(15, collection.sum())
+    }*/
+    
     
 }

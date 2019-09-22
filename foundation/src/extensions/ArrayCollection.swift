@@ -151,7 +151,13 @@ extension Array {
     }
     
     public func split(_ howManyGroups: Int) -> [[Element]]{
-        return [[]]
+        let chunkSize = ceil(Double(self.count) / Double(howManyGroups))
+        return self.chunk(into: Int(chunkSize))
     }
-    
 }
+
+/*extension Array where Element:AdditiveArithmetic{
+    public func sum() -> Element {
+        return self.reduce(0, +)
+    }
+}*/
