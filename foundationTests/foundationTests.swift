@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import foundation
+@testable import RevoFoundation
 
 class foundationTests: XCTestCase {
 

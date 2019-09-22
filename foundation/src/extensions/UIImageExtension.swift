@@ -1,3 +1,5 @@
+import UIKit
+
 extension UIImage {
     
     public func base64() -> String{

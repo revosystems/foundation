@@ -1,3 +1,5 @@
+import UIKit
+
 extension UIActivityIndicatorView {
     
     public func start(_ button:UIButton? = nil){
