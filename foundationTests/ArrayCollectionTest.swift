@@ -98,4 +98,38 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual("c", value!.name)
         XCTAssertEqual("z", notFound!.name)
     }
+    
+    func test_splice(){
+        var collection = [1, 2, 3, 4, 5]
+        let splice     = collection.splice(2)
+        
+        XCTAssertEqual([1, 2], collection)
+        XCTAssertEqual([3, 4, 5], splice)
+    }
+    
+    func test_splice_with_limit(){
+        var collection = [1, 2, 3, 4, 5]
+        let splice     = collection.splice(2, limit:2)
+        
+        XCTAssertEqual([1, 2, 5], collection)
+        XCTAssertEqual([3, 4], splice)
+    }
+    
+    func test_splice_with_limit_and_replace(){
+        var collection = [1, 2, 3, 4, 5]
+        let splice     = collection.splice(2, limit:2, replaceWith:[10, 11])
+        
+        XCTAssertEqual([1, 2, 10, 11, 5], collection)
+        XCTAssertEqual([3, 4], splice)
+    }
+    
+    func test_split(){
+        let collection = [1, 2, 3, 4, 5]
+        let splitted = collection.split(2)
+        
+        XCTAssertEqual([[1, 2, 3],[4, 5]] , splitted)
+        
+    }
+    
+    
 }

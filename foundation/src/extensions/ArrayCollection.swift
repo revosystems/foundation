@@ -16,22 +16,6 @@ extension Array {
     }
     
     /**
-    * Returns a slice of the collection starting at the given index without modifiying the original one
-    */
-    public func slice(_ from: Int) -> ArraySlice<Element>{
-        if ( from > self.count) { return [] }
-        return self.suffix(from: from)
-    }
-    
-    /**
-    * Returns a slice of the collection starting of length @howMany at the given index without modifiying the original one
-    */
-    public func slice(_ from: Int, howMany: Int) -> ArraySlice<Element>{
-        if ( count > self.count) { return [] }
-        return self[from...Swift.min(from+howMany - 1, self.count - 1)]
-    }
-    
-    /**
      * Splits the array into chucks of size @size and returns an array of arrays
      */
     public func chunk(into size: Int) -> [[Element]] {
@@ -52,7 +36,7 @@ extension Array {
     /**
      * Returns the collection sorted by the @keyPath, this one keeps the original array intact
      */
-    func sort<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
+    public func sort<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
         return sorted { a, b in
             return a[keyPath: keyPath] < b[keyPath: keyPath]
         }
@@ -92,7 +76,7 @@ extension Array {
     /**
      * Returns an array of arrays with the elements separated by size
      */
-    mutating func chunk(_ size:Int) -> [[Element]] {
+    mutating public func chunk(_ size:Int) -> [[Element]] {
         var result: [[Element]] = []
         while (self.count > 0) {
             result.append(self.splice(size))
@@ -101,12 +85,49 @@ extension Array {
     }
     
     /**
-     * Returns the firsts @howMany elements of the array and removes them from the original array
+     * Returns a slice of the collection starting at the given index without modifiying the original one
      */
-    mutating public func splice(_ howMany:Int) -> [Element] {
-        let chunk = self.take(howMany);
-        self.removeSubrange(0..<Swift.min(howMany, self.count))
-        return chunk;
+    public func slice(_ from: Int) -> ArraySlice<Element>{
+        if ( from > self.count) { return [] }
+        return self.suffix(from: from)
+    }
+    
+    /**
+     * Returns a slice of the collection starting of length @howMany at the given index without modifiying the original one
+     */
+    public func slice(_ from: Int, howMany: Int) -> ArraySlice<Element>{
+        if ( count > self.count) { return [] }
+        return self[from...Swift.min(from+howMany - 1, self.count - 1)]
+    }
+    
+    /**
+     * Returns elements from  @start and removes them from the original array
+     */
+    mutating public func splice(_ start:Int) -> [Element] {
+        let chunk = self[start..<self.count]
+        self.removeSubrange(start..<self.count)
+        return Array(chunk);
+    }
+    
+    /**
+     * Returns @limit elements starting at @start  removes them from the original array
+     */
+    mutating public func splice(_ start:Int, limit:Int) -> [Element] {
+        let end     = Swift.min(start + limit, self.count)
+        let chunk   = self[start..<end]
+        self.removeSubrange(start..<end)
+        return Array(chunk);
+    }
+    
+    /**
+     * Returns @limit elements starting at @start  and replaces them with @replacing in the original array
+     */
+    mutating public func splice(_ start:Int, limit:Int, replaceWith:[Element]) -> [Element] {
+        let end     = Swift.min(start + limit, self.count)
+        let chunk   = self[start..<end]
+        self.removeSubrange(start..<end)
+        self.insert(contentsOf: replaceWith, at: start)
+        return Array(chunk);
     }
     
     /**
@@ -127,6 +148,10 @@ extension Array {
      */
     public mutating func pop() -> Element? {
         return self.splice(1).first;
+    }
+    
+    public func split(_ howManyGroups: Int) -> [[Element]]{
+        return [[]]
     }
     
 }
