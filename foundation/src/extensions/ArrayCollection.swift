@@ -137,9 +137,7 @@ extension Array {
         if (howMany > 0) {
             return Array(self[0..<Swift.min(howMany, self.count)])
         } else {
-            let start = Swift.max(0, self.count + howMany)
-            let end = Swift.min(-howMany, self.count)
-            return Array(self[start..<end])
+            return Array(self[Swift.max(0, self.count - (-howMany))..<self.count])
         }
     }
     
@@ -148,6 +146,11 @@ extension Array {
      */
     public mutating func pop() -> Element? {
         return self.splice(1).first;
+    }
+    
+    @discardableResult public func tap(_ block:([Element])->Void) -> Self{
+        block(self)
+        return self
     }
     
     public func split(_ howManyGroups: Int) -> [[Element]]{

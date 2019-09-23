@@ -131,6 +131,30 @@ class ArrayCollectionTest: XCTestCase {
         
     }
     
+    func test_take(){
+        let collection = [1, 2, 3, 4, 5]
+        let chunk = collection.take(3)
+        
+        XCTAssertEqual([1, 2, 3], chunk)
+    }
+    
+    func test_take_negative(){
+        let collection = [1, 2, 3, 4, 5]
+        let chunk = collection.take(-2)
+        
+        XCTAssertEqual([4, 5], chunk)
+    }
+    
+    func test_tap(){
+        var called = false
+        let collection = [1, 2, 3, 4, 5]
+        collection.tap{
+            XCTAssertEqual(collection, $0)
+            called = true
+        }
+        XCTAssertTrue(called)
+    }
+    
     /*func test_sum(){
         let collection = [1, 2, 3, 4, 5]
         
