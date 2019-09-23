@@ -162,6 +162,58 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual(["a 0", "a 1", "a 2", "a 3", "a 4"], result)
     }
     
+    func test_transform() {
+        var collection = [1, 2, 3, 4, 5]
+        collection.transform {
+            $0 * 2
+        }
+        XCTAssertEqual([2, 4, 6, 8, 10], collection)
+    }
+    
+    func test_unique() {
+        let collection = [1, 2, 3, 4, 5, 1 ,2 ,3 ,4 , 2, 3]
+        let unique = collection.unique()
+        
+        XCTAssertEqual([1, 2, 3, 4, 5], unique)
+    }
+    
+    func test_unique_with_block() {
+        let collection = [1, 2, 3, 4, 5, 1 ,2 ,3 ,4 , 2, 3]
+        let unique = collection.unique {
+            $0 % 3
+        }
+        
+        XCTAssertEqual([1, 2, 3], unique)
+    }
+    
+    func test_unless() {
+        var collection = [1, 2, 3];
+
+        collection.unless(true) {
+            $0.append(4)
+        }
+
+        collection.unless(false) {
+            $0.append(5)
+        }
+
+        XCTAssertEqual([1, 2, 3, 5], collection)
+    }
+    
+    func test_when() {
+        var collection = [1, 2, 3];
+
+        collection.when(false) {
+            $0.append(4)
+        }
+
+        collection.when(true) {
+            $0.append(5)
+        }
+
+        XCTAssertEqual([1, 2, 3, 5], collection)
+    }
+    
     /*func test_sum(){
         let collection = [1, 2, 3, 4, 5]
         

@@ -2,7 +2,7 @@ import Foundation
 
 //https://www.swiftbysundell.com/articles/the-power-of-key-paths-in-swift/
 //https://github.com/BadChoice/Collection/blob/master/Collection/Categories/NSArray%2BCollection/NSArray%2BCollection.m
-//https://laravel.com/docs/5.8/collections#method-slice
+//https://laravel.com/docs/5.8/collections#method-where
 
 extension Array {
     
@@ -148,18 +148,102 @@ extension Array {
         return self.splice(1).first;
     }
     
+    
+    /**
+        passes the collection to the given callback, allowing you to "tap" into the collection at a specific point and do something with the items while not affecting the collection itself:
+     */
     @discardableResult public func tap(_ block:([Element])->Void) -> Self{
         block(self)
         return self
     }
     
+    /**
+     method breaks a collection into the given number of groups:
+     */
     public func split(_ howManyGroups: Int) -> [[Element]]{
         let chunkSize = ceil(Double(self.count) / Double(howManyGroups))
         return self.chunk(into: Int(chunkSize))
     }
     
+    /**
+     creates a new collection by invoking the callback a given amount of times:
+     */
     static public func times<T>(_ times:Int, _ block:(_ index:Int)->T) -> [T] {
-        return (0...times - 1).map { block($0) }        
+        return (0...times - 1).map { block($0) }
+    }
+    
+    /**
+     iterates over the collection and calls the given callback with each item in the collection. The items in the collection will be replaced by the values returned by the callback:
+     */
+    @discardableResult mutating public func transform(_ block:(_ element:Element)->Element) -> [Element] {
+        self.eachWithIndex { (element, index) in
+            self[index] = block(element)
+        }
+        return self;
+    }
+    
+    /**
+     will execute the given callback unless the first argument given to the method evaluates to true:
+     */
+    @discardableResult mutating public func unless( _ unless:Bool, block:(inout [Element])->Void) -> [Element]{
+        if (!unless) { block(&self) }
+        return self
+    }
+    
+    /**
+     will execute the given callback when the first argument given to the method evaluates to true:
+     */
+    @discardableResult mutating public func when( _ when:Bool, block:(inout [Element])->Void) -> [Element]{
+        if (when) { block(&self) }
+        return self
+    }
+    
+    /**
+     The whenEmpty method will execute the given callback when the collection is empty:
+     */
+    @discardableResult mutating public func whenEmpty( block:(inout [Element])->Void) -> [Element]{
+        if (self.count == 0) { block(&self) }
+        return self
+    }
+    
+    /**
+     The whenEmpty method will execute the given callback when the collection is not empty:
+     */
+    @discardableResult mutating public func whenNotEmpty( block:(inout [Element])->Void) -> [Element]{
+        if (self.count != 0) { block(&self) }
+        return self
+    }
+}
+
+extension Array where Element:Equatable {
+
+    /**
+     returns all of the unique items in the collection. The returned collection keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
+     */
+    public func unique() -> [Element] {
+        var result:[Element] = []
+        self.each {
+            if (!result.contains($0)){
+                result.append($0)
+            }
+        }
+        return result
+    }
+    
+    /**
+    returns all of the unique items in the collection. The returned collection keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
+    */
+    public func unique<T:Equatable>(_ block:(_ element:Element)->T) -> [Element] {
+        var result:[Element] = []
+        var temp:[T] = []
+        self.each {
+            let hash = block($0)
+            if (!temp.contains(hash)){
+                result.append($0)
+                temp.append(hash)
+            }
+        }
+        return result
     }
 }
 
