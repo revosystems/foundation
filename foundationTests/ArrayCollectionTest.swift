@@ -155,6 +155,13 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertTrue(called)
     }
     
+    func test_times() {
+        let result = Array<String>.times(5) {index in
+            return "a \(index)"
+        }
+        XCTAssertEqual(["a 0", "a 1", "a 2", "a 3", "a 4"], result)
+    }
+    
     /*func test_sum(){
         let collection = [1, 2, 3, 4, 5]
         

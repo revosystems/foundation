@@ -157,6 +157,10 @@ extension Array {
         let chunkSize = ceil(Double(self.count) / Double(howManyGroups))
         return self.chunk(into: Int(chunkSize))
     }
+    
+    static public func times<T>(_ times:Int, _ block:(_ index:Int)->T) -> [T] {
+        return (0...times - 1).map { block($0) }        
+    }
 }
 
 /*extension Array where Element:AdditiveArithmetic{
