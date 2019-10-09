@@ -6,6 +6,10 @@ import Foundation
 
 extension Array {
     
+    func reject(_ block:(_ v:Element) -> Bool) -> [Element] {
+        self.filter { !block($0) }
+    }
+    
     /**
      * Returns the first element that the @keyPath is equal to the @value
      */
