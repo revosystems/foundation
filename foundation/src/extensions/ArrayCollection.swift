@@ -121,6 +121,7 @@ extension Array {
         }
     }
     
+    // MARK: Others
     
     /**
      * Returns an array with all the elements[keypath]
@@ -140,23 +141,6 @@ extension Array {
         }
         return result
     }
-    /**
-     * Splits the array into chucks of size @size and returns an array of arrays
-     */
-    public func chunk(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0 + size, count)])
-        }
-    }
-    
-    /**
-    * Divides the array into chucks of size @size, and calls the @block with each splitted array
-    */
-    public func chunk(into size: Int, _ block: (ArraySlice<Element>) -> Void  ) {
-        stride(from: 0, to: count, by: size).forEach {
-            block(self[$0 ..< Swift.min($0 + size, count)])
-        }
-    }
     
     /**
      * Returns the collection sorted by the @keyPath, this one keeps the original array intact
@@ -167,6 +151,7 @@ extension Array {
         }
     }
     
+    // MARK: Loops
     /**
      * Wrapper for the swif foreach function
      */
@@ -198,6 +183,25 @@ extension Array {
     
     
     // MARK: Ranges
+    
+    /**
+     * Splits the array into chucks of size @size and returns an array of arrays
+     */
+    public func chunk(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+    
+    /**
+    * Divides the array into chucks of size @size, and calls the @block with each splitted array
+    */
+    public func chunk(into size: Int, _ block: (ArraySlice<Element>) -> Void  ) {
+        stride(from: 0, to: count, by: size).forEach {
+            block(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+    
     /**
      * Returns a slice of the collection starting at the given index without modifiying the original one
      */
