@@ -113,6 +113,181 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual("z", notFound!.name)
     }
     
+    func test_where_is(){
+        struct testStruct {
+            let name : String
+        }
+        
+        let collection = [
+            testStruct(name: "b"),
+            testStruct(name: "c"),
+            testStruct(name: "x"),
+            testStruct(name: "a"),
+            testStruct(name: "a"),
+        ]
+        
+        let result = collection.allWhere(\.name, is:"a")
+        XCTAssertEqual(2, result.count);
+    }
+    
+    func test_where_is_not(){
+        struct testStruct {
+            let name : String
+        }
+        
+        let collection = [
+            testStruct(name: "b"),
+            testStruct(name: "x"),
+            testStruct(name: "c"),
+            testStruct(name: "a"),
+            testStruct(name: "a"),
+        ]
+        
+        let result = collection.allWhere(\.name, isNot:"a")
+        XCTAssertEqual(3, result.count);
+    }
+    
+    func test_where_nil(){
+        struct testStruct {
+            let name : String?
+        }
+        
+        let collection = [
+            testStruct(name: "b"),
+            testStruct(name: "c"),
+            testStruct(name: "x"),
+            testStruct(name: nil),
+            testStruct(name: nil),
+        ]
+        
+        let result = collection.whereNil(\.name)
+        XCTAssertEqual(2, result.count);
+    }
+    
+    func test_where_not_nil(){
+        struct testStruct {
+            let name : String?
+        }
+        
+        let collection = [
+            testStruct(name: "b"),
+            testStruct(name: "c"),
+            testStruct(name: "x"),
+            testStruct(name: nil),
+            testStruct(name: nil),
+        ]
+        
+        let result = collection.whereNotNil(\.name)
+        XCTAssertEqual(3, result.count);
+    }
+    
+    func test_where_between(){
+        let collection = [1, 2, 3, 4, 5, 6, 7, 8]
+        let result     = collection.whereBetween(4, and:7)
+        
+        XCTAssertEqual([4, 5, 6, 7], result)
+    }
+    
+    
+    func test_where_between_with_keypath(){
+        struct testStruct {
+            let name : String
+        }
+        
+        let collection = [
+            testStruct(name: "a"),
+            testStruct(name: "b"),
+            testStruct(name: "c"),
+            testStruct(name: "d"),
+            testStruct(name: "e"),
+        ]
+        
+        let result = collection.whereBetween(\.name, first: "b", last: "d")
+        
+        XCTAssertEqual(["b", "c", "d"], result.pluck(\.name))
+    }
+    
+    func test_where_not_between_with_keypath(){
+        struct testStruct {
+            let name : String
+        }
+        
+        let collection = [
+            testStruct(name: "a"),
+            testStruct(name: "b"),
+            testStruct(name: "c"),
+            testStruct(name: "d"),
+            testStruct(name: "e"),
+        ]
+        
+        let result = collection.whereNotBetween(\.name, first: "b", last: "d")
+        
+        XCTAssertEqual(["a", "e"], result.pluck(\.name))
+    }
+    
+    func test_where_in() {
+        struct testStruct {
+            let name : String
+        }
+        
+        let collection = [
+            testStruct(name: "a"),
+            testStruct(name: "b"),
+            testStruct(name: "c"),
+            testStruct(name: "d"),
+            testStruct(name: "e"),
+        ]
+        
+        let result = collection.whereIn(\.name, in: ["b","d"])
+        
+        XCTAssertEqual(["b","d"], result.pluck(\.name))
+    }
+    
+    func test_where_not_in() {
+        struct testStruct {
+            let name : String
+        }
+        
+        let collection = [
+            testStruct(name: "a"),
+            testStruct(name: "b"),
+            testStruct(name: "c"),
+            testStruct(name: "d"),
+            testStruct(name: "e"),
+        ]
+        
+        let result = collection.whereNotIn(\.name, in: ["b","d"])
+        
+        XCTAssertEqual(["a","c", "e"], result.pluck(\.name))
+    }
+    
+    func test_zip(){
+        let collection = [1, 2, 3]
+        let collection2 = ["a", "b", "c"]
+        
+        let result = try! collection.zip(collection2)
+        
+        XCTAssertEqual([1:"a", 2:"b", 3:"c"], result)
+    }
+    
+    func test_pluck(){
+        struct testStruct {
+            let name : String
+        }
+        
+        let collection = [
+            testStruct(name: "a"),
+            testStruct(name: "b"),
+            testStruct(name: "c"),
+            testStruct(name: "d"),
+            testStruct(name: "e"),
+        ]
+        
+        let result = collection.pluck(\.name)
+        
+        XCTAssertEqual(["a", "b", "c", "d", "e"], result)
+    }
+    
     func test_splice(){
         var collection = [1, 2, 3, 4, 5]
         let splice     = collection.splice(2)

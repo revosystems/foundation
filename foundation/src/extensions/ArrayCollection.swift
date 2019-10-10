@@ -6,6 +6,10 @@ import Foundation
 
 extension Array {
     
+    enum ValidationError: Error {
+        case NotSameSize
+    }
+    
     /**
      Returns a new array without the elements that return true to the block
      */
@@ -18,10 +22,105 @@ extension Array {
      */
     public func firstWhere<T: Equatable>(_ keyPath:KeyPath<Element, T>, is value:T, defaultValue:Element? = nil) -> Element? {
         return self.first {
-            return $0[keyPath: keyPath] == value;
+            $0[keyPath: keyPath] == value;
         } ?? defaultValue
     }
     
+   
+    /**
+     * Returns an array with all the elements that the keypath value is @value
+     */
+    public func allWhere<T:Equatable>(_ keyPath:KeyPath<Element, T>, is value:T) -> [Element] {
+        return self.filter{
+            $0[keyPath: keyPath] == value;
+        }
+    }
+    
+    /**
+     * Returns an array with all the elements that the keypath value is not @value
+     */
+    public func allWhere<T:Equatable>(_ keyPath:KeyPath<Element, T>, isNot value:T) -> [Element] {
+        return self.filter{
+            $0[keyPath: keyPath] != value;
+        }
+    }
+    
+    /**
+     * Returns an array with all the elements that the keypath is nil
+     */
+    public func whereNil<T:Equatable>(_ keyPath:KeyPath<Element, T?>) -> [Element] {
+        return self.filter{
+            $0[keyPath: keyPath] == nil;
+        }
+    }
+    
+    
+    /**
+     * Returns an array with all the elements that the keypath is nil
+     */
+    public func whereNotNil<T:Equatable>(_ keyPath:KeyPath<Element, T?>) -> [Element] {
+        return self.filter{
+            $0[keyPath: keyPath] != nil;
+        }
+    }
+        
+    /**
+     * Returns an array with all the elements that the keypath value is between @firstValue and @lastValue first and last included
+     */
+    public func whereBetween<T:Comparable>(_ keyPath:KeyPath<Element, T>, first:T, last:T) -> [Element] {
+        return self.filter{
+            let compare = $0[keyPath: keyPath]
+            return compare >= first && compare <= last
+        }
+    }
+    
+    /**
+     * Returns an array with all the elements that the keypath value is not between @firstValue and @lastValue first and last included
+     */
+    public func whereNotBetween<T:Comparable>(_ keyPath:KeyPath<Element, T>, first:T, last:T) -> [Element] {
+        return self.filter{
+            let compare = $0[keyPath: keyPath]
+            return !(compare >= first && compare <= last)
+        }
+    }
+    
+    /**
+     * Returns an array with all the element at the keypath value is in the @values array
+     */
+    public func whereIn<T:Equatable>(_ keyPath:KeyPath<Element, T>, in values:[T]) -> [Element] {
+        return self.filter {
+            values.contains($0[keyPath: keyPath])
+        }
+    }
+    
+    /**
+     * Returns an array with all the element at the keypath value is in the @values array
+     */
+    public func whereNotIn<T:Equatable>(_ keyPath:KeyPath<Element, T>, in values:[T]) -> [Element] {
+        return self.filter {
+            !values.contains($0[keyPath: keyPath])
+        }
+    }
+    
+    
+    /**
+     * Returns an array with all the elements[keypath]
+     */
+    public func pluck<T>(_ keyPath:KeyPath<Element, T>) -> [T] {
+        return self.map { $0[keyPath: keyPath]}
+    }
+    
+    
+    public func zip<T>(_ with:[T]) throws ->  [Element:T] {
+        if (self.count != with.count) {
+            throw Array.ValidationError.NotSameSize
+        }
+        var result:[Element:T] = [:]
+        self.eachWithIndex { (element, index) in
+            result[element] = with[index]
+        }
+        return result
+    }
     /**
      * Splits the array into chucks of size @size and returns an array of arrays
      */
@@ -30,7 +129,7 @@ extension Array {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
     }
-
+    
     /**
     * Divides the array into chucks of size @size, and calls the @block with each splitted array
     */
@@ -259,6 +358,18 @@ extension Array where Element:Equatable {
     public mutating func remove(object: Element) {
         guard let index = firstIndex(of: object) else {return}
         remove(at: index)
+    }
+}
+
+extension Array where Element:Comparable {
+    
+    /**
+     * Returns an array with all the elements between @firstValue and @lastValue first and last included
+     */
+    public func whereBetween(_ first:Element, and last:Element) -> [Element] {
+        return self.filter{
+            return $0 >= first && $0 <= last
+        }
     }
 }
 
