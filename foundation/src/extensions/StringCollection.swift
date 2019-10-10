@@ -1,5 +1,9 @@
 import Foundation
 
+func str(_ format:String, _ arguments:String...) -> String {
+    String(format:format, arguments: arguments)
+}
+
 extension String{
 
     public func match(_ regex: String) -> [[String]] {
