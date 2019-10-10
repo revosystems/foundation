@@ -1,6 +1,6 @@
 import Foundation
 
-func getWiFiAddress() -> String? {
+public func getWiFiAddress() -> String? {
     var address : String?
 
     // Get list of all interfaces on the local machine:
