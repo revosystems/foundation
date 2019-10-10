@@ -18,6 +18,25 @@ extension Array {
     }
     
     /**
+        passes the collection to the given callback, allowing you to "tap" into the collection at a specific point and do something with the items while not affecting the collection itself:
+     */
+    @discardableResult public func tap(_ block:([Element])->Void) -> Self{
+        block(self)
+        return self
+    }
+    
+    /**
+        passes the collection to the given callback and returns the result:
+     */
+    public func pipe<T>(_ block:([Element])->T) -> T{
+        return block(self)
+    }
+        
+        
+    
+    // MARK: Where
+    
+    /**
      * Returns the first element that the @keyPath is equal to the @value
      */
     public func firstWhere<T: Equatable>(_ keyPath:KeyPath<Element, T>, is value:T, defaultValue:Element? = nil) -> Element? {
@@ -178,18 +197,7 @@ extension Array {
     }
     
     
-    // TODO: Make tests to see the difference with the other chunk
-    /**
-     * Returns an array of arrays with the elements separated by size
-     */
-    mutating public func chunk(_ size:Int) -> [[Element]] {
-        var result: [[Element]] = []
-        while (self.count > 0) {
-            result.append(self.splice(size))
-        }
-        return result;
-    }
-    
+    // MARK: Ranges
     /**
      * Returns a slice of the collection starting at the given index without modifiying the original one
      */
@@ -248,22 +256,6 @@ extension Array {
     }
     
     /**
-     * Returns the first element of the array and removes it from itself
-     */
-    public mutating func pop() -> Element? {
-        return self.splice(1).first;
-    }
-    
-    
-    /**
-        passes the collection to the given callback, allowing you to "tap" into the collection at a specific point and do something with the items while not affecting the collection itself:
-     */
-    @discardableResult public func tap(_ block:([Element])->Void) -> Self{
-        block(self)
-        return self
-    }
-    
-    /**
      method breaks a collection into the given number of groups:
      */
     public func split(_ howManyGroups: Int) -> [[Element]]{
@@ -278,6 +270,28 @@ extension Array {
         return (0...times - 1).map { block($0) }
     }
     
+    // MARK: Mutables
+    
+    // TODO: Make tests to see the difference with the other chunk
+    /**
+     * Returns an array of arrays with the elements separated by size
+     */
+    mutating public func chunk(_ size:Int) -> [[Element]] {
+        var result: [[Element]] = []
+        while (self.count > 0) {
+            result.append(self.splice(size))
+        }
+        return result;
+    }
+    
+    
+    /**
+     * Returns the first element of the array and removes it from itself
+     */
+    public mutating func pop() -> Element? {
+        return self.splice(1).first;
+    }
+    
     /**
      iterates over the collection and calls the given callback with each item in the collection. The items in the collection will be replaced by the values returned by the callback:
      */
@@ -288,6 +302,7 @@ extension Array {
         return self;
     }
     
+    // MARK: Conditionals
     /**
      will execute the given callback unless the first argument given to the method evaluates to true:
      */

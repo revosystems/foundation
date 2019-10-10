@@ -344,6 +344,14 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertTrue(called)
     }
     
+    func test_pipe(){        
+        let collection = [1, 2, 3, 4, 5]
+        let result = collection.pipe {
+            return $0.reduce(0, +)
+        }
+        XCTAssertEqual(15, result)
+    }
+    
     func test_times() {
         let result = Array<String>.times(5) {index in
             return "a \(index)"
