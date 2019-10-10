@@ -6,6 +6,9 @@ import Foundation
 
 extension Array {
     
+    /**
+     Returns a new array without the elements that return true to the block
+     */
     func reject(_ block:(_ v:Element) -> Bool) -> [Element] {
         self.filter { !block($0) }
     }
@@ -248,6 +251,14 @@ extension Array where Element:Equatable {
             }
         }
         return result
+    }
+    
+    /**
+     * Remove first collection element that is equal to the given `object`:
+     */
+    mutating func remove(object: Element) {
+        guard let index = firstIndex(of: object) else {return}
+        remove(at: index)
     }
 }
 

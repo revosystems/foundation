@@ -17,6 +17,20 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual(a, b)
     }
 
+    func test_reject(){
+        let collection = [1, 2, 3, 4, 5]
+        let result = collection.reject {
+            $0 % 2 == 0
+        }
+        XCTAssertEqual([1, 2, 3, 4, 5], collection)
+        XCTAssertEqual([1, 3, 5], result)
+    }
+    
+    func test_remove(){
+        var collection = [1, 2, 3, 4, 1, 2]
+        collection.remove(object: 1)
+        XCTAssertEqual([2, 3, 4, 1, 2], collection)
+    }
     
     func test_slice() {
         let collection = [1, 2, 3, 4]
