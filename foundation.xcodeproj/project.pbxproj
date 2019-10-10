@@ -27,6 +27,8 @@
 		8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA302337C5340075CFC9 /* Network.swift */; };
 		8D37FA3E2337C5340075CFC9 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA312337C5340075CFC9 /* Cache.swift */; };
 		8D37FA3F2337C5340075CFC9 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA322337C5340075CFC9 /* Scheduler.swift */; };
+		8DAD81DE234F6DB2003A6025 /* GeneralHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */; };
+		8DAD81E0234F6E35003A6025 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DF234F6E35003A6025 /* Sound.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		8D37FA302337C5340075CFC9 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8D37FA312337C5340075CFC9 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		8D37FA322337C5340075CFC9 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralHelpers.swift; sourceTree = "<group>"; };
+		8DAD81DF234F6E35003A6025 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 			children = (
 				8D37FA242337C5340075CFC9 /* extensions */,
 				8D37FA2F2337C5340075CFC9 /* services */,
+				8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				8D37FA302337C5340075CFC9 /* Network.swift */,
 				8D37FA312337C5340075CFC9 /* Cache.swift */,
 				8D37FA322337C5340075CFC9 /* Scheduler.swift */,
+				8DAD81DF234F6E35003A6025 /* Sound.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -263,10 +269,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DAD81DE234F6DB2003A6025 /* GeneralHelpers.swift in Sources */,
 				8D37F9FD2337BDAC0075CFC9 /* ViewController.swift in Sources */,
 				8D37FA3E2337C5340075CFC9 /* Cache.swift in Sources */,
 				8D37F9F92337BDAC0075CFC9 /* AppDelegate.swift in Sources */,
 				8D37FA332337C5340075CFC9 /* StringDateExtension.swift in Sources */,
+				8DAD81E0234F6E35003A6025 /* Sound.swift in Sources */,
 				8D37FA372337C5340075CFC9 /* ColorExtension.swift in Sources */,
 				8D37FA3A2337C5340075CFC9 /* CodableExtension.swift in Sources */,
 				8D37FA3C2337C5340075CFC9 /* DateExtension.swift in Sources */,
