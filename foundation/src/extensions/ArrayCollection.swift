@@ -141,7 +141,7 @@ extension Array {
         }
         return result
     }
-    
+        
     /**
      * Returns the collection sorted by the @keyPath, this one keeps the original array intact
      */
@@ -149,6 +149,28 @@ extension Array {
         return sorted { a, b in
             return a[keyPath: keyPath] < b[keyPath: keyPath]
         }
+    }
+    
+    /**
+     The keyBy method keys the collection by the given key. If multiple items have the same key, only the last one will appear in the new collection:
+     */
+    public func keyBy<T>(_ keyPath:KeyPath <Element, T>) -> [T:Element] {
+        var result:[T:Element] = [:]
+        self.each {
+            result[$0[keyPath: keyPath]] = $0
+        }
+        return result
+    }
+    
+    /**
+     The keyBy method keys the collection by the given key. If multiple items have the same key, only the last one will appear in the new collection:
+     */
+    public func keyBy<T>(_ key:(_ element:Element)->T) -> [T:Element] {
+        var result:[T:Element] = [:]
+        self.each {
+            result[key($0)] = $0
+        }
+        return result
     }
     
     // MARK: Loops
@@ -181,6 +203,81 @@ extension Array {
         return result;
     }
     
+
+    /**
+     * Returns a dictionary from the array with the tuple.0 as key and tuple.1 as value
+     */
+    public func mapToDictionary<T, Z>(_ block:(_ element:Element) -> (T,Z)) -> [T:Z]{
+        var result:[T:Z] = [:]
+        self.each {
+            let tuple = block($0)
+            result[tuple.0] = tuple.1
+        }
+        return result
+    }
+    
+    
+    // MARK: Math
+    
+    /**
+     * Returns the element it's keypath is the max
+     */
+    public func maxElement<T:Comparable>(_ keyPath:KeyPath<Element, T>) -> Element? {
+        var max:Element? = nil
+        var maxValue:T? = nil
+        self.each {
+            let newElementMax = $0[keyPath: keyPath]
+            if (maxValue == nil || newElementMax > maxValue!) {
+                max = $0
+                maxValue = newElementMax
+            }
+        }
+        return max
+    }
+    
+    /**
+     * Returns the element it's keypath is the max
+     */
+    public func minElement<T:Comparable>(_ keyPath:KeyPath<Element, T>) -> Element? {
+        var min:Element? = nil
+        var minValue:T? = nil
+        self.each {
+            let newElementMin = $0[keyPath: keyPath]
+            if (minValue == nil || newElementMin < minValue!) {
+                min = $0
+                minValue = newElementMin
+            }
+        }
+        return min
+    }
+    
+    /**
+     * Returns the element it's keypath is the max
+     */
+    public func max<T:Comparable>(at keyPath:KeyPath<Element, T>) -> T? {
+        var maxValue:T? = nil
+        self.each {
+            let newElementMax = $0[keyPath: keyPath]
+            if (maxValue == nil || newElementMax > maxValue!) {
+                maxValue = newElementMax
+            }
+        }
+        return maxValue
+    }
+    
+    /**
+     * Returns the element it's keypath is the max
+     */
+    public func min<T:Comparable>(at keyPath:KeyPath<Element, T>) -> T? {
+        var minValue:T? = nil
+        self.each {
+            let newElementMin = $0[keyPath: keyPath]
+            if (minValue == nil || newElementMin < minValue!) {
+                minValue = newElementMin
+            }
+        }
+        return minValue
+    }
     
     // MARK: Ranges
     
@@ -274,8 +371,17 @@ extension Array {
         return (0...times - 1).map { block($0) }
     }
     
-    // MARK: Mutables
+
+    // MARK: Truth tests
+    /**
+     *The every method may be used to verify that all elements of a collection pass a given truth test:
+     */
+    public func every(_ truthTest:(_ element:Element)-> Bool) -> Bool {
+        let nonPassingElement = self.first { !truthTest($0) }
+        return nonPassingElement == nil
+    }
     
+    // MARK: Mutables
     // TODO: Make tests to see the difference with the other chunk
     /**
      * Returns an array of arrays with the elements separated by size
@@ -338,6 +444,8 @@ extension Array {
         if (self.count != 0) { block(&self) }
         return self
     }
+    
+        
 }
 
 extension Array where Element:Equatable {
@@ -390,6 +498,30 @@ extension Array where Element:Comparable {
             return $0 >= first && $0 <= last
         }
     }
+    
+}
+
+extension Array where Element:Hashable {
+    
+    // MARK: Sets
+    public func intersect(_ secondArray:[Element]) -> [Element] {
+        let set1:Set<Element> = Set(self)
+        let set2:Set<Element> = Set(secondArray)
+        return Array(set1.intersection(set2))
+    }
+    
+    public func union(_ secondArray:[Element]) -> [Element] {
+        let set1:Set<Element> = Set(self)
+        let set2:Set<Element> = Set(secondArray)
+        return Array(set1.union(set2))
+    }
+    
+    public func difference(_ secondArray:[Element]) -> [Element] {
+        let set1:Set<Element> = Set(self)
+        let set2:Set<Element> = Set(secondArray)
+        return Array(set1.symmetricDifference(set2))
+    }
+    
 }
 
 /*extension Array where Element:AdditiveArithmetic{
@@ -397,3 +529,20 @@ extension Array where Element:Comparable {
         return self.reduce(0, +)
     }
 }*/
+
+extension Array where Element == String {
+    public func implode(_ glue:String) -> String {
+        return self.joined(separator: glue)
+    }
+    
+    /**
+    * The join method joins the collection's values with a string:
+     */
+    public func join(_ glue:String, lastGlue:String? = nil) -> String {
+        if self.isEmpty { return "" }
+        if self.count == 1 { return self.first! }
+        guard let lastGlue = lastGlue else { return self.implode(glue) }
+        let exceptLast = self.take(self.count - 1).implode(glue)
+        return exceptLast + lastGlue + self.take(-1).first!
+    }
+}

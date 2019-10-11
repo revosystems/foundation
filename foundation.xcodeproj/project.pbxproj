@@ -28,6 +28,7 @@
 		8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA302337C5340075CFC9 /* Network.swift */; };
 		8D37FA3E2337C5340075CFC9 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA312337C5340075CFC9 /* Cache.swift */; };
 		8D37FA3F2337C5340075CFC9 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA322337C5340075CFC9 /* Scheduler.swift */; };
+		8D58B8772350DF9D00FAA673 /* DictionaryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */; };
 		8DAD81DE234F6DB2003A6025 /* GeneralHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */; };
 		8DAD81E0234F6E35003A6025 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DF234F6E35003A6025 /* Sound.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 		8D37FA302337C5340075CFC9 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8D37FA312337C5340075CFC9 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		8D37FA322337C5340075CFC9 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCollection.swift; sourceTree = "<group>"; };
 		8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralHelpers.swift; sourceTree = "<group>"; };
 		8DAD81DF234F6E35003A6025 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 				8D37FA2D2337C5340075CFC9 /* UIImageExtension.swift */,
 				8D37FA2E2337C5340075CFC9 /* DateExtension.swift */,
 				7699DD0B235077180054A008 /* UITableViewCellExtension.swift */,
+				8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				8D37FA392337C5340075CFC9 /* UIActivityIndicatorExtension.swift in Sources */,
 				8D37FA352337C5340075CFC9 /* ArrayCollection.swift in Sources */,
 				8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */,
+				8D58B8772350DF9D00FAA673 /* DictionaryCollection.swift in Sources */,
 				8D37FA3B2337C5340075CFC9 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

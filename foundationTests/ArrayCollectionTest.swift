@@ -77,6 +77,128 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual("a", result.first!.name)
     }
     
+    func test_key_by(){
+        struct testStruct: Equatable {
+            let name : String
+            let value: Int
+        }
+        
+        let collection = [
+            testStruct(name: "b", value:1),
+            testStruct(name: "c", value:2),
+            testStruct(name: "a", value:3),
+        ]
+        
+        let result = collection.keyBy(\.name)
+        
+        XCTAssertEqual([
+            "a" : testStruct(name: "a", value:3),
+            "b" : testStruct(name: "b", value:1),
+            "c" : testStruct(name: "c", value:2),
+        ], result)
+    }
+    
+    func test_key_by_block(){
+        struct testStruct: Equatable {
+            let name : String
+            let value: Int
+        }
+        
+        let collection = [
+            testStruct(name: "b", value:1),
+            testStruct(name: "c", value:2),
+            testStruct(name: "a", value:3),
+        ]
+        
+        let result = collection.keyBy { $0.name }
+        
+        XCTAssertEqual([
+            "a" : testStruct(name: "a", value:3),
+            "b" : testStruct(name: "b", value:1),
+            "c" : testStruct(name: "c", value:2),
+        ], result)
+    }
+    
+    func test_map_to_dicionary() {
+        let collection = [1, 2, 3]
+        let result = collection.mapToDictionary {
+            return ($0, $0 * 2)
+        }
+        
+        XCTAssertEqual([
+            1 : 2,
+            2 : 4,
+            3 : 6
+        ], result)
+        
+    }
+    
+    func test_max_element() {
+        struct testStruct: Equatable {
+            let name : String
+            let value: Int
+        }
+        
+        let collection = [
+            testStruct(name: "b", value:1),
+            testStruct(name: "c", value:2),
+            testStruct(name: "a", value:3),
+        ]
+        
+        let max = collection.maxElement(\.value)
+        XCTAssertEqual(testStruct(name: "a", value:3), max)
+    }
+    
+    func test_min_element() {
+        struct testStruct: Equatable {
+            let name : String
+            let value: Int
+        }
+        
+        let collection = [
+            testStruct(name: "b", value:1),
+            testStruct(name: "c", value:2),
+            testStruct(name: "a", value:3),
+        ]
+        
+        let min = collection.minElement(\.value)
+        XCTAssertEqual(testStruct(name: "b", value:1), min)
+    }
+    
+    func test_max() {
+        struct testStruct: Equatable {
+            let name : String
+            let value: Int
+        }
+        
+        let collection = [
+            testStruct(name: "b", value:1),
+            testStruct(name: "c", value:2),
+            testStruct(name: "a", value:3),
+        ]
+        
+        let max = collection.max(at: \.value)
+        XCTAssertEqual(3, max)
+    }
+    
+    func test_min() {
+        struct testStruct: Equatable {
+            let name : String
+            let value: Int
+        }
+        
+        let collection = [
+            testStruct(name: "b", value:1),
+            testStruct(name: "c", value:2),
+            testStruct(name: "a", value:3),
+        ]
+        
+        let min = collection.min(at: \.value)
+        XCTAssertEqual(1, min)
+    }
+    
+    
+    
     func test_firstWhere() {
         struct testStruct {
             let name : String
@@ -286,6 +408,57 @@ class ArrayCollectionTest: XCTestCase {
         let result = collection.pluck(\.name)
         
         XCTAssertEqual(["a", "b", "c", "d", "e"], result)
+    }
+    
+    func test_implode(){
+        let collection = ["hola", "que", "tal"]
+        let result = collection.implode(" ")
+        XCTAssertEqual("hola que tal", result)
+    }
+    
+    func test_every(){
+        let collection = [5, 6, 7, 8]
+        
+        let result = collection.every { $0 > 4 }
+        let result2 = collection.every { $0 > 5 }
+        
+        XCTAssertTrue(result)
+        XCTAssertFalse(result2)
+    }
+    
+    func test_intersect(){
+        let collection1 = ["a", "b", "c", "d", "e"]
+        let collection2 = ["b", "c", "d", "x", "z"]
+        
+        let result = collection1.intersect(collection2)
+        
+        XCTAssertEqual(Set(["d", "b", "c"]), Set(result))
+    }
+    
+    func test_union(){
+        let collection1 = ["a", "b", "c", "d", "e"]
+        let collection2 = ["b", "c", "d", "x", "z"]
+        
+        let result = collection1.union(collection2)
+        
+        XCTAssertEqual(Set(["b", "c", "x", "e", "d", "a", "z"]), Set(result))
+    }
+    
+    func test_difference() {
+        let collection1 = ["a", "b", "c", "d", "e"]
+        let collection2 = ["b", "c", "d", "x", "z"]
+        
+        let result = collection1.difference(collection2)
+        
+        XCTAssertEqual(Set(["a", "e", "x", "z"]), Set(result))
+    }
+    
+    func test_join() {
+        XCTAssertEqual("a, b, c", ["a", "b", "c"].join(", "))
+        XCTAssertEqual("a, b, and c", ["a", "b", "c"].join(", ", lastGlue:", and "))
+        XCTAssertEqual("a and b", ["a", "b"].join(", ", lastGlue:" and "))
+        XCTAssertEqual("a", ["a"].join(", ", lastGlue:" and "))
+        XCTAssertEqual("", [].join(", ", lastGlue:" and "))
     }
     
     func test_splice(){
