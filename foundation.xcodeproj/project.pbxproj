@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7699DD0C235077180054A008 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7699DD0B235077180054A008 /* UITableViewCellExtension.swift */; };
+		7699DD0E23510B330054A008 /* DateExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7699DD0D23510B330054A008 /* DateExtensionTest.swift */; };
 		8D37F9F92337BDAC0075CFC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37F9F82337BDAC0075CFC9 /* AppDelegate.swift */; };
 		8D37F9FB2337BDAC0075CFC9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37F9FA2337BDAC0075CFC9 /* SceneDelegate.swift */; };
 		8D37F9FD2337BDAC0075CFC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37F9FC2337BDAC0075CFC9 /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		7699DD0B235077180054A008 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
+		7699DD0D23510B330054A008 /* DateExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTest.swift; sourceTree = "<group>"; };
 		8D37F9F52337BDAC0075CFC9 /* RevoFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevoFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D37F9F82337BDAC0075CFC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D37F9FA2337BDAC0075CFC9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				8D37FA0F2337BDAF0075CFC9 /* foundationTests.swift */,
 				8D37FA112337BDAF0075CFC9 /* Info.plist */,
 				8D37FA1C2337BF590075CFC9 /* ArrayCollectionTest.swift */,
+				7699DD0D23510B330054A008 /* DateExtensionTest.swift */,
 			);
 			path = foundationTests;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D37FA102337BDAF0075CFC9 /* foundationTests.swift in Sources */,
+				7699DD0E23510B330054A008 /* DateExtensionTest.swift in Sources */,
 				8D37FA1D2337BF590075CFC9 /* ArrayCollectionTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
