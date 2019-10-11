@@ -1,6 +1,6 @@
 import Foundation
 
-public func str(_ format:String, _ arguments:String...) -> String {
+public func str(_ format:String, _ arguments:CVarArg...) -> String {
     String(format:format, arguments: arguments)
 }
 
