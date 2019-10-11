@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7699DD0C235077180054A008 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7699DD0B235077180054A008 /* UITableViewCellExtension.swift */; };
 		8D37F9F92337BDAC0075CFC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37F9F82337BDAC0075CFC9 /* AppDelegate.swift */; };
 		8D37F9FB2337BDAC0075CFC9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37F9FA2337BDAC0075CFC9 /* SceneDelegate.swift */; };
 		8D37F9FD2337BDAC0075CFC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37F9FC2337BDAC0075CFC9 /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7699DD0B235077180054A008 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 		8D37F9F52337BDAC0075CFC9 /* RevoFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevoFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D37F9F82337BDAC0075CFC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D37F9FA2337BDAC0075CFC9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				8D37FA2C2337C5340075CFC9 /* CodableExtension.swift */,
 				8D37FA2D2337C5340075CFC9 /* UIImageExtension.swift */,
 				8D37FA2E2337C5340075CFC9 /* DateExtension.swift */,
+				7699DD0B235077180054A008 /* UITableViewCellExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				8DAD81DE234F6DB2003A6025 /* GeneralHelpers.swift in Sources */,
 				8D37F9FD2337BDAC0075CFC9 /* ViewController.swift in Sources */,
 				8D37FA3E2337C5340075CFC9 /* Cache.swift in Sources */,
+				7699DD0C235077180054A008 /* UITableViewCellExtension.swift in Sources */,
 				8D37F9F92337BDAC0075CFC9 /* AppDelegate.swift in Sources */,
 				8D37FA332337C5340075CFC9 /* StringDateExtension.swift in Sources */,
 				8DAD81E0234F6E35003A6025 /* Sound.swift in Sources */,
