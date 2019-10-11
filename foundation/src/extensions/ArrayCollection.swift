@@ -173,6 +173,23 @@ extension Array {
         return result
     }
     
+    /**
+     The partition method may be combined with the list PHP function to separate elements that pass a given truth test from those that do not
+     */
+    public func partition(_ check:(_ element:Element)->Bool) -> ([Element], [Element]) {
+        var passing:[Element] = []
+        var notPassing:[Element] = []
+        
+        self.each{
+            if check($0) {
+                passing.append($0)
+            } else {
+                notPassing.append($0)
+            }
+        }
+        return (passing, notPassing)
+    }
+    
     // MARK: Loops
     /**
      * Wrapper for the swif foreach function
@@ -411,6 +428,25 @@ extension Array {
         }
         return self;
     }
+    
+    @discardableResult mutating public func pad(_ count:Int, _ value:Element) -> [Element] {
+        let size = count - self.count
+        guard size > 0 else { return self }
+        for _ in 0..<size {
+            self.append(value)
+        }
+        return self
+    }
+    
+    @discardableResult mutating public func lpad(_ count:Int, _ value:Element) -> [Element] {
+        let size = count - self.count
+        guard size > 0 else { return self }
+        for _ in 0..<size {
+            self.insert(value, at: 0)
+        }
+        return self
+    }
+    
     
     // MARK: Conditionals
     /**

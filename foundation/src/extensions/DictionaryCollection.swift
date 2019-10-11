@@ -7,5 +7,5 @@ extension Dictionary {
     //Flip
     //Forget
     //Group by
-    
+    //Merge
 }

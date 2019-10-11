@@ -584,6 +584,33 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual([1, 2, 3, 5], collection)
     }
     
+    func test_pad(){
+        var collection = [1, 2, 3]
+        XCTAssertEqual([1, 2, 3, 0, 0], collection.pad(5, 0))
+        
+        var collection2 = [1, 2, 3]
+        XCTAssertEqual([1, 2, 3], collection2.pad(2, 0))
+    }
+    
+    func test_lpad(){
+        var collection = [1, 2, 3]
+        XCTAssertEqual([0, 0, 1, 2, 3], collection.lpad(5, 0))
+        
+        var collection2 = [1, 2, 3]
+        XCTAssertEqual([1, 2, 3], collection2.lpad(2, 0))
+    }
+    
+    func test_partition(){
+        let collection = [1, 2, 3, 4, 5, 6]
+        
+        let result = collection.partition {
+            $0 < 4
+        }
+        
+        XCTAssertEqual([1, 2, 3], result.0)
+        XCTAssertEqual([4, 5, 6], result.1)
+    }
+    
     /*func test_sum(){
         let collection = [1, 2, 3, 4, 5]
         
