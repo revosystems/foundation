@@ -51,4 +51,12 @@ extension String{
     public func trim(_ what:String = " ") -> String {
         return self.trimmingCharacters(in: CharacterSet(charactersIn: what))
     }
+    
+    func lpad(toLength:Int, withPad:String = "") -> String {
+        self.padding(toLength: toLength, withPad: withPad, startingAt: 0)
+    }
+    
+    func rpad(toLength:Int, withPad:String = "") -> String {
+        self.padding(toLength: toLength, withPad: withPad, startingAt: self.count)
+    }
 }
