@@ -52,11 +52,12 @@ extension String{
         return self.trimmingCharacters(in: CharacterSet(charactersIn: what))
     }
     
-    func lpad(toLength:Int, withPad:String = "") -> String {
-        self.padding(toLength: toLength, withPad: withPad, startingAt: 0)
+    public func lpad(toLength:Int, withPad:String = " ") -> String {
+        let size = toLength - self.count
+        return Array<String>.times(size, { _ in withPad }).reduce("", +) + self
     }
     
-    func rpad(toLength:Int, withPad:String = "") -> String {
-        self.padding(toLength: toLength, withPad: withPad, startingAt: self.count)
+    public func rpad(toLength:Int, withPad:String = " ") -> String {
+        self.padding(toLength: toLength, withPad: withPad, startingAt: 0)
     }
 }

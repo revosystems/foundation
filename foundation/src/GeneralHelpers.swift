@@ -9,3 +9,9 @@ public func isIpad() -> Bool{
     UIDevice().userInterfaceIdiom == .pad
 }
 
+public func runAfter(_ seconds:Double, block:@escaping() -> Void){
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+         block()
+     }
+}
+
