@@ -48,4 +48,9 @@ extension UIView {
         return self
     }
     
+    @discardableResult public func circle() -> Self{
+        layer.cornerRadius = bounds.size.width / 2
+        return self
+    }
+    
 }
