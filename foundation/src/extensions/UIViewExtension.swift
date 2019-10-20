@@ -53,4 +53,9 @@ extension UIView {
         return self
     }
     
+    @discardableResult public func border(_ color:UIColor = .white, size:CGFloat = 1) -> Self {
+        layer.borderWidth   = size
+        layer.borderColor   = color.cgColor
+        return self
+    }
 }
