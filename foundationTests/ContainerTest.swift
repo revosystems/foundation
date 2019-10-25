@@ -74,5 +74,36 @@ class ContainerTest: XCTestCase {
         
         XCTAssertTrue(result1 === result2)
     }
+    
+    func test_can_bind_an_instance(){
+        class TestStruct{ let name:String = "Sexy" }
+        var container = Container()
+        
+        let instance = TestStruct()
+        container.instance(TestStruct.self, instance)
+        
+        let result1 = container.make(TestStruct.self)!
+        let result2 = container.make(TestStruct.self)!
+        
+        XCTAssertTrue(result1 === instance)
+        XCTAssertTrue(result2 === instance)
+    }
+    
+    func test_can_extend_a_resolver(){
+        class TestStruct{ var name:String = "Sexy" }
+        var container = Container()
+        
+        let instance = TestStruct()
+        container.instance(TestStruct.self, instance)
+        
+        container.extend(TestStruct.self) {
+            $0.name = "Super Sexy"
+        }
+        
+        let result = container.make(TestStruct.self)!
+        XCTAssertEqual("Super Sexy", result.name)
+    }
 
+    //TODO: Bind and resolve with tags
+    
 }
