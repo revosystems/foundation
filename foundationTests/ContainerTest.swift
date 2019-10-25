@@ -24,7 +24,7 @@ class ContainerTest: XCTestCase {
     
     func test_can_make_non_registered_class(){
         struct TestStruct{ }
-        let container = Container()
+        var container = Container()
         let result = container.make(TestStruct.self)
         //TODO: Make this work so it doesn't return nil
         XCTAssertNil(result)
@@ -46,6 +46,33 @@ class ContainerTest: XCTestCase {
         }
         result = container.make(TestStruct.self)!
         XCTAssertEqual("Not Sexy", result.name)
+    }
+    
+    func test_closure_binding_is_not_a_singleton(){
+        class TestStruct{ let name:String = "Sexy" }
+        var container = Container()
+        
+        container.bind(TestStruct.self) {
+            TestStruct()
+        }
+        let result1 = container.make(TestStruct.self)!
+        let result2 = container.make(TestStruct.self)!
+        
+        XCTAssertFalse(result1 === result2)
+        
+    }
+    
+    func test_can_bind_a_singleton() {
+        class TestStruct{ let name:String = "Sexy" }
+        var container = Container()
+        
+        container.singleton(TestStruct.self) {
+            TestStruct()
+        }
+        let result1 = container.make(TestStruct.self)!
+        let result2 = container.make(TestStruct.self)!
+        
+        XCTAssertTrue(result1 === result2)
     }
 
 }

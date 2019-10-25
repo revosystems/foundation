@@ -13,23 +13,37 @@ import Foundation
 
 struct Container {
     
-    internal var bindings:[String : ()->Any] = [:]
+    private var bindings:[String : () -> Any] = [:]
+    private var singletons:[String : Any] = [:]
     
     // MARK: Resolvers
     public func resolve<T>(_ classType:T.Type) -> T.Type {
         return classType
     }
     
-    public func make<T>(_ classType:T.Type) -> T? {
-        guard let bind = bindings[String(describing: classType)] else {
-            return nil
+    public mutating func make<T>(_ classType:T.Type) -> T? {
+        if let singleton = singletons[String(describing: classType)] {
+            if (singleton is T){
+                return singleton as? T
+            }
+            let value = (singleton as! (()->Any))()
+            singletons[String(describing: classType)] = value
+            return value as? T
         }
-        return bind() as? T
+        if let bind = bindings[String(describing: classType)] {
+            return bind() as? T
+        }
+        return nil
+        
     }
     
     // MARK: Binders
     public mutating func bind<T>(_ classType:T.Type, bind:@escaping ()->T) {
         bindings[String(describing: classType)] = bind
+    }
+    
+    public mutating func singleton<T>(_ classType:T.Type, bind:@escaping ()->T) {
+        singletons[String(describing: classType)] = bind
     }
     
 }
