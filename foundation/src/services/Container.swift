@@ -11,49 +11,85 @@ import Foundation
 
 //https://laravel.com/docs/5.8/container
 
-struct Container {
+public func resolve<T>(_ type:T.Type) throws -> T?  {
+    try? Container.shared.make(type)
+}
+
+class Container {
+
+    static var shared:Container = Container() //Already lazy
+    
+    enum ContainerError: Error {
+        case runtimeError(String)
+    }
     
     private lazy var bindings:[String : () -> Any] = [:]
     private lazy var singletons:[String : Any] = [:]
-    private lazy var extensions:[String: (_ resolved:Any)->Void] = [:]
+    private lazy var extensions:[String : Any ] = [:]
     
     // MARK: Resolvers
-    public func resolve<T>(_ classType:T.Type) -> T.Type {
-        return classType
-    }
+    /*public func resolve<T>(_ type:T.Type) -> T.Type {
+        return type
+    }*/
     
-    public mutating func make<T>(_ classType:T.Type) -> T? {
-        if let singleton = singletons[String(describing: classType)] {
+    public func make<T>(_ type:T.Type) throws -> T  {
+        if let singleton = singletons[String(describing: type)] {
             if (singleton is T){
-                return singleton as? T
+                return extendResolved(type, singleton as! T)
             }
             let value = (singleton as! (()->T))()
-            singletons[String(describing: classType)] = value
-            return value
+            singletons[String(describing: type)] = value
+            return extendResolved(type, value)
         }
-        if let bind = bindings[String(describing: classType)] {
-            return bind() as? T
+        if let bind = bindings[String(describing: type)] {
+            return extendResolved(type, bind() as! T)
         }
-        return nil
-        
+        throw ContainerError.runtimeError("No binding for \(type)")
+    }
+    
+    private func extendResolved<T,Z>(_ type:Z.Type, _ resolved:T)->T{
+        guard let theExtension = extensions[String(describing: type)] else {
+            return resolved
+        }
+        (theExtension as! (_ value:T)->Void)(resolved)
+        return resolved
     }
     
     // MARK: Binders
-    public mutating func bind<T>(_ classType:T.Type, bind:@escaping ()->T) {
-        bindings[String(describing: classType)] = bind
+    @discardableResult
+    public func bind<T>(_ type:T.Type, bind:@escaping ()->T) -> Self {
+        bindings[String(describing: type)] = bind
+        return self
     }
     
-    public mutating func singleton<T>(_ classType:T.Type, bind:@escaping ()->T) {
-        singletons[String(describing: classType)] = bind
+    @discardableResult
+    public func singleton<T>(_ type:T.Type, bind:@escaping ()->T) -> Self {
+        singletons[String(describing: type)] = bind
+        return self
     }
     
-    public mutating func instance<T>(_ classType:T.Type, _ instance:T) {
-        singletons[String(describing: classType)] = instance
+    @discardableResult
+    public func instance<T>(_ type:T.Type, _ instance:T) -> Self{
+        singletons[String(describing: type)] = instance
+        return self
     }
     
     // MARK: Extend
-    public mutating func extend<T>(_ classType:T.Type, theExtension:@escaping (_ resolved:T)->Void) {
-        extensions[String(describing: classType)] = theExtension
+    @discardableResult
+    public func extend<T>(_ type:T.Type, theExtension:@escaping (_ resolved:T)->Void) -> Self{
+        extensions[String(describing: type)] = theExtension
+        return self
     }
     
+}
+
+
+@propertyWrapper
+public struct Inject<Value> {
+    
+    public var wrappedValue: Value
+    
+    public init() {
+        wrappedValue = try! Container.shared.make(Value.self)
+    }
 }
