@@ -33,6 +33,8 @@
 		8D58B8772350DF9D00FAA673 /* DictionaryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */; };
 		8DAD81DE234F6DB2003A6025 /* GeneralHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */; };
 		8DAD81E0234F6E35003A6025 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DF234F6E35003A6025 /* Sound.swift */; };
+		8DC91D7D23635CA800FFCF79 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7C23635CA800FFCF79 /* Container.swift */; };
+		8DC91D7F23635CB900FFCF79 /* ContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCollection.swift; sourceTree = "<group>"; };
 		8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralHelpers.swift; sourceTree = "<group>"; };
 		8DAD81DF234F6E35003A6025 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		8DC91D7C23635CA800FFCF79 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 				8D37FA1C2337BF590075CFC9 /* ArrayCollectionTest.swift */,
 				7699DD0D23510B330054A008 /* DateExtensionTest.swift */,
 				7699DD1123564F410054A008 /* StringCollectionTest.swift */,
+				8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */,
 			);
 			path = foundationTests;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				8D37FA312337C5340075CFC9 /* Cache.swift */,
 				8D37FA322337C5340075CFC9 /* Scheduler.swift */,
 				8DAD81DF234F6E35003A6025 /* Sound.swift */,
+				8DC91D7C23635CA800FFCF79 /* Container.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				8D37FA392337C5340075CFC9 /* UIActivityIndicatorExtension.swift in Sources */,
 				8D37FA352337C5340075CFC9 /* ArrayCollection.swift in Sources */,
 				8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */,
+				8DC91D7D23635CA800FFCF79 /* Container.swift in Sources */,
 				8D58B8772350DF9D00FAA673 /* DictionaryCollection.swift in Sources */,
 				8D37FA3B2337C5340075CFC9 /* UIImageExtension.swift in Sources */,
 			);
@@ -311,6 +318,7 @@
 				8D37FA102337BDAF0075CFC9 /* foundationTests.swift in Sources */,
 				7699DD0E23510B330054A008 /* DateExtensionTest.swift in Sources */,
 				8D37FA1D2337BF590075CFC9 /* ArrayCollectionTest.swift in Sources */,
+				8DC91D7F23635CB900FFCF79 /* ContainerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
