@@ -32,7 +32,7 @@ class Container {
         return type
     }*/
     
-    public func make<T>(_ type:T.Type) throws -> T  {
+    public func make<T>(_ type:T.Type = T.self) throws -> T  {
         if let singleton = singletons[String(describing: type)] {
             if (singleton is T){
                 return extendResolved(type, singleton as! T)

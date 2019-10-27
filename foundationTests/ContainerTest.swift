@@ -115,6 +115,17 @@ class ContainerTest: XCTestCase {
         XCTAssertTrue(result is TestStruct2)
     }
     
+    func test_can_resolve_with_type_inference(){
+        class TestStruct{ var name:String = "Sexy" }
+        class TestStruct2: TestStruct {  }
+        let container = Container()
+        
+        container.bind(TestStruct.self, bind: TestStruct2.init)
+        
+        let result:TestStruct = try! container.make(TestStruct.self)
+        XCTAssertTrue(result is TestStruct2)
+    }
+    
     
     func test_can_autoinject(){
         
@@ -130,6 +141,8 @@ class ContainerTest: XCTestCase {
         let result = TestStruct3()
         XCTAssertTrue(result.theStruct is TestStruct2)
     }
+    
+    
     
     //TODO: Bind and resolve with tags
     
