@@ -11,7 +11,11 @@ import Foundation
 
 //https://laravel.com/docs/5.8/container
 
-public func resolve<T>(_ type:T.Type) throws -> T?  {
+public func resolve<T>(_ type:T.Type = T.self) -> T  {
+    try! Container.shared.make(type)
+}
+
+public func resolveOptional<T>(_ type:T.Type = T.self) -> T?  {
     try? Container.shared.make(type)
 }
 
@@ -23,9 +27,9 @@ class Container {
         case runtimeError(String)
     }
     
-    private lazy var bindings:[String : () -> Any] = [:]
-    private lazy var singletons:[String : Any] = [:]
-    private lazy var extensions:[String : Any ] = [:]
+    private var bindings:[String : () -> Any] = [:]
+    private var singletons:[String : Any] = [:]
+    private var extensions:[String : Any ] = [:]
     
     // MARK: Resolvers
     /*public func resolve<T>(_ type:T.Type) -> T.Type {

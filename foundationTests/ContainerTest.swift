@@ -122,7 +122,7 @@ class ContainerTest: XCTestCase {
         
         container.bind(TestStruct.self, bind: TestStruct2.init)
         
-        let result:TestStruct = try! container.make(TestStruct.self)
+        let result:TestStruct = try! container.make()
         XCTAssertTrue(result is TestStruct2)
     }
     
