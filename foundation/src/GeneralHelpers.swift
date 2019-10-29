@@ -1,8 +1,8 @@
 import UIKit
 
-public func SBController(_ storyBoard:String, _ identifier:String) -> UIViewController{
+public func SBController<T>(_ storyBoard:String, _ identifier:String) -> T{
     let sb = UIStoryboard(name: storyBoard, bundle: nil)
-    return sb.instantiateViewController(withIdentifier: identifier)
+    return sb.instantiateViewController(withIdentifier: identifier) as! T
 }
 
 public func isIpad() -> Bool{
