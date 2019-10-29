@@ -15,6 +15,7 @@ public func runAfter(_ seconds:Double, block:@escaping() -> Void){
      }
 }
 
+@discardableResult
 public func tap<T>(_ value:T, _ block:(_ value:T) -> Void) -> T{
     block(value)
     return value
