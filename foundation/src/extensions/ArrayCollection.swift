@@ -213,7 +213,7 @@ extension Array {
      * Runs the block for all elements and when they all finishes the allFinished is called.
      * To know the block is finished the then() must be called in the async block
      */
-    func eachAsync(_ body:(_ element:Element, _ index:Int, _ then:@escaping()->Void) -> Void, allFinished:@escaping(()->Void)){
+    public func eachAsync(_ body:(_ element:Element, _ index:Int, _ then:@escaping()->Void) -> Void, allFinished:@escaping(()->Void)){
         let group = DispatchGroup()
         for (index, element) in self.enumerated() {
             group.enter()
