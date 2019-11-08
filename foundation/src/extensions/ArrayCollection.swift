@@ -210,6 +210,21 @@ extension Array {
     }
     
     /**
+     * Runs the block for all elements and when they all finishes the allFinished is called.
+     * To know the block is finished the then() must be called in the async block
+     */
+    public func eachAsync(_ body:(_ element:Element, _ index:Int, _ then:@escaping()->Void) -> Void, allFinished:@escaping(()->Void)){
+        let group = DispatchGroup()
+        for (index, element) in self.enumerated() {
+            group.enter()
+            body(element, index) {
+                group.leave()
+            }
+        }
+        group.notify(queue: .main) { allFinished() }
+    }
+    
+    /**
      * Same as map but providing the index of the element in the array
      */
     @discardableResult public func mapWithIndex<T>(_ body:(_ element:Element, _ index:Int) -> T) -> [T] {
