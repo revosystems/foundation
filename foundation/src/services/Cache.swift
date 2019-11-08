@@ -37,7 +37,7 @@ import Foundation
      Retrieve & Store
      Sometimes you may wish to retrieve an item from the cache, but also store a default value if the requested item doesn't exist. For example, you may wish to retrieve all users from the cache or, if they don't exist, retrieve them from the database and add them to the cache. You may do this using the Cache::remember method:
      */
-    static public func remember(_ key:String, date:Date, whatToRemember:() -> Any) -> Any{
+    @objc @discardableResult static public func remember(_ key:String, date:Date, whatToRemember:() -> Any) -> Any{
         if let value = self.get(key) {
             return value;
         }
@@ -64,7 +64,7 @@ import Foundation
     /**
      The get method on the Cache facade is used to retrieve items from the cache. If the item does not exist in the cache, null will be returned. If you wish, you may pass a second argument to the get method specifying the default value you wish to be returned if the item doesn't exist:
      */
-    static public func get(_ key: String, defaultValue:Any) -> Any? {
+    @objc static public func get(_ key: String, defaultValue:Any) -> Any? {
         return self.get(key) ?? defaultValue;
     }
     
@@ -96,7 +96,7 @@ import Foundation
     /**
      You may remove items from the cache using the forget method:
      */
-    static public func forget(_ key : String){
+    @objc static public func forget(_ key : String){
         UserDefaults.standard.removeObject(forKey: self.cacheKey(key))
     }
     
