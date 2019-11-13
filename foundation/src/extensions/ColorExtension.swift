@@ -8,4 +8,15 @@ extension UIColor {
         let luminance = (red / 255.0) * 0.3 + (green / 255.0) * 0.59 + (blue / 255.0) * 0.11;
         return luminance * 100;
     }
+    
+    public func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
+        if #available(iOS 10.0, *) {
+            return UIGraphicsImageRenderer(size: size).image { rendererContext in
+                self.setFill()
+                rendererContext.fill(CGRect(origin: .zero, size: size))
+            }
+        }
+        return nil
+    }
+    
 }
