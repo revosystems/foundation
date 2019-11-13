@@ -61,4 +61,24 @@ class DateExtensionTest: XCTestCase {
         let date = Date(string: "2019-01-01 23:12:00")
         XCTAssertEqual("2019-01-02", date?.toDeviceTimezone(.date))
     }
+    
+    func test_can_check_if_dates_are_same_day(){
+        let date1 = Date(string: "2019-01-01 20:12:00")
+        let date2 = Date(string: "2019-01-01 13:12:00")
+        
+        XCTAssertTrue(date1!.sameDayAs(date2!))
+    }
+    
+    func test_can_check_if_dates_are_same_day_with_device_timezone(){
+        NSTimeZone.default = NSTimeZone(forSecondsFromGMT: -3600) as TimeZone
+        let date1 = Date(string: "2019-01-02 00:12:00")
+        let date2 = Date(string: "2019-01-01 13:12:00")
+                
+        XCTAssertFalse(date1!.sameDayAs(date2!))
+        
+        let date3 = Date(string: "2019-01-02 00:12:00")
+        let date4 = Date(string: "2019-01-01 23:12:00")
+                
+        XCTAssertTrue(date3!.sameDayAs(date4!))
+    }
 }
