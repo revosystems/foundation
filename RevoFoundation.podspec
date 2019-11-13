@@ -17,11 +17,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "RevoFoundation"
-<<<<<<< HEAD
-  spec.version      = "0.0.10"
-=======
-  spec.version      = "0.0.12"
->>>>>>> 7c132b7359cea501409ce15ead58c2c629fd4812
+  spec.version      = "0.0.13"
   spec.summary      = "Foundation utilities to be used across Revo projects."
 
   # This description is used to generate tags and improve search results.
@@ -85,11 +81,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-<<<<<<< HEAD
-  spec.source       = { :git => "https://github.com/revosystems/foundation.git", :tag => "0.0.10" }
-=======
-  spec.source       = { :git => "https://github.com/revosystems/foundation.git", :tag => "0.0.12" }
->>>>>>> 7c132b7359cea501409ce15ead58c2c629fd4812
+  spec.source       = { :git => "https://github.com/revosystems/foundation.git", :tag => "0.0.13" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

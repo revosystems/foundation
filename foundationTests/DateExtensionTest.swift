@@ -15,36 +15,50 @@ class DateExtensionTest: XCTestCase {
 
     func test_can_init_from_dateTime_string() {
         let date = Date(string: "2019-01-01 12:00:00")
-        XCTAssertEqual("2019-01-01 11:00:00 +0000", date?.description)
+        XCTAssertEqual("2019-01-01 12:00:00 +0000", date?.description)
     }
     
-    /*func test_can_init_from_date_string() {
+    func test_can_init_from_date_string() {
         let date2 = Date(string: "2019-01-01")
         XCTAssertEqual("2019-01-01 00:00:00 +0000", date2?.description)
-    }*/
+    }
     
     func test_can_convert_to_full_string(){
         let date = Date(string: "2019-01-01 15:45:23")
-        XCTAssertEqual("2019-01-01 15:45:23", date?.toDatetimeString)
+        XCTAssertEqual("2019-01-01 15:45:23", date?.toDatetime)
     }
     
     func test_can_convert_to_simple_date(){
         let date = Date(string: "2019-01-01 15:45:23")
-        XCTAssertEqual("2019-01-01 15:45", date?.toSimpleDatetimeString)
+        XCTAssertEqual("2019-01-01 15:45", date?.toDatetimeWithoutSeconds)
     }
     
     func test_can_convert_to_date_string(){
         let date = Date(string: "2019-01-01 15:45:23")
-        XCTAssertEqual("2019-01-01", date?.toDateString)
+        XCTAssertEqual("2019-01-01", date?.toDate)
     }
     
     func test_can_convert_to_time_string(){
         let date = Date(string: "2019-01-01 15:45:23")
-        XCTAssertEqual("15:45:23", date?.toTimeString)
+        XCTAssertEqual("15:45:23", date?.toTime)
     }
 
     func test_can_convert_to_localized_string(){
         let date = Date(string: "2019-01-01 15:45:23")
         XCTAssertEqual("1/1/19", date?.toDateTimeLocalized)
+    }
+    
+    func test_can_convert_to_deviceTimeZone_string(){
+        NSTimeZone.default = NSTimeZone(forSecondsFromGMT: 3600) as TimeZone
+        
+        let date = Date(string: "2019-01-01 15:45:23")
+        XCTAssertEqual("2019-01-01 16:45:23", date?.toDeviceTimezone)
+    }
+    
+    func test_can_convert_to_devicetimezone_format() {
+        NSTimeZone.default = NSTimeZone(forSecondsFromGMT: 3600) as TimeZone
+        
+        let date = Date(string: "2019-01-01 23:12:00")
+        XCTAssertEqual("2019-01-02", date?.toDeviceTimezone(.date))
     }
 }
