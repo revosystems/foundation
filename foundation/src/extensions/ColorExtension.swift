@@ -10,7 +10,7 @@ extension UIColor {
     }
     
     public func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
-        if #available(iOS 10.0, *) {
+        if #available(iOS 10.0, tvOS 10.0, *) {
             return UIGraphicsImageRenderer(size: size).image { rendererContext in
                 self.setFill()
                 rendererContext.fill(CGRect(origin: .zero, size: size))
