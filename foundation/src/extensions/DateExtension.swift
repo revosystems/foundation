@@ -3,11 +3,12 @@ import UIKit
 extension Date {
     
     public enum Style : String {
-        case datetime               = "yyyy-MM-dd HH:mm:ss"
-        case date                   = "yyyy-MM-dd"
-        case time                   = "HH:mm:ss"
-        case timeWithoutSeconds     = "HH:mm"
-        case datetimeWithoutSeconds = "yyyy-MM-dd HH:mm"
+        case datetime               = "yyyy-MM-dd HH:mm:ss" //2019-08-12 15:24:15
+        case date                   = "yyyy-MM-dd"          //2019-15-25
+        case time                   = "HH:mm:ss"            //15:24:40
+        case timeWithoutSeconds     = "HH:mm"               //15:24
+        case datetimeWithoutSeconds = "yyyy-MM-dd HH:mm"    //2019-08-12 15:24
+        case niceDate               = "E, MMM d"            //"Wed, Nov 20
     }
     
     static var cachedFormatters: [String: DateFormatter] = [:]
