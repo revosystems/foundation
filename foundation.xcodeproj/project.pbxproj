@@ -35,6 +35,7 @@
 		8DAD81E0234F6E35003A6025 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DF234F6E35003A6025 /* Sound.swift */; };
 		8DC91D7D23635CA800FFCF79 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7C23635CA800FFCF79 /* Container.swift */; };
 		8DC91D7F23635CB900FFCF79 /* ContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */; };
+		8DCA90262385892000CF8984 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA90252385892000CF8984 /* DoubleExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		8DAD81DF234F6E35003A6025 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		8DC91D7C23635CA800FFCF79 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTest.swift; sourceTree = "<group>"; };
+		8DCA90252385892000CF8984 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				8D37FA2E2337C5340075CFC9 /* DateExtension.swift */,
 				7699DD0B235077180054A008 /* UITableViewCellExtension.swift */,
 				8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */,
+				8DCA90252385892000CF8984 /* DoubleExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				8D37FA3C2337C5340075CFC9 /* DateExtension.swift in Sources */,
 				8D37FA342337C5340075CFC9 /* StringCollection.swift in Sources */,
 				8D37FA3F2337C5340075CFC9 /* Scheduler.swift in Sources */,
+				8DCA90262385892000CF8984 /* DoubleExtension.swift in Sources */,
 				8D37FA362337C5340075CFC9 /* UIViewExtension.swift in Sources */,
 				8D37F9FB2337BDAC0075CFC9 /* SceneDelegate.swift in Sources */,
 				8D37FA392337C5340075CFC9 /* UIActivityIndicatorExtension.swift in Sources */,
