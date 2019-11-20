@@ -1,7 +1,7 @@
 import Foundation
 
 extension Double{
-    var toCents:Int{
+    public var toCents:Int{
         Int(self*100)
     }
 }
