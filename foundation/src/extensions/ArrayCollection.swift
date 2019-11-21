@@ -573,6 +573,9 @@ extension Array where Element:Hashable {
         return Array(set1.symmetricDifference(set2))
     }
     
+    public func minus(_ secondArray:[Element]) -> [Element] {
+        return Array(Set<Element>(self).subtracting(Set<Element>(secondArray)))
+    }
 }
 
 /*extension Array where Element:AdditiveArithmetic{
@@ -596,4 +599,9 @@ extension Array where Element == String {
         let exceptLast = self.take(self.count - 1).implode(glue)
         return exceptLast + lastGlue + self.take(-1).first!
     }
+}
+
+public func - <Element: Hashable>(lhs: [Element], rhs: [Element]) -> [Element]
+{
+    return Array(lhs.minus(rhs))
 }

@@ -611,6 +611,14 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual([4, 5, 6], result.1)
     }
     
+    func test_can_substract_two_arrays(){
+        let a = [1, 2, 3, 4]
+        let b = [2, 4]
+        
+        let result = a - b
+        
+        XCTAssertEqual([1, 3], result.sorted())
+    }
 
     
     /*func test_sum(){

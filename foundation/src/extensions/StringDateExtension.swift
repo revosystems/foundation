@@ -3,9 +3,7 @@ import Foundation
 extension String {
     
     public var toDate: Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.date(from: self)
+        Date(string: self)
     }
     
     public var toDateString:String {
