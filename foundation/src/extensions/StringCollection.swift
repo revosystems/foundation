@@ -23,6 +23,10 @@ extension String{
         }
         return nil
     }
+    
+    public func urlEncoded() -> String? {
+        self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+    }
 
     public func fromBase64() -> String? {
         guard let data = Data(base64Encoded: self) else {
