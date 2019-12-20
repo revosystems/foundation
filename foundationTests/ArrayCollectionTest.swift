@@ -235,6 +235,23 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual("z", notFound!.name)
     }
     
+    func test_allWhere(){
+        struct testStruct {
+            let boolean : Bool
+        }
+        
+        let collection = [
+            testStruct(boolean: true),
+            testStruct(boolean: false),
+            testStruct(boolean: true),
+            testStruct(boolean: false),
+            testStruct(boolean: true),
+        ]
+        
+        let result = collection.allWhere(\.boolean)
+        XCTAssertEqual(3, result.count);
+    }
+    
     func test_where_is(){
         struct testStruct {
             let name : String

@@ -45,6 +45,16 @@ extension Array {
         } ?? defaultValue
     }
     
+    
+    /**
+     * Returns an array with all the elements that the keypath value is true
+     */
+    public func allWhere(_ keyPath:KeyPath<Element, Bool>) -> [Element] {
+        return self.filter{
+            $0[keyPath: keyPath] == true;
+        }
+    }
+    
    
     /**
      * Returns an array with all the elements that the keypath value is @value
