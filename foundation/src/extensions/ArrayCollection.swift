@@ -547,6 +547,17 @@ extension Array where Element:Equatable {
         guard let index = firstIndex(of: object) else {return}
         remove(at: index)
     }
+    
+    /**
+     * Adds or removes the object if it is in the array or not
+     */
+    public mutating func toggle(_ object: Element){
+        if self.contains(object) {
+            self.remove(object: object)
+        } else {
+            self.append(object)
+        }
+    }
 }
 
 extension Array where Element:Comparable {
