@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIImage {
+@objc extension UIImage {
     
     public func base64() -> String{
         //let strBase64 =  self.pngData()?.base64EncodedString()
