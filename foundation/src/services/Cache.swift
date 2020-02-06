@@ -8,7 +8,7 @@ import Foundation
     @objc @discardableResult public static func put(_ key:String, value:Any, validUntil: Date) -> Any{
         let cacheValue = ["value" : value, "validUntil" : validUntil];
         UserDefaults.standard.set(cacheValue, forKey:self.cacheKey(key))
-        return value;
+        return value
     }
     
     /**
@@ -20,16 +20,16 @@ import Foundation
     /**
      The add method will only add the item to the cache if it does not already exist in the cache store. The method will return true if the item is actually added to the cache. Otherwise, the method will return false:
      */
-    static public func add(_ key: String, value:Any, validUntil: Date){
+    static public func add(_ key: String, value:Any, validUntil: Date) {
         if (self.has(key)) { return }
-        self.put(key, value:value, validUntil: validUntil);
+        self.put(key, value:value, validUntil: validUntil)
     }
     
     /**
      Retrieve & Store
      Sometimes you may wish to retrieve an item from the cache, but also store a default value if the requested item doesn't exist. For example, you may wish to retrieve all users from the cache or, if they don't exist, retrieve them from the database and add them to the cache. You may do this using the Cache::remember method:
      */
-    static public func remember(_ key:String, seconds:Int, whatToRemember:() -> Any) -> Any{
+    @objc @discardableResult static public func remember(_ key:String, seconds:Int, whatToRemember:() -> Any) -> Any{
         return self.remember(key, date: Date().addingTimeInterval(TimeInterval(seconds)), whatToRemember: whatToRemember)
     }
     
@@ -39,12 +39,12 @@ import Foundation
      */
     @objc @discardableResult static public func remember(_ key:String, date:Date, whatToRemember:() -> Any) -> Any{
         if let value = self.get(key) {
-            return value;
+            return value
         }
         
         let value = whatToRemember();
         self.put(key, value:value, validUntil: date)
-        return value;
+        return value
     }
     
     /**
@@ -52,12 +52,13 @@ import Foundation
      */
     @objc public static func get(_ key: String) -> Any? {
         guard let cachedValue: [String: Any] = UserDefaults.standard.value(forKey: self.cacheKey(key)) as? [String: Any] else {
-            return nil;
+            return nil
         }
         let validUntil: Date = cachedValue["validUntil"] as! Date;
-        if (Date() > validUntil) {
-            return self.forget(key);
-        };
+        if Date() > validUntil {
+            self.forget(key)
+            return nil
+        }
         return cachedValue["value"]!
     }
     
@@ -80,10 +81,10 @@ import Foundation
      */
     static public func pull(_ key : String) -> Any?{
         let value = self.get(key);
-        if (value != nil) {
+        if value != nil {
             self.forget(key)
         }
-        return value;
+        return value
     }
     
     /**

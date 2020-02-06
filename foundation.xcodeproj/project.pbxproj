@@ -36,6 +36,7 @@
 		8DC91D7D23635CA800FFCF79 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7C23635CA800FFCF79 /* Container.swift */; };
 		8DC91D7F23635CB900FFCF79 /* ContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */; };
 		8DCA90262385892000CF8984 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA90252385892000CF8984 /* DoubleExtension.swift */; };
+		BBAFBFE423EC2343000F8C68 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFE323EC2343000F8C68 /* PageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		8DC91D7C23635CA800FFCF79 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTest.swift; sourceTree = "<group>"; };
 		8DCA90252385892000CF8984 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		BBAFBFE323EC2343000F8C68 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 		8D37FA232337C5340075CFC9 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				BBAFBFE223EC2317000F8C68 /* controllers */,
 				8D37FA242337C5340075CFC9 /* extensions */,
 				8D37FA2F2337C5340075CFC9 /* services */,
 				8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */,
@@ -187,6 +190,14 @@
 				8DC91D7C23635CA800FFCF79 /* Container.swift */,
 			);
 			path = services;
+			sourceTree = "<group>";
+		};
+		BBAFBFE223EC2317000F8C68 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBAFBFE323EC2343000F8C68 /* PageViewController.swift */,
+			);
+			path = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +314,7 @@
 				8D37FA342337C5340075CFC9 /* StringCollection.swift in Sources */,
 				8D37FA3F2337C5340075CFC9 /* Scheduler.swift in Sources */,
 				8DCA90262385892000CF8984 /* DoubleExtension.swift in Sources */,
+				BBAFBFE423EC2343000F8C68 /* PageViewController.swift in Sources */,
 				8D37FA362337C5340075CFC9 /* UIViewExtension.swift in Sources */,
 				8D37F9FB2337BDAC0075CFC9 /* SceneDelegate.swift in Sources */,
 				8D37FA392337C5340075CFC9 /* UIActivityIndicatorExtension.swift in Sources */,

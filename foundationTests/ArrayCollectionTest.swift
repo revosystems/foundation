@@ -452,6 +452,28 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual(Set(["d", "b", "c"]), Set(result))
     }
     
+    func test_intersect_with_objects(){
+        struct TestStruct : Hashable {
+            let name : String
+        }
+        let a = TestStruct(name: "a")
+        let b = TestStruct(name: "b")
+        let c = TestStruct(name: "c")
+        let d = TestStruct(name: "d")
+        let e = TestStruct(name: "e")
+        
+        let x = TestStruct(name: "x")
+        let z = TestStruct(name: "z")
+        
+        
+        let collection1 = [a, b, c, d, e]
+        let collection2 = [b, c, d, x, z]
+        
+        let result = collection1.intersect(collection2)
+        
+        XCTAssertEqual(Set([d, b, c]), Set(result))
+    }
+    
     func test_union(){
         let collection1 = ["a", "b", "c", "d", "e"]
         let collection2 = ["b", "c", "d", "x", "z"]
