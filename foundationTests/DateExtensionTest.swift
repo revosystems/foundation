@@ -19,8 +19,13 @@ class DateExtensionTest: XCTestCase {
     }
     
     func test_can_init_from_date_string() {
-        let date2 = Date(string: "2019-01-01")
-        XCTAssertEqual("2019-01-01 00:00:00 +0000", date2?.description)
+        let date = Date(string: "2019-01-01")
+        XCTAssertEqual("2019-01-01 00:00:00 +0000", date?.description)
+    }
+    
+    func test_can_init_with_string_and_timezone(){
+        let date = Date(string: "2019-01-01", timeZone: TimeZone(secondsFromGMT: 3600)!)
+        XCTAssertEqual("2018-12-31 23:00:00 +0000", date?.description)
     }
     
     func test_can_convert_to_full_string(){
