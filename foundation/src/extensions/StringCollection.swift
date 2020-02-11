@@ -64,4 +64,9 @@ extension String{
     public func rpad(toLength:Int, withPad:String = " ") -> String {
         self.padding(toLength: toLength, withPad: withPad, startingAt: 0)
     }
+    
+    public func limit(_ limit:Int, ending:String = "") -> String {
+        guard count > limit else { return self }
+        return prefix(limit) + ending
+    }
 }
