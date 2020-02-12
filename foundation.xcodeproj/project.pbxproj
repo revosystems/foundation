@@ -37,6 +37,7 @@
 		8DC91D7F23635CB900FFCF79 /* ContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */; };
 		8DCA90262385892000CF8984 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA90252385892000CF8984 /* DoubleExtension.swift */; };
 		BBAFBFE423EC2343000F8C68 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFE323EC2343000F8C68 /* PageViewController.swift */; };
+		BBAFBFF423F41D07000F8C68 /* DateTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFF323F41D07000F8C68 /* DateTimeExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTest.swift; sourceTree = "<group>"; };
 		8DCA90252385892000CF8984 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		BBAFBFE323EC2343000F8C68 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		BBAFBFF323F41D07000F8C68 /* DateTimeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 				7699DD0B235077180054A008 /* UITableViewCellExtension.swift */,
 				8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */,
 				8DCA90252385892000CF8984 /* DoubleExtension.swift */,
+				BBAFBFF323F41D07000F8C68 /* DateTimeExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			files = (
 				8DAD81DE234F6DB2003A6025 /* GeneralHelpers.swift in Sources */,
 				8D37F9FD2337BDAC0075CFC9 /* ViewController.swift in Sources */,
+				BBAFBFF423F41D07000F8C68 /* DateTimeExtension.swift in Sources */,
 				8D37FA3E2337C5340075CFC9 /* Cache.swift in Sources */,
 				7699DD0C235077180054A008 /* UITableViewCellExtension.swift in Sources */,
 				8D37F9F92337BDAC0075CFC9 /* AppDelegate.swift in Sources */,

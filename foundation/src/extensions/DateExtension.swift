@@ -115,6 +115,20 @@ extension Date {
         return add(years: -years, months: -months, days: -days, hours: -hours, minutes: -minutes, seconds: -seconds)
     }
     
+    /**
+     Returns the Date rounded to the next half, so 9:32 becomes 10:00, 9:15 => 9:30
+     */
+    public func roundToHalf() -> Date {
+        let minute = self.minute
+        if self.minute == 0 || minute == 30 {
+            return self
+        }
+        if self.minute < 30 {
+            return self.add(minutes:30 - minute)!
+        }
+        return self.add(minutes:60 - minute)!
+    }
+    
     //MARK:Comparision (Using device timezone)
     public func sameDayAs(_ other:Date) -> Bool{
         return self.toDeviceTimezone(.date) == other.toDeviceTimezone(.date)
