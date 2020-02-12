@@ -31,6 +31,26 @@ extension Date {
         return dayOfWeek;
     }
     
+    public var minute:Int{
+        return Calendar.current.component(.minute, from: self)
+    }
+    
+    public var hour:Int{
+        return Calendar.current.component(.hour, from: self)
+    }
+    
+    public var second:Int{
+        return Calendar.current.component(.second, from: self)
+    }
+    
+    public var month:Int{
+        return Calendar.current.component(.month, from: self)
+    }
+    
+    public var year:Int{
+        return Calendar.current.component(.year, from: self)
+    }
+    
     //MARK: Formatting
     public func toDeviceTimezone(_ style:Style) -> String {
         return Date.formatter(style, timeZone:NSTimeZone.local).string(from: self)
