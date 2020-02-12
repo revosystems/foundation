@@ -42,7 +42,7 @@ extension Date {
     public var second:Int{
         return Calendar.current.component(.second, from: self)
     }
-    
+        
     public var month:Int{
         return Calendar.current.component(.month, from: self)
     }
@@ -121,12 +121,21 @@ extension Date {
     public func roundToHalf() -> Date {
         let minute = self.minute
         if self.minute == 0 || minute == 30 {
-            return self
+            return self.floorSeconds()
         }
         if self.minute < 30 {
-            return self.add(minutes:30 - minute)!
+            return self.add(minutes:30 - minute, seconds:-second)!.floorSeconds()
         }
-        return self.add(minutes:60 - minute)!
+        return self.add(minutes:60 - minute)!.floorSeconds()
+    }
+    
+    /**
+     Returns the date rounded to the floor second, so 12:35:34 => 12:35:00
+     */
+    public func floorSeconds() -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: self)
+        return calendar.date(from: components)!
     }
     
     //MARK:Comparision (Using device timezone)
