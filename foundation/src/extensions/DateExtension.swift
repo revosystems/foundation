@@ -32,60 +32,60 @@ extension Date {
     }
     
     public var minute:Int{
-        return Calendar.current.component(.minute, from: self)
+        Calendar.current.component(.minute, from: self)
     }
     
     public var hour:Int{
-        return Calendar.current.component(.hour, from: self)
+        Calendar.current.component(.hour, from: self)
     }
     
     public var second:Int{
-        return Calendar.current.component(.second, from: self)
+        Calendar.current.component(.second, from: self)
     }
         
     public var month:Int{
-        return Calendar.current.component(.month, from: self)
+        Calendar.current.component(.month, from: self)
     }
     
     public var year:Int{
-        return Calendar.current.component(.year, from: self)
+        Calendar.current.component(.year, from: self)
     }
     
     //MARK: Formatting
     public func toDeviceTimezone(_ style:Style) -> String {
-        return Date.formatter(style, timeZone:NSTimeZone.local).string(from: self)
+        Date.formatter(style, timeZone:NSTimeZone.local).string(from: self)
     }
 
     public func toString(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> String {
-        return Date.formatter(style, timeZone:timeZone).string(from: self)
+        Date.formatter(style, timeZone:timeZone).string(from: self)
     }
     
     public var toDatetimeWithoutSeconds: String {
-        return toString(.datetimeWithoutSeconds)
+        toString(.datetimeWithoutSeconds)
     }
     
     public var toDatetime: String {
-        return toString(.datetime)
+        toString(.datetime)
     }
     
     public var toDate : String {
-        return toString(.date)
+        toString(.date)
     }
     
     public var toTime : String {
-        return toString(.time)
+        toString(.time)
     }
     
     public var toTimeWithoutSeconds : String {
-        return toString(.timeWithoutSeconds)
+        toString(.timeWithoutSeconds)
     }
     
     public var toDateTimeLocalized : String {
-        return DateFormatter.localizedString(from: self, dateStyle: .short, timeStyle: .none)
+        DateFormatter.localizedString(from: self, dateStyle: .short, timeStyle: .none)
     }
     
     public var toDeviceTimezone : String {
-        return Date.formatter(.datetime, timeZone:NSTimeZone.local).string(from: self)
+        Date.formatter(.datetime, timeZone:NSTimeZone.local).string(from: self)
     }
     
     static public func formatter(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> DateFormatter {
@@ -97,6 +97,15 @@ extension Date {
             return formatter
         }
         return cached
+    }
+    
+    public var iso8601:String{
+        let formatter = DateFormatter()
+        let enUSPOSIXLocale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = enUSPOSIXLocale
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        return formatter.string(from: self)
     }
     
     //MARK: Manipulating
@@ -112,7 +121,7 @@ extension Date {
     Returns a Date with the specified amount of components subtracted from the one it is called with
     */
     public func subtract(years: Int = 0, months: Int = 0, days: Int = 0, hours: Int = 0, minutes: Int = 0, seconds: Int = 0) -> Date? {
-        return add(years: -years, months: -months, days: -days, hours: -hours, minutes: -minutes, seconds: -seconds)
+        add(years: -years, months: -months, days: -days, hours: -hours, minutes: -minutes, seconds: -seconds)
     }
     
     /**
@@ -140,19 +149,19 @@ extension Date {
     
     //MARK:Comparision (Using device timezone)
     public func sameDayAs(_ other:Date) -> Bool{
-        return self.toDeviceTimezone(.date) == other.toDeviceTimezone(.date)
+        self.toDeviceTimezone(.date) == other.toDeviceTimezone(.date)
     }
     
     public func isToday() -> Bool {
-        return self.toDeviceTimezone(.date) == Date().toDeviceTimezone(.date)
+        self.toDeviceTimezone(.date) == Date().toDeviceTimezone(.date)
     }
     
     public func isTomorrow() -> Bool {
-        return self.toDeviceTimezone(.date) == Date().add(days: 1)?.toDeviceTimezone(.date)
+        self.toDeviceTimezone(.date) == Date().add(days: 1)?.toDeviceTimezone(.date)
     }
     
     public func isYesterday() -> Bool {
-        return self.toDeviceTimezone(.date) == Date().subtract(days: -1)?.toDeviceTimezone(.date)
+        self.toDeviceTimezone(.date) == Date().subtract(days: -1)?.toDeviceTimezone(.date)
     }
     
 }
