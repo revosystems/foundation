@@ -25,7 +25,7 @@ extension String{
     }
     
     public func urlEncoded() -> String? {
-        self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
     }
 
     public func fromBase64() -> String? {
@@ -37,7 +37,7 @@ extension String{
     }
 
     public func toBase64() -> String {
-        return Data(self.utf8).base64EncodedString()
+        Data(self.utf8).base64EncodedString()
     }
 
     public static func fromDict(_ dict: Dictionary<String, Codable?>) -> String {
@@ -49,11 +49,11 @@ extension String{
     }
 
     public func replace(_ what:String, _ with:String) -> String {
-        return self.replacingOccurrences(of: what, with: with)
+        replacingOccurrences(of: what, with: with)
     }
 
     public func trim(_ what:String = " ") -> String {
-        return self.trimmingCharacters(in: CharacterSet(charactersIn: what))
+        trimmingCharacters(in: CharacterSet(charactersIn: what))
     }
     
     public func lpad(toLength:Int, withPad:String = " ") -> String {
@@ -68,5 +68,9 @@ extension String{
     public func limit(_ limit:Int, ending:String = "") -> String {
         guard count > limit else { return self }
         return prefix(limit) + ending
+    }
+    
+    public func ucFirst() -> String {
+      prefix(1).uppercased() + dropFirst()
     }
 }
