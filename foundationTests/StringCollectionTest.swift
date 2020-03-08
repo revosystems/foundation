@@ -133,6 +133,10 @@ class StringCollectionTest: XCTestCase {
     }
     
     func test_replace_matches(){
+        XCTAssertEqual("15015551000", "(+1) 501-555-1000".replaceMatches("/[^A-Za-z0-9]++/", with: ""))
+    }
+    
+    func test_match(){
         
     }
     
@@ -140,16 +144,24 @@ class StringCollectionTest: XCTestCase {
         
     }
     
-    func test_when_empty(){
+    func test_when_empty_without_returning(){
+        let called = XCTestExpectation(description: "not called")
+        "".whenEmpty { string in
+            called.fulfill()
+        }
         
+        "not empty".whenEmpty { string in
+            XCTFail("as not empty")
+        }
+        wait(for: [called], timeout: 1)
     }
     
     func test_words(){
-        
+        XCTAssertEqual("Perfectly balanced, as >>>", "Perfectly balanced, as all things should be.".words(3, ending:" >>>"))
     }
     
     func test_limit(){
-        
+        XCTAssertEqual("Perfectly bal...", "Perfectly balanced, as all things should be.".limit(13, ending:"..."))
     }
 
 }

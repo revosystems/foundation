@@ -60,6 +60,15 @@ extension String{
         }
         return self
     }
+    
+    /**
+     The replaceMatches method replaces all portions of a string matching a given pattern with the given replacement string:
+     */
+    public func replaceMatches(_ pattern:String, with:String) -> String {
+        let regex = try? NSRegularExpression(pattern: pattern, options: [])
+        let range = NSRange(location: 0, length: count)
+        return regex?.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: "$1\(with)$2") ?? self
+    }
 
     /**
      The trim method trims the given string:
@@ -119,6 +128,20 @@ extension String{
     }
     
     /**
+     The whenEmpty method invokes the given Closure if the string is empty. If the Closure returns a value, that value will also be returned by the whenEmpty method. If the Closure does not return a value, the fluent string instance will be returned:
+     */
+    public func whenEmpty<T>(block:(_ string:String)->T?) -> T?{
+        if isEmpty { return block(self) }
+        return nil
+    }
+    
+    @discardableResult
+    public func whenEmpty(block:(_ string:String) -> Void) -> String{
+        if isEmpty { block(self) }
+        return self
+    }
+    
+    /**
      The after method returns everything after the given value in a string. The entire string will be returned if the value does not exist within the string:
      */
     public func after(_ what:String) -> String {
@@ -143,6 +166,13 @@ extension String{
         what.allSatisfy { self.contains($0) }
     }
     
+    /**
+     The words method limits the number of words in a string:
+     */
+    public func words(_ howMany:Int, ending:String = "" ) -> String {
+        explode(" ").take(howMany).implode(" ") + ending
+    }
+    
     // MARK: Start / End
     
     /**
@@ -158,7 +188,6 @@ extension String{
     public func endsWith(_ what:String) -> Bool{
         hasSuffix(what)
     }
-    
     
     /**
      The Str::finish method adds a single instance of the given value to a string if it does not already end with the value:
@@ -184,7 +213,7 @@ extension String{
         self + with
     }
     
-    // MARK: Case types    
+    // MARK: Case types
     /**
      The studly method converts the given string to StudlyCase: foo_bar => FooBar
      */
