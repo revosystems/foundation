@@ -432,7 +432,9 @@ extension Array {
      */
     public mutating func pop() -> Element? {
         if count == 0 { return nil }
-        return splice(1).first
+        return RevoFoundation.tap(first){ first in
+            self.removeFirst()
+        }
     }
     
     /**

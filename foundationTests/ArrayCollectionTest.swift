@@ -659,6 +659,14 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual([1, 3], result.sorted())
     }
 
+    func test_pop(){
+        var a = [1, 2, 3, 4]
+        
+        let r = a.pop()
+        
+        XCTAssertEqual(1, r)
+        XCTAssertEqual([2, 3, 4], a)
+    }
     
     /*func test_sum(){
         let collection = [1, 2, 3, 4, 5]
