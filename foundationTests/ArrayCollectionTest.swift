@@ -662,10 +662,30 @@ class ArrayCollectionTest: XCTestCase {
     func test_pop(){
         var a = [1, 2, 3, 4]
         
-        let r = a.pop()
+        let r1 = a.pop()
         
-        XCTAssertEqual(1, r)
+        XCTAssertEqual(1, r1)
         XCTAssertEqual([2, 3, 4], a)
+        
+        let r2 = a.pop()
+        
+        XCTAssertEqual(2, r2)
+        XCTAssertEqual([3, 4], a)
+        
+        let r3 = a.pop()
+         
+        XCTAssertEqual(3, r3)
+        XCTAssertEqual([4], a)
+        
+        let r4 = a.pop()
+         
+        XCTAssertEqual(4, r4)
+        XCTAssertEqual([], a)
+        
+        let r_ = a.pop()
+         
+        XCTAssertEqual(nil, r_)
+        XCTAssertEqual([], a)
     }
     
     /*func test_sum(){
