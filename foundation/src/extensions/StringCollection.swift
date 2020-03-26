@@ -213,13 +213,13 @@ extension String{
         return with + self
     }
     
-    public func prepend(_ with:String) -> String {
+    /*public func prepend(_ with:String) -> String {
         with + self
     }
     
     public func append(_ with:String) -> String {
         self + with
-    }
+    }*/
     
     // MARK: Case types
     /**

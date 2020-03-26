@@ -116,13 +116,13 @@ class StringCollectionTest: XCTestCase {
         XCTAssertEqual("/route/", "/route/".start("/"))
     }
     
-    func test_prepend(){
+    /*func test_prepend(){
         XCTAssertEqual("my name", "name".prepend("my "))
     }
     
     func test_append(){
         XCTAssertEqual("my name", "my".append(" name"))
-    }
+    }*/
     
     func test_replace(){
         XCTAssertEqual("my other name", "my real name".replace("real", "other"))

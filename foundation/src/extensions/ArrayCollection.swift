@@ -14,7 +14,7 @@ extension Array {
      Returns a new array without the elements that return true to the block
      */
     public func reject(_ block:(_ v:Element) -> Bool) -> [Element] {
-        self.filter { !block($0) }
+        filter { !block($0) }
     }
     
     /**
@@ -29,13 +29,11 @@ extension Array {
         passes the collection to the given callback and returns the result:
      */
     public func pipe<T>(_ block:([Element])->T) -> T{
-        return block(self)
+        block(self)
     }
-        
-        
+                
     
     // MARK: Where
-    
     /**
      * Returns the first element that the @keyPath is equal to the @value
      */
@@ -60,27 +58,21 @@ extension Array {
      * Returns an array with all the elements that the keypath value is @value
      */
     public func allWhere<T:Equatable>(_ keyPath:KeyPath<Element, T>, is value:T) -> [Element] {
-        return self.filter{
-            $0[keyPath: keyPath] == value;
-        }
+        filter { $0[keyPath: keyPath] == value }
     }
     
     /**
      * Returns an array with all the elements that the keypath value is not @value
      */
     public func allWhere<T:Equatable>(_ keyPath:KeyPath<Element, T>, isNot value:T) -> [Element] {
-        return self.filter{
-            $0[keyPath: keyPath] != value;
-        }
+        filter { $0[keyPath: keyPath] != value }
     }
     
     /**
      * Returns an array with all the elements that the keypath is nil
      */
     public func whereNil<T:Equatable>(_ keyPath:KeyPath<Element, T?>) -> [Element] {
-        return self.filter{
-            $0[keyPath: keyPath] == nil;
-        }
+        filter { $0[keyPath: keyPath] == nil }
     }
     
     
@@ -88,16 +80,14 @@ extension Array {
      * Returns an array with all the elements that the keypath is nil
      */
     public func whereNotNil<T:Equatable>(_ keyPath:KeyPath<Element, T?>) -> [Element] {
-        return self.filter{
-            $0[keyPath: keyPath] != nil;
-        }
+        filter { $0[keyPath: keyPath] != nil }
     }
         
     /**
      * Returns an array with all the elements that the keypath value is between @firstValue and @lastValue first and last included
      */
     public func whereBetween<T:Comparable>(_ keyPath:KeyPath<Element, T>, first:T, last:T) -> [Element] {
-        return self.filter{
+        filter{
             let compare = $0[keyPath: keyPath]
             return compare >= first && compare <= last
         }
@@ -107,7 +97,7 @@ extension Array {
      * Returns an array with all the elements that the keypath value is not between @firstValue and @lastValue first and last included
      */
     public func whereNotBetween<T:Comparable>(_ keyPath:KeyPath<Element, T>, first:T, last:T) -> [Element] {
-        return self.filter{
+        filter{
             let compare = $0[keyPath: keyPath]
             return !(compare >= first && compare <= last)
         }
@@ -117,7 +107,7 @@ extension Array {
      * Returns an array with all the element at the keypath value is in the @values array
      */
     public func whereIn<T:Equatable>(_ keyPath:KeyPath<Element, T>, in values:[T]) -> [Element] {
-        return self.filter {
+        filter {
             values.contains($0[keyPath: keyPath])
         }
     }
@@ -126,7 +116,7 @@ extension Array {
      * Returns an array with all the element at the keypath value is in the @values array
      */
     public func whereNotIn<T:Equatable>(_ keyPath:KeyPath<Element, T>, in values:[T]) -> [Element] {
-        return self.filter {
+        filter {
             !values.contains($0[keyPath: keyPath])
         }
     }
@@ -137,7 +127,7 @@ extension Array {
      * Returns an array with all the elements[keypath]
      */
     public func pluck<T>(_ keyPath:KeyPath<Element, T>) -> [T] {
-        return self.map { $0[keyPath: keyPath]}
+        map { $0[keyPath: keyPath]}
     }
     
     
@@ -146,7 +136,7 @@ extension Array {
             throw Array.ValidationError.NotSameSize
         }
         var result:[Element:T] = [:]
-        self.eachWithIndex { (element, index) in
+        eachWithIndex { (element, index) in
             result[element] = with[index]
         }
         return result
@@ -156,8 +146,8 @@ extension Array {
      * Returns the collection sorted by the @keyPath, this one keeps the original array intact
      */
     public func sort<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
-        return sorted { a, b in
-            return a[keyPath: keyPath] < b[keyPath: keyPath]
+        sorted { a, b in
+            a[keyPath: keyPath] < b[keyPath: keyPath]
         }
     }
     
@@ -166,7 +156,7 @@ extension Array {
      */
     public func keyBy<T>(_ keyPath:KeyPath <Element, T>) -> [T:Element] {
         var result:[T:Element] = [:]
-        self.each {
+        each {
             result[$0[keyPath: keyPath]] = $0
         }
         return result
@@ -177,7 +167,7 @@ extension Array {
      */
     public func keyBy<T>(_ key:(_ element:Element)->T) -> [T:Element] {
         var result:[T:Element] = [:]
-        self.each {
+        each {
             result[key($0)] = $0
         }
         return result
@@ -190,7 +180,7 @@ extension Array {
         var passing:[Element] = []
         var notPassing:[Element] = []
         
-        self.each{
+        each{
             if check($0) {
                 passing.append($0)
             } else {
@@ -205,7 +195,7 @@ extension Array {
      * Wrapper for the swif foreach function
      */
     @discardableResult public func each (_ body:(_ element:Element) -> Void) -> [Element] {
-        self.forEach(body)
+        forEach(body)
         return self;
     }
     
@@ -251,7 +241,7 @@ extension Array {
      */
     public func mapToDictionary<T, Z>(_ block:(_ element:Element) -> (T,Z)) -> [T:Z]{
         var result:[T:Z] = [:]
-        self.each {
+        each {
             let tuple = block($0)
             result[tuple.0] = tuple.1
         }
@@ -267,7 +257,7 @@ extension Array {
     public func maxElement<T:Comparable>(_ keyPath:KeyPath<Element, T>) -> Element? {
         var max:Element? = nil
         var maxValue:T? = nil
-        self.each {
+        each {
             let newElementMax = $0[keyPath: keyPath]
             if (maxValue == nil || newElementMax > maxValue!) {
                 max = $0
@@ -283,7 +273,7 @@ extension Array {
     public func minElement<T:Comparable>(_ keyPath:KeyPath<Element, T>) -> Element? {
         var min:Element? = nil
         var minValue:T? = nil
-        self.each {
+        each {
             let newElementMin = $0[keyPath: keyPath]
             if (minValue == nil || newElementMin < minValue!) {
                 min = $0
@@ -298,7 +288,7 @@ extension Array {
      */
     public func max<T:Comparable>(at keyPath:KeyPath<Element, T>) -> T? {
         var maxValue:T? = nil
-        self.each {
+        each {
             let newElementMax = $0[keyPath: keyPath]
             if (maxValue == nil || newElementMax > maxValue!) {
                 maxValue = newElementMax
@@ -327,7 +317,7 @@ extension Array {
      * Splits the array into chucks of size @size and returns an array of arrays
      */
     public func chunk(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
+        stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
     }
@@ -346,7 +336,7 @@ extension Array {
      */
     public func slice(_ from: Int) -> ArraySlice<Element>{
         if ( from > self.count) { return [] }
-        return self.suffix(from: from)
+        return suffix(from: from)
     }
     
     /**
@@ -362,7 +352,7 @@ extension Array {
      */
     mutating public func splice(_ start:Int) -> [Element] {
         let chunk = self[start..<self.count]
-        self.removeSubrange(start..<self.count)
+        removeSubrange(start..<self.count)
         return Array(chunk);
     }
     
@@ -372,7 +362,7 @@ extension Array {
     mutating public func splice(_ start:Int, limit:Int) -> [Element] {
         let end     = Swift.min(start + limit, self.count)
         let chunk   = self[start..<end]
-        self.removeSubrange(start..<end)
+        removeSubrange(start..<end)
         return Array(chunk);
     }
     
@@ -382,8 +372,8 @@ extension Array {
     mutating public func splice(_ start:Int, limit:Int, replaceWith:[Element]) -> [Element] {
         let end     = Swift.min(start + limit, self.count)
         let chunk   = self[start..<end]
-        self.removeSubrange(start..<end)
-        self.insert(contentsOf: replaceWith, at: start)
+        removeSubrange(start..<end)
+        insert(contentsOf: replaceWith, at: start)
         return Array(chunk);
     }
     
@@ -441,14 +431,17 @@ extension Array {
      * Returns the first element of the array and removes it from itself
      */
     public mutating func pop() -> Element? {
-        return self.splice(1).first;
+        if count == 0 { return nil }
+        return RevoFoundation.tap(first){ first in
+            self.removeFirst()
+        }
     }
     
     /**
      iterates over the collection and calls the given callback with each item in the collection. The items in the collection will be replaced by the values returned by the callback:
      */
     @discardableResult mutating public func transform(_ block:(_ element:Element)->Element) -> [Element] {
-        self.eachWithIndex { (element, index) in
+        eachWithIndex { (element, index) in
             self[index] = block(element)
         }
         return self;
@@ -494,7 +487,7 @@ extension Array {
      The whenEmpty method will execute the given callback when the collection is empty:
      */
     @discardableResult mutating public func whenEmpty( block:(inout [Element])->Void) -> [Element]{
-        if (self.count == 0) { block(&self) }
+        if count == 0 { block(&self) }
         return self
     }
     
@@ -502,7 +495,7 @@ extension Array {
      The whenEmpty method will execute the given callback when the collection is not empty:
      */
     @discardableResult mutating public func whenNotEmpty( block:(inout [Element])->Void) -> [Element]{
-        if (self.count != 0) { block(&self) }
+        if count != 0 { block(&self) }
         return self
     }
     
@@ -516,7 +509,7 @@ extension Array where Element:Equatable {
      */
     public func unique() -> [Element] {
         var result:[Element] = []
-        self.each {
+        each {
             if (!result.contains($0)){
                 result.append($0)
             }
@@ -530,7 +523,7 @@ extension Array where Element:Equatable {
     public func unique<T:Equatable>(_ block:(_ element:Element)->T) -> [Element] {
         var result:[Element] = []
         var temp:[T] = []
-        self.each {
+        each {
             let hash = block($0)
             if (!temp.contains(hash)){
                 result.append($0)
@@ -552,10 +545,10 @@ extension Array where Element:Equatable {
      * Adds or removes the object if it is in the array or not
      */
     public mutating func toggle(_ object: Element){
-        if self.contains(object) {
-            self.remove(object: object)
+        if contains(object) {
+            remove(object: object)
         } else {
-            self.append(object)
+            append(object)
         }
     }
 }
@@ -566,11 +559,8 @@ extension Array where Element:Comparable {
      * Returns an array with all the elements between @firstValue and @lastValue first and last included
      */
     public func whereBetween(_ first:Element, and last:Element) -> [Element] {
-        return self.filter{
-            return $0 >= first && $0 <= last
-        }
+        filter { $0 >= first && $0 <= last }
     }
-    
 }
 
 extension Array where Element:Hashable {
@@ -595,7 +585,7 @@ extension Array where Element:Hashable {
     }
     
     public func minus(_ secondArray:[Element]) -> [Element] {
-        return Array(Set<Element>(self).subtracting(Set<Element>(secondArray)))
+        Array(Set<Element>(self).subtracting(Set<Element>(secondArray)))
     }
 }
 
@@ -607,7 +597,7 @@ extension Array where Element:Hashable {
 
 extension Array where Element == String {
     public func implode(_ glue:String) -> String {
-        return self.joined(separator: glue)
+        self.joined(separator: glue)
     }
     
     /**
@@ -624,5 +614,5 @@ extension Array where Element == String {
 
 public func - <Element: Hashable>(lhs: [Element], rhs: [Element]) -> [Element]
 {
-    return Array(lhs.minus(rhs))
+    Array(lhs.minus(rhs))
 }
