@@ -51,7 +51,7 @@ extension String{
     public func replace(_ what:String, _ with:String) -> String {
         replacingOccurrences(of: what, with: with)
     }
-    
+        
     public func replaceFirst(_ what:String, _ with:String) -> String {
         if let range = range(of: what) {
             var newString = self
@@ -59,6 +59,14 @@ extension String{
             return newString
         }
         return self
+    }
+
+    public func remove(_ string:String) -> String{
+        replace(string, "")
+    }
+    
+    public func remove(_ strings:[String]) -> String {
+        strings.reduce(self) { $0.replace($1, "") }
     }
     
     /**

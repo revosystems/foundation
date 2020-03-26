@@ -29,7 +29,7 @@ class Container {
     
     private var bindings:[String : () -> Any] = [:]
     private var singletons:[String : Any] = [:]
-    private var extensions:[String : Any ] = [:]
+    private var extensions:[String : Any] = [:]
     
     // MARK: Resolvers
     /*public func resolve<T>(_ type:T.Type) -> T.Type {

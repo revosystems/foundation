@@ -136,6 +136,15 @@ class StringCollectionTest: XCTestCase {
         XCTAssertEqual("15015551000", "(+1) 501-555-1000".replaceMatches("/[^A-Za-z0-9]++/", with: ""))
     }
     
+    
+    func test_remove(){
+        XCTAssertEqual("hol que tl", "hola que tal".remove("a"))
+    }
+    
+    func test_remove_with_string(){
+        XCTAssertEqual("holquetl", "hola que tal".remove(["a", " "]))
+    }
+    
     func test_match(){
         
     }
