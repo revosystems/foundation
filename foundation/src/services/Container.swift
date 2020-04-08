@@ -1,99 +1,87 @@
-//
-//  Container.swift
-//  foundation
-//
-//  Created by Jordi Puigdellívol on 25/10/2019.
-//  Copyright © 2019 Revo Systems. All rights reserved.
-//
-
-
 import Foundation
 
 //https://laravel.com/docs/5.8/container
 
-public func resolve<T>(_ type:T.Type = T.self) -> T  {
-    try! Container.shared.make(type)
-}
-
-public func resolveOptional<T>(_ type:T.Type = T.self) -> T?  {
-    try? Container.shared.make(type)
+public protocol Resolvable{
+    init()
 }
 
 public class Container {
-
-    public static var shared:Container = Container() //Already lazy
     
-    enum ContainerError: Error {
-        case runtimeError(String)
+    public static var shared = Container()
+    
+    var resolvers:[String : Any] = [:]
+    var extensions:[String : Any] = [:]
+    
+    // MARK:- Binding
+    public func bind<T:Resolvable, Z:Resolvable>(_ type:T.Type, _ resolver:Z.Type) {
+        resolvers[String(describing: type)] = resolver
     }
     
-    private var bindings:[String : () -> Any] = [:]
-    private var singletons:[String : Any] = [:]
-    private var extensions:[String : Any] = [:]
-    
-    // MARK: Resolvers
-    /*public func resolve<T>(_ type:T.Type) -> T.Type {
-        return type
-    }*/
-    
-    public func make<T>(_ type:T.Type = T.self) throws -> T  {
-        if let singleton = singletons[String(describing: type)] {
-            if (singleton is T){
-                return extendResolved(type, singleton as! T)
-            }
-            let value = (singleton as! (()->T))()
-            singletons[String(describing: type)] = value
-            return extendResolved(type, value)
-        }
-        if let bind = bindings[String(describing: type)] {
-            return extendResolved(type, bind() as! T)
-        }
-        throw ContainerError.runtimeError("No binding for \(type)")
+    @discardableResult
+    public func bind<T:Resolvable>(_ type:T.Type, _ resolver:T) -> T {
+        resolvers[String(describing: type)] = resolver
+        return resolver
     }
     
-    private func extendResolved<T,Z>(_ type:Z.Type, _ resolved:T)->T{
+    public func bind<T>(_ type:T.Type, _ clousure:@escaping()->T) {
+        resolvers[String(describing: type)] = clousure
+    }
+    
+    public func bind<T>(singleton type:T.Type, _ clousure:@escaping()->T) {
+        resolvers[String(describing: type)] = clousure()
+    }
+    
+    public func bind<T, Z>(instance type:T.Type, _ resolver:Z) {
+        resolvers[String(describing: type)] = resolver
+    }
+      
+    // MARK:- Extension
+    public func extend<T>(_ type:T.Type, theExtension:@escaping (_ resolved:T)->Void){
+        extensions[String(describing: type)] = theExtension
+    }
+    
+    func extend<T,Z>(for type:T.Type, resolved:Z) -> Z {
         guard let theExtension = extensions[String(describing: type)] else {
             return resolved
         }
-        (theExtension as! (_ value:T)->Void)(resolved)
+        (theExtension as! (_ value:Z)->Void)(resolved)
         return resolved
     }
     
-    // MARK: Binders
-    @discardableResult
-    public func bind<T>(_ type:T.Type, bind:@escaping ()->T) -> Self {
-        bindings[String(describing: type)] = bind
-        return self
+    // MARK:- Resolving
+    public func resolve<T>(_ type:T.Type) -> T? {
+        guard let resolved:T = resolve(withoutExtension:type) else { return nil }
+        return extend(for:type, resolved:resolved)
     }
     
-    @discardableResult
-    public func singleton<T>(_ type:T.Type, bind:@escaping ()->T) -> Self {
-        singletons[String(describing: type)] = bind
-        return self
+    public func resolve<T>(withoutExtension type:T.Type) -> T? {
+        guard let resolver = resolvers[String(describing: type)] else {
+            if type.self is Resolvable.Type {
+                return (type as! Resolvable.Type).init() as? T
+            }
+            return nil
+        }
+        if let resolvable = resolver as? Resolvable.Type {
+            return resolvable.init() as? T
+        }
+        if let resolvable = resolver as? T {
+            return resolvable
+        }
+        if let resolvable = resolver as? (()->T) {
+            return resolvable()
+        }
+        return nil
     }
-    
-    @discardableResult
-    public func instance<T>(_ type:T.Type, _ instance:T) -> Self{
-        singletons[String(describing: type)] = instance
-        return self
-    }
-    
-    // MARK: Extend
-    @discardableResult
-    public func extend<T>(_ type:T.Type, theExtension:@escaping (_ resolved:T)->Void) -> Self{
-        extensions[String(describing: type)] = theExtension
-        return self
-    }
-    
 }
 
 
 @propertyWrapper
-public struct Inject<Value> {
-    
-    public var wrappedValue: Value
+public struct Inject<Value>{
+    public var wrappedValue: Value?
     
     public init() {
-        wrappedValue = try! Container.shared.make(Value.self)
+        wrappedValue = Container.shared.resolve(Value.self)
     }
 }
+
