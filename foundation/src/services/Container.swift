@@ -19,9 +19,9 @@ public func resolveOptional<T>(_ type:T.Type = T.self) -> T?  {
     try? Container.shared.make(type)
 }
 
-class Container {
+public class Container {
 
-    static var shared:Container = Container() //Already lazy
+    public static var shared:Container = Container() //Already lazy
     
     enum ContainerError: Error {
         case runtimeError(String)
