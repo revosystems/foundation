@@ -13,7 +13,8 @@ extension Date {
     
     static var cachedFormatters: [String: DateFormatter] = [:]
     
-    public init?(string:String, timeZone:TimeZone = TimeZone(identifier:"UTC")!){
+    public init?(string:String?, timeZone:TimeZone = TimeZone(identifier:"UTC")!){
+        guard let string = string else { return nil }
         guard let date = Date.formatter(string.count == 10 ? Style.date : Style.datetime, timeZone: timeZone)
             .date(from: string) else { return nil }
         self.init(timeInterval:0, since:date)
