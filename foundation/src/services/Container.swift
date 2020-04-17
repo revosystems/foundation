@@ -11,6 +11,7 @@ public class Container {
     public static var shared = Container()
     
     var resolvers:[String : Any] = [:]
+    var singletons:[String : Any] = [:]
     var extensions:[String : Any] = [:]
     
     // MARK:- Binding
@@ -29,7 +30,7 @@ public class Container {
     }
     
     public func bind<T>(singleton type:T.Type, _ clousure:@escaping()->T) {
-        resolvers[String(describing: type)] = clousure()
+        singletons[String(describing: type)] = clousure
     }
     
     public func bind<T, Z>(instance type:T.Type, _ resolver:Z) {
@@ -56,6 +57,12 @@ public class Container {
     }
     
     public func resolve<T>(withoutExtension type:T.Type) -> T? {
+        
+        if let singleTonclousure = singletons[String(describing: type)] as? (()->T) {
+            resolvers[String(describing: type)] = singleTonclousure()
+            singletons[String(describing: type)] = nil
+        }
+            
         guard let resolver = resolvers[String(describing: type)] else {
             if type.self is Resolvable.Type {
                 return (type as! Resolvable.Type).init() as? T
