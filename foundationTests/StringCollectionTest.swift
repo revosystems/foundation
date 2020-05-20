@@ -175,7 +175,7 @@ class StringCollectionTest: XCTestCase {
     
     func test_string_subscripts(){
         let string = "hola que tal"
-        let result = string[2...]
+        let result = string[String.Index(encodedOffset: 2)...]
         XCTAssertEqual("la que tal", result)
     }
 
