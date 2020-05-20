@@ -172,5 +172,11 @@ class StringCollectionTest: XCTestCase {
     func test_limit(){
         XCTAssertEqual("Perfectly bal...", "Perfectly balanced, as all things should be.".limit(13, ending:"..."))
     }
+    
+    func test_string_subscripts(){
+        let string = "hola que tal"
+        let result = string[2...]
+        XCTAssertEqual("la que tal", result)
+    }
 
 }
