@@ -9,7 +9,9 @@ extension Date {
         case timeWithoutSeconds     = "HH:mm"                        //15:24
         case datetimeWithoutSeconds = "yyyy-MM-dd HH:mm"             //2019-08-12 15:24
         case niceDate               = "E, MMM d"                     //"Wed, Nov 20
-        case iso8601                = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"   //2020-06-25T11:48:46.000000Z
+        case longDate               = "EEEE, d MMMM, HH:mm"          //"Wednesday, 20 August, 12:45
+        case iso8601Export          = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"   //2020-06-25T11:48:46.000000Z?
+        case iso8601Import          = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"   //2020-06-25T11:48:46.000000Z
     }
     
     static var cachedFormatters: [String: DateFormatter] = [:]
@@ -18,9 +20,7 @@ extension Date {
         guard let string = string else { return nil }
         guard let date = Date.formatter(string.count == 10 ? Style.date : Style.datetime, timeZone: timeZone)
             .date(from: string) else {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                guard let isoDate = formatter.date(from: string) else { return nil }
+                guard let isoDate = Date.formatter(.iso8601Import).date(from: string) else { return nil }
                 self.init(timeInterval:0, since:isoDate)
                 return
         }
@@ -112,7 +112,7 @@ extension Date {
         let formatter        = DateFormatter()
         let enUSPOSIXLocale  = Locale(identifier: "en_US_POSIX")
         formatter.locale     = enUSPOSIXLocale
-        formatter.dateFormat = Style.iso8601.rawValue
+        formatter.dateFormat = Style.iso8601Export.rawValue
         
         return formatter.string(from: self)
     }
