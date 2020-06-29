@@ -28,6 +28,12 @@ class DateExtensionTest: XCTestCase {
         XCTAssertEqual("2018-12-31 23:00:00 +0000", date?.description)
     }
     
+    func test_can_init_with_iso8601_string(){
+        let date = Date(string: "2020-06-25T11:48:46.000000Z")
+        XCTAssertEqual("2020-06-25 11:48:46 +0000", date?.description)
+        
+    }
+    
     func test_can_convert_to_full_string(){
         let date = Date(string: "2019-01-01 15:45:23")
         XCTAssertEqual("2019-01-01 15:45:23", date?.toDatetime)

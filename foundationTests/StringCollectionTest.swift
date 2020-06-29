@@ -76,7 +76,7 @@ class StringCollectionTest: XCTestCase {
     }*/
     
     func test_studly(){
-        XCTAssertEqual("FooBar", "foo_bar".camel())
+        //XCTAssertEqual("FooBar", "foo_bar".camel())
     }
     
     func test_camel(){
@@ -136,6 +136,15 @@ class StringCollectionTest: XCTestCase {
         XCTAssertEqual("15015551000", "(+1) 501-555-1000".replaceMatches("/[^A-Za-z0-9]++/", with: ""))
     }
     
+    
+    func test_remove(){
+        XCTAssertEqual("hol que tl", "hola que tal".remove("a"))
+    }
+    
+    func test_remove_with_string(){
+        XCTAssertEqual("holquetl", "hola que tal".remove(["a", " "]))
+    }
+    
     func test_match(){
         
     }
@@ -162,6 +171,12 @@ class StringCollectionTest: XCTestCase {
     
     func test_limit(){
         XCTAssertEqual("Perfectly bal...", "Perfectly balanced, as all things should be.".limit(13, ending:"..."))
+    }
+    
+    func test_string_subscripts(){
+        let string = "hola que tal"
+        let result = string[String.Index(encodedOffset: 2)...]
+        XCTAssertEqual("la que tal", result)
     }
 
 }

@@ -30,6 +30,7 @@
 		8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA302337C5340075CFC9 /* Network.swift */; };
 		8D37FA3E2337C5340075CFC9 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA312337C5340075CFC9 /* Cache.swift */; };
 		8D37FA3F2337C5340075CFC9 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D37FA322337C5340075CFC9 /* Scheduler.swift */; };
+		8D3C289D2451E9A60003F235 /* StringSubscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C289C2451E9A60003F235 /* StringSubscripts.swift */; };
 		8D58B8772350DF9D00FAA673 /* DictionaryCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */; };
 		8DAD81DE234F6DB2003A6025 /* GeneralHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */; };
 		8DAD81E0234F6E35003A6025 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAD81DF234F6E35003A6025 /* Sound.swift */; };
@@ -80,6 +81,7 @@
 		8D37FA302337C5340075CFC9 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8D37FA312337C5340075CFC9 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		8D37FA322337C5340075CFC9 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		8D3C289C2451E9A60003F235 /* StringSubscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSubscripts.swift; sourceTree = "<group>"; };
 		8D58B8762350DF9D00FAA673 /* DictionaryCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCollection.swift; sourceTree = "<group>"; };
 		8DAD81DD234F6DB2003A6025 /* GeneralHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralHelpers.swift; sourceTree = "<group>"; };
 		8DAD81DF234F6E35003A6025 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				8DCA90252385892000CF8984 /* DoubleExtension.swift */,
 				BBAFBFF323F41D07000F8C68 /* DateTimeExtension.swift */,
 				BB7EFD332412687600439821 /* StringCryptoExtension.swif.swift */,
+				8D3C289C2451E9A60003F235 /* StringSubscripts.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				8D37FA352337C5340075CFC9 /* ArrayCollection.swift in Sources */,
 				8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */,
 				8DC91D7D23635CA800FFCF79 /* Container.swift in Sources */,
+				8D3C289D2451E9A60003F235 /* StringSubscripts.swift in Sources */,
 				8D58B8772350DF9D00FAA673 /* DictionaryCollection.swift in Sources */,
 				BB7EFD342412687600439821 /* StringCryptoExtension.swif.swift in Sources */,
 				8D37FA3B2337C5340075CFC9 /* UIImageExtension.swift in Sources */,

@@ -3,19 +3,28 @@ import UIKit
 extension Date {
     
     public enum Style : String {
-        case datetime               = "yyyy-MM-dd HH:mm:ss" //2019-08-12 15:24:15
-        case date                   = "yyyy-MM-dd"          //2019-15-25
-        case time                   = "HH:mm:ss"            //15:24:40
-        case timeWithoutSeconds     = "HH:mm"               //15:24
-        case datetimeWithoutSeconds = "yyyy-MM-dd HH:mm"    //2019-08-12 15:24
-        case niceDate               = "E, MMM d"            //"Wed, Nov 20
+        case datetime               = "yyyy-MM-dd HH:mm:ss"          //2019-08-12 15:24:15
+        case date                   = "yyyy-MM-dd"                   //2019-15-25
+        case time                   = "HH:mm:ss"                     //15:24:40
+        case timeWithoutSeconds     = "HH:mm"                        //15:24
+        case datetimeWithoutSeconds = "yyyy-MM-dd HH:mm"             //2019-08-12 15:24
+        case niceDate               = "E, MMM d"                     //"Wed, Nov 20
+        case longDate               = "EEEE, d MMMM, HH:mm"          //"Wednesday, 20 August, 12:45
+        case iso8601Export          = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"   //2020-06-25T11:48:46.000000Z?
+        case iso8601Import          = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"   //2020-06-25T11:48:46.000000Z
     }
     
     static var cachedFormatters: [String: DateFormatter] = [:]
     
-    public init?(string:String, timeZone:TimeZone = TimeZone(identifier:"UTC")!){
+    public init?(string:String?, timeZone:TimeZone = TimeZone(identifier:"UTC")!){
+        guard let string = string else { return nil }
         guard let date = Date.formatter(string.count == 10 ? Style.date : Style.datetime, timeZone: timeZone)
-            .date(from: string) else { return nil }
+            .date(from: string) else {
+                guard let isoDate = Date.formatter(.iso8601Import).date(from: string) else { return nil }
+                self.init(timeInterval:0, since:isoDate)
+                return
+        }
+    
         self.init(timeInterval:0, since:date)
     }
     
@@ -53,7 +62,7 @@ extension Date {
     
     //MARK: Formatting
     public func toDeviceTimezone(_ style:Style) -> String {
-        Date.formatter(style, timeZone:NSTimeZone.local).string(from: self)
+        Date.formatter(style, timeZone:TimeZone.current).string(from: self)
     }
 
     public func toString(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> String {
@@ -85,7 +94,7 @@ extension Date {
     }
     
     public var toDeviceTimezone : String {
-        Date.formatter(.datetime, timeZone:NSTimeZone.local).string(from: self)
+        Date.formatter(.datetime, timeZone:TimeZone.current).string(from: self)
     }
     
     static public func formatter(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> DateFormatter {
@@ -100,10 +109,10 @@ extension Date {
     }
     
     public var iso8601:String{
-        let formatter = DateFormatter()
-        let enUSPOSIXLocale = Locale(identifier: "en_US_POSIX")
-        formatter.locale = enUSPOSIXLocale
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        let formatter        = DateFormatter()
+        let enUSPOSIXLocale  = Locale(identifier: "en_US_POSIX")
+        formatter.locale     = enUSPOSIXLocale
+        formatter.dateFormat = Style.iso8601Export.rawValue
         
         return formatter.string(from: self)
     }
