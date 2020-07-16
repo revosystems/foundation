@@ -25,11 +25,26 @@ class StringCollectionTest: XCTestCase {
         XCTAssertEqual("0000000abc", result)
     }
     
+    func test_lpad_when_not_needed() {
+        let string = "abc"
+        let result = string.lpad(toLength:3, withPad:"0")
+        
+        XCTAssertEqual("abc", result)
+    }
+    
     func test_rpad() {
         let string = "abc"
         let result = string.rpad(toLength:10, withPad:"0")
         
         XCTAssertEqual("abc0000000", result)
+    }
+    
+    
+    func test_rpad_when_not_needed() {
+        let string = "abc"
+        let result = string.rpad(toLength:3, withPad:"0")
+        
+        XCTAssertEqual("abc", result)
     }
     
     func test_explode(){
