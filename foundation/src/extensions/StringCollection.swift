@@ -101,6 +101,7 @@ extension String{
     
     public func lpad(toLength:Int, withPad:String = " ") -> String {
         let size = toLength - self.count
+        if size <= 0 { return self }
         return Array<String>.times(size, { _ in withPad }).reduce("", +) + self
     }
     
