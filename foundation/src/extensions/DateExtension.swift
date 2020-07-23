@@ -15,6 +15,7 @@ extension Date {
     }
     
     static var cachedFormatters: [String: DateFormatter] = [:]
+    public static var locale:Locale? = nil
     
     public init?(string:String?, timeZone:TimeZone = TimeZone(identifier:"UTC")!){
         guard let string = string else { return nil }
@@ -102,6 +103,7 @@ extension Date {
             let formatter                = DateFormatter()
             formatter.dateFormat         = style.rawValue
             formatter.timeZone           = timeZone
+            formatter.locale             = self.locale
             Date.cachedFormatters["\(style)" + timeZone.identifier] = formatter
             return formatter
         }
