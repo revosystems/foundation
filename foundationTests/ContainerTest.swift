@@ -1,6 +1,11 @@
 import XCTest
 @testable import RevoFoundation
 
+protocol MyProtocol : Resolvable {
+    init()
+    func hello() -> Bool
+}
+
 class ContainerTest: XCTestCase {
 
     class ImageDownloader : Resolvable {
@@ -176,6 +181,46 @@ class ContainerTest: XCTestCase {
         XCTAssertTrue(result.theStruct is TestStruct2)
     }
     
+    
+    func test_can_resolve_protocol(){
+        struct A : MyProtocol {
+            func hello() -> Bool {
+                false
+            }
+        }
+        struct B : MyProtocol {
+            func hello() -> Bool {
+                true
+            }
+        }
+        
+        Container.shared.bind(A.self, B.self)
+        
+        let resolved = Container.shared.resolve(A.self)!
+        
+        XCTAssertTrue(resolved.hello())
+    }
+    
+    /*func test_can_get_the_resolver(){
+        struct A : MyProtocol {
+            func hello() -> Bool {
+                false
+            }
+        }
+        struct B : MyProtocol {
+            func hello() -> Bool {
+                true
+            }
+        }
+        
+        Container.shared.bind(A.self, B.self)
+        
+        let resolver = Container.shared.resolve(A.self)
+        
+        //let resolver = Container.shared.resolver(for: A.self, ofProtocol:MyProtocol.self)!
+        
+        XCTAssertTrue(resolver.init() is B)
+    }*/
     
     
     //TODO: Bind and resolve with tags

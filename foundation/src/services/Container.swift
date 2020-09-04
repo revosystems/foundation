@@ -80,6 +80,16 @@ public class Container {
         }
         return nil
     }
+    
+    public func resolver<T, Z>(for type:T.Type, ofProtocol:Z.Type) -> Z.Type?{
+        guard let resolver = resolvers[String(describing: type)] else {
+            return nil
+        }
+        if let resolvable = resolver as? Z.Type {
+            return resolvable
+        }
+        return nil
+    }
 }
 
 
