@@ -565,6 +565,15 @@ extension Array where Element:Comparable {
 
 extension Array where Element:Hashable {
     
+    func reordered(_ defaultOrder:[Element]) -> [Element] {
+        return self.sorted { (a, b) -> Bool in
+            if let first = defaultOrder.firstIndex(of: a), let second = defaultOrder.firstIndex(of: b) {
+                return first < second
+            }
+            return false
+        }
+    }
+    
     // MARK: Sets
     public func intersect(_ secondArray:[Element]) -> [Element] {
         let set1:Set<Element> = Set(self)
