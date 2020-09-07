@@ -565,7 +565,7 @@ extension Array where Element:Comparable {
 
 extension Array where Element:Hashable {
     
-    func reordered(_ defaultOrder:[Element]) -> [Element] {
+    public func reordered(_ defaultOrder:[Element]) -> [Element] {
         return self.sorted { (a, b) -> Bool in
             if let first = defaultOrder.firstIndex(of: a), let second = defaultOrder.firstIndex(of: b) {
                 return first < second
