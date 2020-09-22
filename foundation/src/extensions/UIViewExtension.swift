@@ -59,4 +59,14 @@ extension UIView {
         layer.borderColor   = color.cgColor
         return self
     }
+    
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        }
+        if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        }
+        return nil
+    }
 }
