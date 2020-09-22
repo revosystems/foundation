@@ -73,8 +73,40 @@ class ArrayCollectionTest: XCTestCase {
             testStruct(name: "a"),
         ]
         
-        let result = collection.sort(by: \.name)
+        let result  = collection.sort(by: \.name)
         XCTAssertEqual("a", result.first!.name)
+    }
+    
+    func test_sort_by_with_nil_values_at_end(){
+        struct testStruct {
+            let name : String?
+            let id : String
+        }
+        
+        let collection = [
+            testStruct(name: "b", id: "1"),
+            testStruct(name: nil, id: "2"),
+            testStruct(name: "a", id: "3"),
+        ]
+        
+        let result = collection.sort(by: \.name)
+        XCTAssertEqual(["a", "b", nil], result.pluck(\.name))
+    }
+
+    func test_sort_by_with_nil_values_at_beginning(){
+        struct testStruct {
+            let name : String?
+            let id : String
+        }
+
+        let collection = [
+            testStruct(name: "b", id: "1"),
+            testStruct(name: nil, id: "2"),
+            testStruct(name: "a", id: "3"),
+        ]
+
+        let result = collection.sort(by: \.name, nilAtBeginning: true)
+        XCTAssertEqual([nil, "a", "b"], result.pluck(\.name))
     }
     
     func test_key_by(){
