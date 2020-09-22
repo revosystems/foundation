@@ -145,6 +145,18 @@ extension Array {
     /**
      * Returns the collection sorted by the @keyPath, this one keeps the original array intact
      */
+    public func sort<T: Comparable>(by keyPath: KeyPath<Element, T?>, nilAtBeginning:Bool = false) -> [Element] {
+        sorted { a, b in
+            guard let first = a[keyPath: keyPath] else {
+                return nilAtBeginning
+            }
+            guard let second = b[keyPath: keyPath] else {
+                return !nilAtBeginning
+            }
+            return first < second
+        }
+    }
+
     public func sort<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
         sorted { a, b in
             a[keyPath: keyPath] < b[keyPath: keyPath]
