@@ -63,7 +63,7 @@ extension Date {
     
     //MARK: Formatting
     public func toDeviceTimezone(_ style:Style) -> String {
-        Date.formatter(style, timeZone:TimeZone.current).string(from: self)
+        Date.formatter(style, timeZone:NSTimeZone.default).string(from: self)
     }
 
     public func toString(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> String {
@@ -95,7 +95,7 @@ extension Date {
     }
     
     public var toDeviceTimezone : String {
-        Date.formatter(.datetime, timeZone:TimeZone.current).string(from: self)
+        Date.formatter(.datetime, timeZone:NSTimeZone.default).string(from: self)
     }
     
     static public func formatter(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> DateFormatter {
