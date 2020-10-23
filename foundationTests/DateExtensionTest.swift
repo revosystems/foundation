@@ -85,11 +85,11 @@ class DateExtensionTest: XCTestCase {
         let date1 = Date(string: "2019-01-02 00:12:00")
         let date2 = Date(string: "2019-01-01 13:12:00")
                 
-        XCTAssertFalse(date1!.sameDayAs(date2!))
+        XCTAssertTrue(date1!.sameDayAs(date2!))
         
-        let date3 = Date(string: "2019-01-02 00:12:00")
-        let date4 = Date(string: "2019-01-01 23:12:00")
+        let date3 = Date(string: "2019-01-02 04:12:00")
+        let date4 = Date(string: "2019-01-01 00:12:00")
                 
-        XCTAssertTrue(date3!.sameDayAs(date4!))
+        XCTAssertFalse(date3!.sameDayAs(date4!))
     }
 }

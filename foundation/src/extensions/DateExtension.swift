@@ -160,19 +160,19 @@ extension Date {
     
     //MARK:Comparision (Using device timezone)
     public func sameDayAs(_ other:Date) -> Bool{
-        self.toDeviceTimezone(.date) == other.toDeviceTimezone(.date)
+        toDeviceTimezone(.date) == other.toDeviceTimezone(.date)
     }
     
     public func isToday() -> Bool {
-        self.toDeviceTimezone(.date) == Date().toDeviceTimezone(.date)
+        toDeviceTimezone(.date) == Date().toDeviceTimezone(.date)
     }
     
     public func isTomorrow() -> Bool {
-        self.toDeviceTimezone(.date) == Date().add(days: 1)?.toDeviceTimezone(.date)
+        toDeviceTimezone(.date) == Date().add(days: 1)?.toDeviceTimezone(.date)
     }
     
     public func isYesterday() -> Bool {
-        self.toDeviceTimezone(.date) == Date().subtract(days: -1)?.toDeviceTimezone(.date)
+        toDeviceTimezone(.date) == Date().subtract(days: -1)?.toDeviceTimezone(.date)
     }
     
 }
