@@ -193,5 +193,27 @@ class StringCollectionTest: XCTestCase {
         let result = string[String.Index(encodedOffset: 2)...]
         XCTAssertEqual("la que tal", result)
     }
+    
+    func test_chunked(){
+        let string = "abcdefghijklmn"
+        let result = string.chunked(4)
+        XCTAssertEqual(["abcd", "efgh", "ijkl", "mn"], result)
+        
+        let string2 = "ab"
+        let result2 = string2.chunked(4)
+        XCTAssertEqual(["ab"], result2)
+        
+        let string3 = "abcd"
+        let result3 = string3.chunked(4)
+        XCTAssertEqual(["abcd"], result3)
+        
+        let string4 = "abcdefgh"
+        let result4 = string4.chunked(4)
+        XCTAssertEqual(["abcd","efgh"], result4)
+        
+        let string5 = ""
+        let result5 = string5.chunked(4)
+        XCTAssertEqual([], result5)
+    }
 
 }

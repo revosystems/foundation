@@ -263,4 +263,16 @@ extension String{
         }
         return ranges
     }
+    
+    public func chunked(_ count:Int) -> [String] {
+        var result:[String] = []
+        var position = 0;
+        while position < self.count {
+            result.append(
+                String(self.suffix(self.count - position).prefix(count))
+            )
+            position += count;
+        }
+        return result
+    }
 }
