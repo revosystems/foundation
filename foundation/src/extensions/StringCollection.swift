@@ -25,7 +25,7 @@ extension String{
     }
     
     public func urlEncoded(_ characterSet:CharacterSet = .urlHostAllowed) -> String? {
-        addingPercentEncoding(withAllowedCharacters: characterSet)
+        addingPercentEncoding(withAllowedCharacters: characterSet)?.replace("&", "%26")
     }
 
     public func fromBase64() -> String? {
