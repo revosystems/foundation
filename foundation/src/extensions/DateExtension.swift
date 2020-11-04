@@ -63,7 +63,7 @@ extension Date {
     
     //MARK: Formatting
     public func toDeviceTimezone(_ style:Style) -> String {
-        Date.formatter(style, timeZone:TimeZone.current).string(from: self)
+        Date.formatter(style, timeZone:NSTimeZone.default).string(from: self)
     }
 
     public func toString(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> String {
@@ -95,7 +95,7 @@ extension Date {
     }
     
     public var toDeviceTimezone : String {
-        Date.formatter(.datetime, timeZone:TimeZone.current).string(from: self)
+        Date.formatter(.datetime, timeZone:NSTimeZone.default).string(from: self)
     }
     
     static public func formatter(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> DateFormatter {
@@ -160,19 +160,19 @@ extension Date {
     
     //MARK:Comparision (Using device timezone)
     public func sameDayAs(_ other:Date) -> Bool{
-        self.toDeviceTimezone(.date) == other.toDeviceTimezone(.date)
+        toDeviceTimezone(.date) == other.toDeviceTimezone(.date)
     }
     
     public func isToday() -> Bool {
-        self.toDeviceTimezone(.date) == Date().toDeviceTimezone(.date)
+        toDeviceTimezone(.date) == Date().toDeviceTimezone(.date)
     }
     
     public func isTomorrow() -> Bool {
-        self.toDeviceTimezone(.date) == Date().add(days: 1)?.toDeviceTimezone(.date)
+        toDeviceTimezone(.date) == Date().add(days: 1)?.toDeviceTimezone(.date)
     }
     
     public func isYesterday() -> Bool {
-        self.toDeviceTimezone(.date) == Date().subtract(days: -1)?.toDeviceTimezone(.date)
+        toDeviceTimezone(.date) == Date().subtract(days: -1)?.toDeviceTimezone(.date)
     }
     
 }
