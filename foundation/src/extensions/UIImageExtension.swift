@@ -1,6 +1,28 @@
 import UIKit
 
-@objc extension UIImage {
+@objc extension UIImage {    
+            
+    public convenience init?(barcode: String, size:CGFloat = 4) {
+        self.init(text:barcode, filter:"CICode128BarcodeGenerator", size:size)
+    }
+    
+    public convenience init?(qrcode: String, size:CGFloat = 7) {
+        self.init(text:qrcode, filter:"CIQRCodeGenerator", size:size)
+    }
+    
+    public convenience init?(text:String, filter:String, size:CGFloat){
+        let data = text.data(using: .ascii)
+        guard let filter = CIFilter(name: filter) else {
+            return nil
+        }
+        filter.setValue(data, forKey: "inputMessage")
+        let transform = CGAffineTransform(scaleX: size, y: size)
+        guard let ciImage = filter.outputImage?.transformed(by: transform) else {
+            return nil
+        }
+        self.init(ciImage: ciImage)
+    }
+    
     
     public func base64() -> String{
         //compressionQuality: 0..1 (0 more compression, 1 less compression).

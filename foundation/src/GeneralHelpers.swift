@@ -5,6 +5,17 @@ public func SBController<T>(_ storyBoard:String, _ identifier:String) -> T{
     return sb.instantiateViewController(withIdentifier: identifier) as! T
 }
 
+public func topVc() -> UIViewController?{
+    guard var topVc = UIApplication.shared.keyWindow?.rootViewController else { return nil }
+    
+    while (topVc.presentedViewController != nil) {
+        topVc = topVc.presentedViewController!
+    }
+    
+    return topVc
+}
+
+
 public func isIpad() -> Bool{
     UIDevice().userInterfaceIdiom == .pad
 }
