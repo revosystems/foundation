@@ -8,6 +8,11 @@ extension Encodable {
     public func json(with encoder: JSONEncoder = JSONEncoder()) throws -> String {
         return try String(data: encoder.encode(self), encoding: .utf8)!
     }
+    
+    @available(*, deprecated, renamed: "json")
+    public func encodedString(with encoder: JSONEncoder = JSONEncoder()) throws -> String {
+        try String(data: encoder.encode(self), encoding: .utf8)!
+    }
 }
 
 extension Decodable {
