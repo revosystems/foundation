@@ -56,6 +56,71 @@ import UIKit
         return image
     }
     
+    public func scaledWithMax(width value:CGFloat) -> UIImage? {
+        
+        let width = self.size.width
+        let height = self.size.height
+                
+        let newWidth = value
+        var newHeight = value
+        
+        newHeight = height * (newWidth/width)
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: newWidth, height: newHeight), false, 0)
+        
+        draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    public func scaledWithMax(height value:CGFloat) -> UIImage? {
+        
+        let width = self.size.width
+        let height = self.size.height
+                
+        var newWidth = value
+        let newHeight = value
+        
+        newWidth = width * (newHeight/height)
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: newWidth, height: newHeight), false, 0)
+        
+        draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    public func withExpandedWidth(_ width: CGFloat) -> UIImage? {
+        let height = size.height
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), true, 0.0)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        UIGraphicsPushContext(context)
+                
+        context.setFillColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        context.fill(CGRect(x: 0, y: 0, width: width, height: height))
+
+        // Now we can draw anything we want into this new context.
+        let origin = CGPoint(x: (width - size.width) / 2.0, y: 0)
+
+        draw(at: origin)
+
+        // Clean up and get the new image.
+        UIGraphicsPopContext()
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage
+    }
+    
     public func scaled(withScale scale: CGFloat) -> UIImage? {
         
         let size = CGSize(width: self.size.width * scale, height: self.size.height * scale)
