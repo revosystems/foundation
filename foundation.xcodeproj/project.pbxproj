@@ -43,6 +43,8 @@
 		BBAFBFE423EC2343000F8C68 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFE323EC2343000F8C68 /* PageViewController.swift */; };
 		BBAFBFF423F41D07000F8C68 /* DateTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFF323F41D07000F8C68 /* DateTimeExtension.swift */; };
 		BBAFBFF623F41F98000F8C68 /* DateIntervalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFF523F41F98000F8C68 /* DateIntervalTest.swift */; };
+		BBC4E0B625714C230081F825 /* CodablePropertyWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4E0B525714C230081F825 /* CodablePropertyWrappers.swift */; };
+		BBC4E0BC25714C4A0081F825 /* PropertyWrappersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +98,8 @@
 		BBAFBFE323EC2343000F8C68 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		BBAFBFF323F41D07000F8C68 /* DateTimeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeExtension.swift; sourceTree = "<group>"; };
 		BBAFBFF523F41F98000F8C68 /* DateIntervalTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalTest.swift; sourceTree = "<group>"; };
+		BBC4E0B525714C230081F825 /* CodablePropertyWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodablePropertyWrappers.swift; sourceTree = "<group>"; };
+		BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrappersTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,7 @@
 				7699DD1123564F410054A008 /* StringCollectionTest.swift */,
 				8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */,
 				BBAFBFF523F41F98000F8C68 /* DateIntervalTest.swift */,
+				BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */,
 			);
 			path = foundationTests;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 		8D37FA232337C5340075CFC9 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				BBC4E0B225714C0F0081F825 /* propertyWrappers */,
 				BBAFBFE223EC2317000F8C68 /* controllers */,
 				8D37FA242337C5340075CFC9 /* extensions */,
 				8D37FA2F2337C5340075CFC9 /* services */,
@@ -216,6 +222,14 @@
 				BBAFBFE323EC2343000F8C68 /* PageViewController.swift */,
 			);
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		BBC4E0B225714C0F0081F825 /* propertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				BBC4E0B525714C230081F825 /* CodablePropertyWrappers.swift */,
+			);
+			path = propertyWrappers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +352,7 @@
 				8D37FA362337C5340075CFC9 /* UIViewExtension.swift in Sources */,
 				8D37F9FB2337BDAC0075CFC9 /* SceneDelegate.swift in Sources */,
 				8D37FA392337C5340075CFC9 /* UIActivityIndicatorExtension.swift in Sources */,
+				BBC4E0B625714C230081F825 /* CodablePropertyWrappers.swift in Sources */,
 				8D37FA352337C5340075CFC9 /* ArrayCollection.swift in Sources */,
 				8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */,
 				BB6E64A02502575E00DFE518 /* CharacterSetExtension.swift in Sources */,
@@ -356,6 +371,7 @@
 				BBAFBFF623F41F98000F8C68 /* DateIntervalTest.swift in Sources */,
 				7699DD1223564F410054A008 /* StringCollectionTest.swift in Sources */,
 				8D37FA102337BDAF0075CFC9 /* foundationTests.swift in Sources */,
+				BBC4E0BC25714C4A0081F825 /* PropertyWrappersTest.swift in Sources */,
 				7699DD0E23510B330054A008 /* DateExtensionTest.swift in Sources */,
 				8D37FA1D2337BF590075CFC9 /* ArrayCollectionTest.swift in Sources */,
 				8DC91D7F23635CB900FFCF79 /* ContainerTest.swift in Sources */,
