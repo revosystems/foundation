@@ -720,6 +720,26 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual([], a)
     }
     
+    func test_can_sort_array_with_multiple_keypahts(){
+        struct TestStruct : Equatable {
+            let name:String
+            let surname:String
+            let age:Int
+        }
+        
+        let a = TestStruct(name: "ABC", surname: "DEF", age: 10)
+        let b = TestStruct(name: "DEF", surname: "GHI", age: 22)
+        let c = TestStruct(name: "ABC", surname: "GHI", age: 10)
+        let d = TestStruct(name: "DEF", surname: "GHI", age: 10)
+        
+        let array:[TestStruct] = [a,b,c,d]
+        
+        let result = array.sorted(using: .keyPath(\.name), .keyPath(\.surname), .keyPath(\.age))
+        XCTAssertEqual([a,c,d,b], result)
+        
+        
+    }
+    
     /*func test_sum(){
         let collection = [1, 2, 3, 4, 5]
         

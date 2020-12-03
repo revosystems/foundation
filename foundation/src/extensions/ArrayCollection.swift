@@ -142,26 +142,6 @@ extension Array {
         return result
     }
         
-    /**
-     * Returns the collection sorted by the @keyPath, this one keeps the original array intact
-     */
-    public func sort<T: Comparable>(by keyPath: KeyPath<Element, T?>, nilAtBeginning:Bool = false) -> [Element] {
-        sorted { a, b in
-            guard let first = a[keyPath: keyPath] else {
-                return nilAtBeginning
-            }
-            guard let second = b[keyPath: keyPath] else {
-                return !nilAtBeginning
-            }
-            return first < second
-        }
-    }
-
-    public func sort<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
-        sorted { a, b in
-            a[keyPath: keyPath] < b[keyPath: keyPath]
-        }
-    }
     
     /**
      The keyBy method keys the collection by the given key. If multiple items have the same key, only the last one will appear in the new collection:
@@ -576,16 +556,7 @@ extension Array where Element:Comparable {
 }
 
 extension Array where Element:Hashable {
-    
-    public func reordered(_ defaultOrder:[Element]) -> [Element] {
-        return self.sorted { (a, b) -> Bool in
-            if let first = defaultOrder.firstIndex(of: a), let second = defaultOrder.firstIndex(of: b) {
-                return first < second
-            }
-            return false
-        }
-    }
-    
+        
     // MARK: Sets
     public func intersect(_ secondArray:[Element]) -> [Element] {
         let set1:Set<Element> = Set(self)

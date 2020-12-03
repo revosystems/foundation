@@ -96,6 +96,21 @@ class PropertyWrappersTest: XCTestCase {
         XCTAssertFalse(decoded.theBoolean)
     }
     
+    func test_force_bolean_works_with_no_key() throws {
+        struct TestStruct : Codable {
+            @ForcedBool var theBoolean:Bool
+        }
+        
+        let json = """
+        {
+            "anotherKey" : null,
+        }
+        """.data(using: .utf8)!
+
+        let decoded = try! JSONDecoder().decode(TestStruct.self, from: json)
+        XCTAssertFalse(decoded.theBoolean)
+    }
+    
     func test_force_boolean_can_be_encoded(){
         struct TestStruct : Codable {
             @ForcedBool var theBoolean:Bool

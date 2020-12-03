@@ -37,6 +37,7 @@
 		8DC91D7D23635CA800FFCF79 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7C23635CA800FFCF79 /* Container.swift */; };
 		8DC91D7F23635CB900FFCF79 /* ContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */; };
 		8DCA90262385892000CF8984 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA90252385892000CF8984 /* DoubleExtension.swift */; };
+		BB0D4A802579352500F8DCA6 /* ArraySortExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D4A7F2579352500F8DCA6 /* ArraySortExtension.swift */; };
 		BB13AE1525515BCE000D30E3 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13AE1425515BCE000D30E3 /* DataExtension.swift */; };
 		BB6E64A02502575E00DFE518 /* CharacterSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E649F2502575E00DFE518 /* CharacterSetExtension.swift */; };
 		BB7EFD342412687600439821 /* StringCryptoExtension.swif.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EFD332412687600439821 /* StringCryptoExtension.swif.swift */; };
@@ -92,6 +93,7 @@
 		8DC91D7C23635CA800FFCF79 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		8DC91D7E23635CB900FFCF79 /* ContainerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTest.swift; sourceTree = "<group>"; };
 		8DCA90252385892000CF8984 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		BB0D4A7F2579352500F8DCA6 /* ArraySortExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraySortExtension.swift; sourceTree = "<group>"; };
 		BB13AE1425515BCE000D30E3 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		BB6E649F2502575E00DFE518 /* CharacterSetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSetExtension.swift; sourceTree = "<group>"; };
 		BB7EFD332412687600439821 /* StringCryptoExtension.swif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCryptoExtension.swif.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				8D3C289C2451E9A60003F235 /* StringSubscripts.swift */,
 				BB6E649F2502575E00DFE518 /* CharacterSetExtension.swift */,
 				BB13AE1425515BCE000D30E3 /* DataExtension.swift */,
+				BB0D4A7F2579352500F8DCA6 /* ArraySortExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				8D37FA342337C5340075CFC9 /* StringCollection.swift in Sources */,
 				8D37FA3F2337C5340075CFC9 /* Scheduler.swift in Sources */,
 				8DCA90262385892000CF8984 /* DoubleExtension.swift in Sources */,
+				BB0D4A802579352500F8DCA6 /* ArraySortExtension.swift in Sources */,
 				BBAFBFE423EC2343000F8C68 /* PageViewController.swift in Sources */,
 				8D37FA362337C5340075CFC9 /* UIViewExtension.swift in Sources */,
 				8D37F9FB2337BDAC0075CFC9 /* SceneDelegate.swift in Sources */,
