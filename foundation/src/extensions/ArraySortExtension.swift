@@ -1,5 +1,6 @@
 import Foundation
 
+//https://www.swiftbysundell.com/articles/sorting-swift-collections/
 struct SortDescriptor<Value> {
     var comparator: (Value, Value) -> ComparisonResult
 }
@@ -25,8 +26,7 @@ enum SortOrder {
 }
 
 extension Sequence {
-    func sorted(using descriptors: [SortDescriptor<Element>],
-                order: SortOrder) -> [Element] {
+    func sorted(using descriptors: [SortDescriptor<Element>], order: SortOrder) -> [Element] {
         sorted { valueA, valueB in
             for descriptor in descriptors {
                 let result = descriptor.comparator(valueA, valueB)
