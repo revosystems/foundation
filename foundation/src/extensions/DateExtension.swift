@@ -99,12 +99,16 @@ extension Date {
     }
     
     static public func formatter(_ style:Style, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> DateFormatter {
-        guard let cached = Date.cachedFormatters["\(style)" + timeZone.identifier] else {
+        formatter(style.rawValue, timeZone: timeZone);
+    }
+
+    static public func formatter(_ format:String, timeZone:TimeZone = TimeZone(identifier:"UTC")!) -> DateFormatter {
+        guard let cached = Date.cachedFormatters[format + timeZone.identifier] else {
             let formatter                = DateFormatter()
-            formatter.dateFormat         = style.rawValue
+            formatter.dateFormat         = format
             formatter.timeZone           = timeZone
             formatter.locale             = self.locale
-            Date.cachedFormatters["\(style)" + timeZone.identifier] = formatter
+            Date.cachedFormatters[format + timeZone.identifier] = formatter
             return formatter
         }
         return cached
