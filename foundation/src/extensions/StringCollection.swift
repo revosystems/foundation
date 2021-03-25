@@ -275,4 +275,8 @@ extension String{
         }
         return result
     }
+    
+    public func versionCompare(_ otherVersion: String) -> ComparisonResult {
+        compare(otherVersion, options: .numeric)
+    }
 }

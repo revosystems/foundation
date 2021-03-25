@@ -1,13 +1,8 @@
 import Foundation
 import UIKit
 
-extension String {
-    func versionCompare(_ otherVersion: String) -> ComparisonResult {
-        self.compare(otherVersion, options: .numeric)
-    }
-}
 
-struct AppStoreVersion {
+public struct AppStoreVersion {
     
     let bundleId:String
     let appId:String
@@ -17,7 +12,7 @@ struct AppStoreVersion {
         self.appId    = appId
     }
     
-    struct ITunesResult: Codable {
+    public struct ITunesResult: Codable {
         let currentVersionReleaseDate: String
         let version: String
     }
@@ -26,7 +21,7 @@ struct AppStoreVersion {
         let results: [ITunesResult]
     }
 
-    func isThereAnUpdate(daysMargin: Int = 15, country:String = "es", then: @escaping (_ isThereAnUpdate: Bool?) -> Void) {                
+    public func isThereAnUpdate(daysMargin: Int = 15, country:String = "es", then: @escaping (_ isThereAnUpdate: Bool?) -> Void) {
         getAppStoreVersion(country:country) { result in
             guard let result = result else { return then(false) }
             guard result.version > currentVersion() else      { return then(false) }
@@ -35,7 +30,7 @@ struct AppStoreVersion {
         }
     }
     
-    func getAppStoreVersion(country:String = "es", then:@escaping(_ result:ITunesResult?) -> Void) {
+    public func getAppStoreVersion(country:String = "es", then:@escaping(_ result:ITunesResult?) -> Void) {
         
         let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(bundleId)&country=\(country)&limit=1")!
 
@@ -52,11 +47,11 @@ struct AppStoreVersion {
     }
 
     
-    func currentVersion() -> String {
+    public func currentVersion() -> String {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
     }
     
-    func openAppStore(){
+    public func openAppStore(){
         if let url = URL(string: "itms-apps://apple.com/app/id\(appId)") {
             UIApplication.shared.open(url)
         }
