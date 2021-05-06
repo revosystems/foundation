@@ -279,4 +279,22 @@ extension String{
     public func versionCompare(_ otherVersion: String) -> ComparisonResult {
         compare(otherVersion, options: .numeric)
     }
+    
+    public func lineWrap(maxSize:Int, separator:String = " ") -> [String]{
+        let words = split(separator: " ")
+        var result:[String] = []
+        var current = ""
+        words.forEach {
+            if current.count + $0.count < maxSize {
+                current += " " + $0
+            } else {
+                result.append(current.trim())
+                current = String($0)
+            }
+        }
+        if current.count > 0 {
+            result.append(current.trim())
+        }
+        return result
+    }
 }
