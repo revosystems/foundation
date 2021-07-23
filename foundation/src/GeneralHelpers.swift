@@ -54,4 +54,15 @@ func retry(tries:Int = 1, delayMs:UInt32 = 0, block:() -> Bool) {
     }
 }
 
+// Retry with completion
+func retry(tries:Int = 1, delayMs:UInt32 = 0, block:@escaping(_ succeeded:@escaping(_ succeeded:Bool)->Void) -> Void) {
+    guard tries >= 0 else { return }
+    
+    block { succedeed in
+        if succedeed { return }
+        usleep(delayMs)
+        return retry(tries: tries - 1, block: block)
+    }
+}
+
 
