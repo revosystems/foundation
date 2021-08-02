@@ -40,7 +40,7 @@ func retry<T>(tries:Int = 1, delayMs:UInt32 = 0, block:() throws -> T) throws ->
             throw error
         }
         usleep(delayMs)
-        return try retry(tries: tries - 1, block: block)
+        return try retry(tries: tries - 1, delayMs:delayMs, block: block)
     }
 }
 
@@ -50,7 +50,7 @@ func retry(tries:Int = 1, delayMs:UInt32 = 0, block:() -> Bool) {
     }
     guard block() else {
         usleep(delayMs)
-        return retry(tries: tries - 1, block: block)
+        return retry(tries: tries - 1, delayMs: delayMs, block: block)
     }
 }
 
@@ -58,11 +58,10 @@ func retry(tries:Int = 1, delayMs:UInt32 = 0, block:() -> Bool) {
 func retry(tries:Int = 1, delayMs:UInt32 = 0, block:@escaping(_ succeeded:@escaping(_ succeeded:Bool)->Void) -> Void) {
     guard tries >= 0 else { return }
     
-    block { succedeed in
-        if succedeed { return }
+    block { succeeded in
+        if succeeded { return }
         usleep(delayMs)
-        return retry(tries: tries - 1, block: block)
+        return retry(tries: tries - 1, delayMs: delayMs, block: block)
     }
 }
-
 
