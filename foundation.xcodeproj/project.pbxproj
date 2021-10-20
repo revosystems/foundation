@@ -47,6 +47,8 @@
 		BBAFBFF623F41F98000F8C68 /* DateIntervalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFF523F41F98000F8C68 /* DateIntervalTest.swift */; };
 		BBC4E0B625714C230081F825 /* CodablePropertyWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4E0B525714C230081F825 /* CodablePropertyWrappers.swift */; };
 		BBC4E0BC25714C4A0081F825 /* PropertyWrappersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */; };
+		F4403229260C8A3300168160 /* AppStoreVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4403228260C8A3300168160 /* AppStoreVersion.swift */; };
+		F440322D260C8BF900168160 /* CanValidateAppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440322C260C8BF900168160 /* CanValidateAppVersion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,8 @@
 		BBAFBFF523F41F98000F8C68 /* DateIntervalTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalTest.swift; sourceTree = "<group>"; };
 		BBC4E0B525714C230081F825 /* CodablePropertyWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodablePropertyWrappers.swift; sourceTree = "<group>"; };
 		BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrappersTest.swift; sourceTree = "<group>"; };
+		F4403228260C8A3300168160 /* AppStoreVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreVersion.swift; sourceTree = "<group>"; };
+		F440322C260C8BF900168160 /* CanValidateAppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanValidateAppVersion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 				BBAFBFF523F41F98000F8C68 /* DateIntervalTest.swift */,
 				BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */,
 				BB4E9E68259B468100C847C3 /* DictionaryTest.swift */,
+				F440322C260C8BF900168160 /* CanValidateAppVersion.swift */,
 			);
 			path = foundationTests;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				8D37FA322337C5340075CFC9 /* Scheduler.swift */,
 				8DAD81DF234F6E35003A6025 /* Sound.swift */,
 				8DC91D7C23635CA800FFCF79 /* Container.swift */,
+				F4403228260C8A3300168160 /* AppStoreVersion.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				8D37FA372337C5340075CFC9 /* ColorExtension.swift in Sources */,
 				8D37FA3A2337C5340075CFC9 /* CodableExtension.swift in Sources */,
 				8D37FA3C2337C5340075CFC9 /* DateExtension.swift in Sources */,
+				F4403229260C8A3300168160 /* AppStoreVersion.swift in Sources */,
 				8D37FA342337C5340075CFC9 /* StringCollection.swift in Sources */,
 				8D37FA3F2337C5340075CFC9 /* Scheduler.swift in Sources */,
 				8DCA90262385892000CF8984 /* DoubleExtension.swift in Sources */,
@@ -376,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBAFBFF623F41F98000F8C68 /* DateIntervalTest.swift in Sources */,
+				F440322D260C8BF900168160 /* CanValidateAppVersion.swift in Sources */,
 				7699DD1223564F410054A008 /* StringCollectionTest.swift in Sources */,
 				8D37FA102337BDAF0075CFC9 /* foundationTests.swift in Sources */,
 				BBC4E0BC25714C4A0081F825 /* PropertyWrappersTest.swift in Sources */,

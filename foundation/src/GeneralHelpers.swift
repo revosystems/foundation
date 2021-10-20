@@ -32,4 +32,36 @@ public func tap<T>(_ value:T, _ block:(_ value:T) -> Void) -> T{
     return value
 }
 
+func retry<T>(tries:Int = 1, delayMs:UInt32 = 0, block:() throws -> T) throws -> T {
+    do {
+        return try block()
+    } catch {
+        guard tries > 0 else {
+            throw error
+        }
+        usleep(delayMs)
+        return try retry(tries: tries - 1, delayMs:delayMs, block: block)
+    }
+}
+
+func retry(tries:Int = 1, delayMs:UInt32 = 0, block:() -> Bool) {
+    guard tries >= 0 else {
+        return
+    }
+    guard block() else {
+        usleep(delayMs)
+        return retry(tries: tries - 1, delayMs: delayMs, block: block)
+    }
+}
+
+// Retry with completion
+func retry(tries:Int = 1, delayMs:UInt32 = 0, block:@escaping(_ succeeded:@escaping(_ succeeded:Bool)->Void) -> Void) {
+    guard tries >= 0 else { return }
+    
+    block { succeeded in
+        if succeeded { return }
+        usleep(delayMs)
+        return retry(tries: tries - 1, delayMs: delayMs, block: block)
+    }
+}
 

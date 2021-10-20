@@ -215,5 +215,19 @@ class StringCollectionTest: XCTestCase {
         let result5 = string5.chunked(4)
         XCTAssertEqual([], result5)
     }
+    
+    func test_can_word_wrap(){
+        let text = "this is a very long text that should be word wrapped"
+        
+        let result = text.lineWrap(maxSize: 10)
+        XCTAssertEqual([
+            "this is a",
+            "very long",
+            "text that",
+            "should be",
+            "word",
+            "wrapped"
+        ], result)
+    }
 
 }
