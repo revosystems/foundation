@@ -131,6 +131,12 @@ extension Array {
     }
     
     
+    public func pluck<T, Z>(_ keyPath:KeyPath<Element, T>, _ key:KeyPath<Element, Z>) -> [Z:T] {
+        var dict:[Z:T] = [:]
+        each { dict[$0[keyPath: key]] = $0[keyPath: keyPath] }
+        return dict
+    }
+    
     public func zip<T>(_ with:[T]) throws ->  [Element:T] {
         if (self.count != with.count) {
             throw Array.ValidationError.NotSameSize
