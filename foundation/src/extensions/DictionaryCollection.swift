@@ -23,11 +23,11 @@ public extension Dictionary where Key == String {
 
 // Dot notation get for a dictionary
 public extension Dictionary where Key:Hashable, Value:Any{
-    public func get(_ path:String, _ defaultValue:Any) -> Any {
+    func get(_ path:String, _ defaultValue:Any) -> Any {
         get(path) ?? defaultValue
     }
 
-    public func get(_ path:String) -> Any? {
+    func get(_ path:String) -> Any? {
         let components = path.components(separatedBy: ".")
         var currentData:Any? = self
 

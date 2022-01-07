@@ -1,7 +1,7 @@
 import Foundation
 
 public extension Int {
-    public func secondsToTime() -> String {
+    func secondsToTime() -> String {
 
         let (h,m,s) = (self / 3600, (self % 3600) / 60, (self % 3600) % 60)
 
