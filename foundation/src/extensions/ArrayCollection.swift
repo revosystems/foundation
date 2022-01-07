@@ -246,6 +246,15 @@ extension Array {
         return result
     }
     
+    public func firstMap<T>(block:(_ element:Element)->T?) -> T? {
+        var found:T? = nil
+        forEach {
+            if found != nil { return }
+            found = block($0)
+        }
+        return found
+    }
+    
     
     // MARK: Math
     

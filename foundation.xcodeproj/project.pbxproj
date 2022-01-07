@@ -47,6 +47,8 @@
 		BBAFBFF623F41F98000F8C68 /* DateIntervalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFF523F41F98000F8C68 /* DateIntervalTest.swift */; };
 		BBC4E0B625714C230081F825 /* CodablePropertyWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4E0B525714C230081F825 /* CodablePropertyWrappers.swift */; };
 		BBC4E0BC25714C4A0081F825 /* PropertyWrappersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */; };
+		EACEC52527883A3100B1FF01 /* NSNumber+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */; };
+		EACEC52727883AEF00B1FF01 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACEC52627883AEF00B1FF01 /* IntExtension.swift */; };
 		F4403229260C8A3300168160 /* AppStoreVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4403228260C8A3300168160 /* AppStoreVersion.swift */; };
 		F440322D260C8BF900168160 /* CanValidateAppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440322C260C8BF900168160 /* CanValidateAppVersion.swift */; };
 /* End PBXBuildFile section */
@@ -106,6 +108,8 @@
 		BBAFBFF523F41F98000F8C68 /* DateIntervalTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalTest.swift; sourceTree = "<group>"; };
 		BBC4E0B525714C230081F825 /* CodablePropertyWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodablePropertyWrappers.swift; sourceTree = "<group>"; };
 		BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrappersTest.swift; sourceTree = "<group>"; };
+		EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNumber+Comparable.swift"; sourceTree = "<group>"; };
+		EACEC52627883AEF00B1FF01 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		F4403228260C8A3300168160 /* AppStoreVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreVersion.swift; sourceTree = "<group>"; };
 		F440322C260C8BF900168160 /* CanValidateAppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanValidateAppVersion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +215,8 @@
 				BB6E649F2502575E00DFE518 /* CharacterSetExtension.swift */,
 				BB13AE1425515BCE000D30E3 /* DataExtension.swift */,
 				BB0D4A7F2579352500F8DCA6 /* ArraySortExtension.swift */,
+				EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */,
+				EACEC52627883AEF00B1FF01 /* IntExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -366,6 +372,8 @@
 				8D37FA362337C5340075CFC9 /* UIViewExtension.swift in Sources */,
 				8D37F9FB2337BDAC0075CFC9 /* SceneDelegate.swift in Sources */,
 				8D37FA392337C5340075CFC9 /* UIActivityIndicatorExtension.swift in Sources */,
+				EACEC52727883AEF00B1FF01 /* IntExtension.swift in Sources */,
+				EACEC52527883A3100B1FF01 /* NSNumber+Comparable.swift in Sources */,
 				BBC4E0B625714C230081F825 /* CodablePropertyWrappers.swift in Sources */,
 				8D37FA352337C5340075CFC9 /* ArrayCollection.swift in Sources */,
 				8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */,
