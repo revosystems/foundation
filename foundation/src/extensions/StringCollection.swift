@@ -301,7 +301,7 @@ extension String{
     /**
      The startsWith method determines if the given string begins with one value of the given array:
      */
-    func startsWith(_ array : [String]) -> Bool {
+    public func startsWith(_ array : [String]) -> Bool {
         array.first { element in
             self.startsWith(element)
         } != nil
