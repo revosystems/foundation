@@ -230,4 +230,8 @@ class StringCollectionTest: XCTestCase {
         ], result)
     }
 
+    func test_starts_with_Array(){
+        XCTAssertTrue("my potateo".startsWith(["ma", "me", "mi", "mo", "mu", "my"]))
+        XCTAssertFalse("my potateo".startsWith(["potateo"]))
+    }
 }
