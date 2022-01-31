@@ -255,6 +255,20 @@ extension Array {
         return found
     }
     
+    /**
+     Returns true if all elements in the array return true
+     */
+    public func allPass(block:(_ element:Element)->Bool) -> Bool {
+        !contains { block($0) == false }
+    }
+    
+    /**
+     Returns true if all elements in the array return true
+     */
+    public func allFail(block:(_ element:Element)->Bool) -> Bool {
+        !contains { block($0) == true }
+    }
+    
     
     // MARK: Math
     

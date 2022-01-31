@@ -746,5 +746,23 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual(15, collection.sum())
     }*/
     
+    func test_all_passes(){
+        
+        let result = [10, 11, 12, 13].allPass { $0 >= 10 }
+        XCTAssertTrue(result)
+        
+        let result2 = [10, 11, 12, 13].allPass { $0 > 10}
+        XCTAssertFalse(result2)
+        
+    }
+    
+    func test_all_fail(){
+        let result = [10, 11, 12, 13].allFail { $0 > 100 }
+        XCTAssertTrue(result)
+        
+        let result2 = [10, 11, 12, 13].allFail { $0 < 12}
+        XCTAssertFalse(result2)
+    }
+    
     
 }
