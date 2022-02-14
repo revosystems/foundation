@@ -48,6 +48,19 @@ extension UIView {
         return self
     }
     
+    @discardableResult func roundCorners(corners:UIRectCorner, radius: CGFloat) {
+        DispatchQueue.main.async {
+            let path = UIBezierPath(roundedRect: self.bounds,
+                                    byRoundingCorners: corners,
+                                    cornerRadii: CGSize(width: radius, height: radius))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = self.bounds
+            maskLayer.path = path.cgPath
+            self.layer.mask = maskLayer
+        }
+        return self
+    }
+    
     @discardableResult public func circle() -> Self{
         clipsToBounds = true
         layer.cornerRadius = bounds.size.width / 2
