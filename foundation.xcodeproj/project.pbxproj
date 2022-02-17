@@ -49,6 +49,7 @@
 		BBC4E0BC25714C4A0081F825 /* PropertyWrappersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */; };
 		EACEC52527883A3100B1FF01 /* NSNumber+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */; };
 		EACEC52727883AEF00B1FF01 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACEC52627883AEF00B1FF01 /* IntExtension.swift */; };
+		EAEC2F4C27BE5CB700CF3F38 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC2F4B27BE5CB700CF3F38 /* UITableViewExtension.swift */; };
 		F4403229260C8A3300168160 /* AppStoreVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4403228260C8A3300168160 /* AppStoreVersion.swift */; };
 		F440322D260C8BF900168160 /* CanValidateAppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440322C260C8BF900168160 /* CanValidateAppVersion.swift */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,7 @@
 		BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrappersTest.swift; sourceTree = "<group>"; };
 		EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNumber+Comparable.swift"; sourceTree = "<group>"; };
 		EACEC52627883AEF00B1FF01 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		EAEC2F4B27BE5CB700CF3F38 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		F4403228260C8A3300168160 /* AppStoreVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreVersion.swift; sourceTree = "<group>"; };
 		F440322C260C8BF900168160 /* CanValidateAppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanValidateAppVersion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,6 +219,7 @@
 				BB0D4A7F2579352500F8DCA6 /* ArraySortExtension.swift */,
 				EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */,
 				EACEC52627883AEF00B1FF01 /* IntExtension.swift */,
+				EAEC2F4B27BE5CB700CF3F38 /* UITableViewExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				8D37FA352337C5340075CFC9 /* ArrayCollection.swift in Sources */,
 				8D37FA3D2337C5340075CFC9 /* Network.swift in Sources */,
 				BB6E64A02502575E00DFE518 /* CharacterSetExtension.swift in Sources */,
+				EAEC2F4C27BE5CB700CF3F38 /* UITableViewExtension.swift in Sources */,
 				8DC91D7D23635CA800FFCF79 /* Container.swift in Sources */,
 				8D3C289D2451E9A60003F235 /* StringSubscripts.swift in Sources */,
 				8D58B8772350DF9D00FAA673 /* DictionaryCollection.swift in Sources */,
