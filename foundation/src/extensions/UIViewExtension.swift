@@ -48,7 +48,7 @@ extension UIView {
         return self
     }
     
-    @discardableResult func roundCorners(corners:UIRectCorner, radius: CGFloat) -> Self {
+    @discardableResult public func roundCorners(corners:UIRectCorner, radius: CGFloat) -> Self {
         DispatchQueue.main.async {
             let path = UIBezierPath(roundedRect: self.bounds,
                                     byRoundingCorners: corners,
