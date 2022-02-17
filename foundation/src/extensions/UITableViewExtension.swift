@@ -1,7 +1,7 @@
 import UIKit
 
 extension UITableView {
-    func public scrollToBottom(){
+    public func scrollToBottom(){
         let numberOfSections = numberOfSections
         if numberOfSections > 0{
             let numberOfRows = numberOfRows(inSection: numberOfSections - 1)
