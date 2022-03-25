@@ -11,6 +11,28 @@ extension UIView {
         UIView.animate(withDuration: 0.2) { self.alpha = 0 }
     }
     
+    func fadeAndScaleOut(duration:TimeInterval = 0.2){
+        UIView.animate(withDuration: duration,
+                       delay:0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5,
+                       options: .curveEaseOut)
+        { [unowned self] in
+            transform = CGAffineTransform.identity.scaledBy(x: 0.4, y: 0.4)
+            alpha     = 0
+        } completion: { [unowned self] _ in
+            isHidden = true
+        }
+    }
+    
+    func fadeAndScaleIn(duration:TimeInterval = 0.2){
+        isHidden = false
+        UIView.animate(withDuration: duration, delay:0,
+                       usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5,
+                       options: .curveEaseOut) { [unowned self] in
+            transform = CGAffineTransform.identity
+            alpha     = 1
+        }
+    }
+    
     public func shake(){
         DispatchQueue.main.async {
             //let duration = 0.3
