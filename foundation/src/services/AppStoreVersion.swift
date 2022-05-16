@@ -24,7 +24,7 @@ public struct AppStoreVersion {
     public func isThereAnUpdate(daysMargin: Int = 15, country:String = "es", then: @escaping (_ isThereAnUpdate: Bool?) -> Void) {
         getAppStoreVersion(country:country) { result in
             guard let result = result else { return then(false) }
-            guard result.version > currentVersion() else      { return then(false) }
+            guard result.version.versionCompare(currentVersion()) == .orderedAscending else { return then(false) }
             let thresholdDate = ISO8601DateFormatter().date(from: result.currentVersionReleaseDate)?.add(days:daysMargin)
             then((thresholdDate ?? Date()) < Date())
         }

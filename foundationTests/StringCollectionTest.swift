@@ -234,4 +234,18 @@ class StringCollectionTest: XCTestCase {
         XCTAssertTrue("my potateo".startsWith(["ma", "me", "mi", "mo", "mu", "my"]))
         XCTAssertFalse("my potateo".startsWith(["potateo"]))
     }
+    
+    func test_compares_versions(){
+        XCTAssertEqual(.orderedAscending, "4.0".versionCompare("4.0.1"))
+        XCTAssertEqual(.orderedAscending, "4.0".versionCompare("4.1"))
+        XCTAssertEqual(.orderedAscending, "4.0".versionCompare("5.0"))
+        XCTAssertEqual(.orderedAscending, "4.0.1".versionCompare("5.0"))
+        
+        XCTAssertEqual(.orderedSame, "4.0".versionCompare("4.0"))
+        
+        XCTAssertEqual(.orderedDescending, "4.0.1".versionCompare("4.0.0"))
+        XCTAssertEqual(.orderedDescending, "5.0.1".versionCompare("4.1"))
+        XCTAssertEqual(.orderedDescending, "5.0.1".versionCompare("4.0.1"))
+        XCTAssertEqual(.orderedDescending, "5.0".versionCompare("4.0.1"))
+    }
 }
