@@ -248,4 +248,16 @@ class StringCollectionTest: XCTestCase {
         XCTAssertEqual(.orderedDescending, "5.0.1".versionCompare("4.0.1"))
         XCTAssertEqual(.orderedDescending, "5.0".versionCompare("4.0.1"))
     }
+    
+    func test_it_can_create_hmac_SHA256_hash() {
+        
+        let result = "abcdef".hmac256("PRIVATE_KEY")
+        XCTAssertEqual("34b35a6aeeca1a9a4fa897f644f568249d52f547ffef7136d880abdfab230eaa", result!)
+        
+        let result2 = "123456".hmac256("PRIVATE_KEY")
+        XCTAssertEqual("b65ea1993ba4cbb97252fa4838c215b18243dc8905dc5107fb1b3cbfde84ce7d", result2!)
+        
+        let result3 = "123456".hmac256("PRIVATE_KEY_NUMBER_2")
+        XCTAssertEqual("ee6037afd4b41493bb856b05a34a8161e858e1e03a31964382b52cdb326c8016", result3!)
+    }
 }

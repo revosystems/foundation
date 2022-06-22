@@ -1,5 +1,6 @@
 import Foundation
 import CommonCrypto
+import CryptoKit
 
 extension String {
         
@@ -31,5 +32,16 @@ extension String {
         }
         let hexBytes = digest.map { String(format: "%02hhx", $0) }
         return hexBytes.joined()
+    }
+    
+    public func hmac256(_ key:String) -> String? {
+        
+        guard let messageData: Data = self.data(using: .utf8) else {
+            return nil
+        }
+        let keyData = SymmetricKey(data: key.data(using: .utf8)!)
+        
+        let code = HMAC<SHA256>.authenticationCode(for: messageData, using: keyData)
+        return Data(code).map { String(format: "%02hhx", $0) }.joined()
     }
 }
