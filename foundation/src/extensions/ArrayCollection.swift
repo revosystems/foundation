@@ -147,6 +147,15 @@ extension Array {
         }
         return result
     }
+    
+    public func sum<T:Numeric>(_ keyPath:KeyPath<Element, T>) -> T {
+        pluck(keyPath).sum()
+    }
+    
+    
+    public func sum<T:Numeric>(_ block:(_ :Element)->T) -> T {
+        map { block($0) }.sum()
+    }
         
     
     /**
@@ -610,11 +619,13 @@ extension Array where Element:Hashable {
     }
 }
 
-/*extension Array where Element:AdditiveArithmetic{
+extension Array where Element:Numeric{
+    
+    /** Sum all the elements of the array and returns its value */
     public func sum() -> Element {
         return self.reduce(0, +)
     }
-}*/
+}
 
 extension Array where Element == String {
     public func implode(_ glue:String) -> String {

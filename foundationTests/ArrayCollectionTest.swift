@@ -764,5 +764,36 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertFalse(result2)
     }
     
+    func test_can_sum_simple(){
+        let a = [1, 2, 3, 4, 5]
+        XCTAssertEqual(15, a.sum())
+    }
+    
+    func test_can_sum_with_keypath() {
+        struct TestStruct : Equatable {
+            let value:Double
+        }
+        
+        let array = [
+            TestStruct(value:2),
+            TestStruct(value:4),
+            TestStruct(value:6)
+        ]
+        XCTAssertEqual(12, array.sum(\.value))
+    }
+    
+    func test_can_sum_with_block(){
+        struct TestStruct : Equatable {
+            let value:Double
+        }
+        
+        let array = [
+            TestStruct(value:2),
+            TestStruct(value:4),
+            TestStruct(value:6)
+        ]
+        XCTAssertEqual(12, array.sum { $0.value } )
+    }
+    
     
 }
