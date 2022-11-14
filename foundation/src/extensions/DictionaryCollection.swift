@@ -38,16 +38,6 @@ public extension Dictionary {
     }
 }
 
-public extension Dictionary where Key == String {
-    
-    func except(_ exclude:[String]) -> Self{
-        var copy = self
-        exclude.forEach { key in
-            copy.removeValue(forKey: key)
-        }
-        return copy
-    }
-}
 
 // Dot notation get for a dictionary
 public extension Dictionary where Key:Hashable, Value:Any{
