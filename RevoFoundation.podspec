@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.name         = "RevoFoundation"
-  spec.version      = "0.2.2"
+  spec.version      = "0.2.3"
   spec.summary      = "Foundation utilities to be used across Revo projects."
 
   spec.description  = "A set of utilities that are used into Revo projects, it has some extensions and utilities that are not specific to any specifi business logic"
@@ -33,9 +33,9 @@ Pod::Spec.new do |spec|
    spec.ios.deployment_target = "13.0"
   # spec.osx.deployment_target = "13.7"
   # spec.watchos.deployment_target = "2.0"
-  spec.tvos.deployment_target = "13.0"
+  #spec.tvos.deployment_target = "13.0"
 
-  spec.source       = { :git => "https://github.com/revosystems/foundation.git", :tag => "0.2.2" }
+  spec.source       = { :git => "https://github.com/revosystems/foundation.git", :tag => "0.2.3" }
   spec.source_files  = "foundation/src/**/*.{swift}"#, "src/**/*.{h,m}"
 
 
