@@ -1,13 +1,41 @@
 import Foundation
 
-extension Dictionary {
-    
-    //Only
-    //Except
-    //Flip
-    //Forget
+public extension Dictionary {
     //Group by
     //Merge
+    
+    func flip() -> [Value:Key] where Value:Hashable {
+        var result:[Value:Key] = [:]
+        Array(keys).eachWithIndex { key, index in
+            let newKey = Array(values)[index]
+            result[newKey] = key
+        }
+        return result
+    }
+    
+    func except(_ keysToRemove:[Key]) -> [Key:Value]{
+        var newDict = self
+        keysToRemove.each {
+            newDict.removeValue(forKey: $0)
+        }
+        return newDict
+    }
+    
+    func only(_ keysToKeep:[Key]) -> [Key:Value]{
+        var newDict:[Key:Value] = [:]
+        keysToKeep.each {
+            newDict[$0] = self[$0]
+        }
+        return newDict
+    }
+    
+    @discardableResult
+    mutating func forget(_ keys:[Key]) -> Self {
+        keys.each {
+            self.removeValue(forKey: $0)
+        }
+        return self
+    }
 }
 
 public extension Dictionary where Key == String {

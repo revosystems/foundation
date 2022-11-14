@@ -50,6 +50,7 @@
 		EACEC52527883A3100B1FF01 /* NSNumber+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */; };
 		EACEC52727883AEF00B1FF01 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACEC52627883AEF00B1FF01 /* IntExtension.swift */; };
 		EAEC2F4C27BE5CB700CF3F38 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC2F4B27BE5CB700CF3F38 /* UITableViewExtension.swift */; };
+		EAF9BC7D292259F700BA7086 /* DicionaryCollectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9BC7C292259F700BA7086 /* DicionaryCollectionTest.swift */; };
 		F4403229260C8A3300168160 /* AppStoreVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4403228260C8A3300168160 /* AppStoreVersion.swift */; };
 		F440322D260C8BF900168160 /* CanValidateAppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440322C260C8BF900168160 /* CanValidateAppVersion.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +113,7 @@
 		EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNumber+Comparable.swift"; sourceTree = "<group>"; };
 		EACEC52627883AEF00B1FF01 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		EAEC2F4B27BE5CB700CF3F38 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		EAF9BC7C292259F700BA7086 /* DicionaryCollectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicionaryCollectionTest.swift; sourceTree = "<group>"; };
 		F4403228260C8A3300168160 /* AppStoreVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreVersion.swift; sourceTree = "<group>"; };
 		F440322C260C8BF900168160 /* CanValidateAppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanValidateAppVersion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 				BBC4E0BB25714C4A0081F825 /* PropertyWrappersTest.swift */,
 				BB4E9E68259B468100C847C3 /* DictionaryTest.swift */,
 				F440322C260C8BF900168160 /* CanValidateAppVersion.swift */,
+				EAF9BC7C292259F700BA7086 /* DicionaryCollectionTest.swift */,
 			);
 			path = foundationTests;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				8D37FA102337BDAF0075CFC9 /* foundationTests.swift in Sources */,
 				BBC4E0BC25714C4A0081F825 /* PropertyWrappersTest.swift in Sources */,
 				7699DD0E23510B330054A008 /* DateExtensionTest.swift in Sources */,
+				EAF9BC7D292259F700BA7086 /* DicionaryCollectionTest.swift in Sources */,
 				BB4E9E69259B468100C847C3 /* DictionaryTest.swift in Sources */,
 				8D37FA1D2337BF590075CFC9 /* ArrayCollectionTest.swift in Sources */,
 				8DC91D7F23635CB900FFCF79 /* ContainerTest.swift in Sources */,
