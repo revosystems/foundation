@@ -7,7 +7,7 @@ public struct AppStoreVersion {
     let bundleId:String
     let appId:String
     
-    init(bundleId:String? = nil, appId:String){
+    public init(bundleId:String? = nil, appId:String){
         self.bundleId = bundleId ?? Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
         self.appId    = appId
     }
