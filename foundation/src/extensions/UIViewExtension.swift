@@ -95,7 +95,7 @@ extension UIView {
         return self
     }
     
-    func findViewController() -> UIViewController? {
+    public func findViewController() -> UIViewController? {
         if let nextResponder = self.next as? UIViewController {
             return nextResponder
         }
