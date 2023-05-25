@@ -720,11 +720,80 @@ class ArrayCollectionTest: XCTestCase {
         XCTAssertEqual([], a)
     }
     
+    func test_can_sort_array_with_multiple_keypahts(){
+        struct TestStruct : Equatable {
+            let name:String
+            let surname:String
+            let age:Int
+        }
+        
+        let a = TestStruct(name: "ABC", surname: "DEF", age: 10)
+        let b = TestStruct(name: "DEF", surname: "GHI", age: 22)
+        let c = TestStruct(name: "ABC", surname: "GHI", age: 10)
+        let d = TestStruct(name: "DEF", surname: "GHI", age: 10)
+        
+        let array:[TestStruct] = [a,b,c,d]
+        
+        let result = array.sorted(using: .keyPath(\.name), .keyPath(\.surname), .keyPath(\.age))
+        XCTAssertEqual([a,c,d,b], result)
+        
+        
+    }
+    
     /*func test_sum(){
         let collection = [1, 2, 3, 4, 5]
         
         XCTAssertEqual(15, collection.sum())
     }*/
+    
+    func test_all_passes(){
+        
+        let result = [10, 11, 12, 13].allPass { $0 >= 10 }
+        XCTAssertTrue(result)
+        
+        let result2 = [10, 11, 12, 13].allPass { $0 > 10}
+        XCTAssertFalse(result2)
+        
+    }
+    
+    func test_all_fail(){
+        let result = [10, 11, 12, 13].allFail { $0 > 100 }
+        XCTAssertTrue(result)
+        
+        let result2 = [10, 11, 12, 13].allFail { $0 < 12}
+        XCTAssertFalse(result2)
+    }
+    
+    func test_can_sum_simple(){
+        let a = [1, 2, 3, 4, 5]
+        XCTAssertEqual(15, a.sum())
+    }
+    
+    func test_can_sum_with_keypath() {
+        struct TestStruct : Equatable {
+            let value:Double
+        }
+        
+        let array = [
+            TestStruct(value:2),
+            TestStruct(value:4),
+            TestStruct(value:6)
+        ]
+        XCTAssertEqual(12, array.sum(\.value))
+    }
+    
+    func test_can_sum_with_block(){
+        struct TestStruct : Equatable {
+            let value:Double
+        }
+        
+        let array = [
+            TestStruct(value:2),
+            TestStruct(value:4),
+            TestStruct(value:6)
+        ]
+        XCTAssertEqual(12, array.sum { $0.value } )
+    }
     
     
 }

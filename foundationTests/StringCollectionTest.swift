@@ -193,5 +193,71 @@ class StringCollectionTest: XCTestCase {
         let result = string[String.Index(encodedOffset: 2)...]
         XCTAssertEqual("la que tal", result)
     }
+    
+    func test_chunked(){
+        let string = "abcdefghijklmn"
+        let result = string.chunked(4)
+        XCTAssertEqual(["abcd", "efgh", "ijkl", "mn"], result)
+        
+        let string2 = "ab"
+        let result2 = string2.chunked(4)
+        XCTAssertEqual(["ab"], result2)
+        
+        let string3 = "abcd"
+        let result3 = string3.chunked(4)
+        XCTAssertEqual(["abcd"], result3)
+        
+        let string4 = "abcdefgh"
+        let result4 = string4.chunked(4)
+        XCTAssertEqual(["abcd","efgh"], result4)
+        
+        let string5 = ""
+        let result5 = string5.chunked(4)
+        XCTAssertEqual([], result5)
+    }
+    
+    func test_can_word_wrap(){
+        let text = "this is a very long text that should be word wrapped"
+        
+        let result = text.lineWrap(maxSize: 10)
+        XCTAssertEqual([
+            "this is a",
+            "very long",
+            "text that",
+            "should be",
+            "word",
+            "wrapped"
+        ], result)
+    }
 
+    func test_starts_with_Array(){
+        XCTAssertTrue("my potateo".startsWith(["ma", "me", "mi", "mo", "mu", "my"]))
+        XCTAssertFalse("my potateo".startsWith(["potateo"]))
+    }
+    
+    func test_compares_versions(){
+        XCTAssertEqual(.orderedAscending, "4.0".versionCompare("4.0.1"))
+        XCTAssertEqual(.orderedAscending, "4.0".versionCompare("4.1"))
+        XCTAssertEqual(.orderedAscending, "4.0".versionCompare("5.0"))
+        XCTAssertEqual(.orderedAscending, "4.0.1".versionCompare("5.0"))
+        
+        XCTAssertEqual(.orderedSame, "4.0".versionCompare("4.0"))
+        
+        XCTAssertEqual(.orderedDescending, "4.0.1".versionCompare("4.0.0"))
+        XCTAssertEqual(.orderedDescending, "5.0.1".versionCompare("4.1"))
+        XCTAssertEqual(.orderedDescending, "5.0.1".versionCompare("4.0.1"))
+        XCTAssertEqual(.orderedDescending, "5.0".versionCompare("4.0.1"))
+    }
+    
+    func test_it_can_create_hmac_SHA256_hash() {
+        
+        let result = "abcdef".hmac256("PRIVATE_KEY")
+        XCTAssertEqual("34b35a6aeeca1a9a4fa897f644f568249d52f547ffef7136d880abdfab230eaa", result!)
+        
+        let result2 = "123456".hmac256("PRIVATE_KEY")
+        XCTAssertEqual("b65ea1993ba4cbb97252fa4838c215b18243dc8905dc5107fb1b3cbfde84ce7d", result2!)
+        
+        let result3 = "123456".hmac256("PRIVATE_KEY_NUMBER_2")
+        XCTAssertEqual("ee6037afd4b41493bb856b05a34a8161e858e1e03a31964382b52cdb326c8016", result3!)
+    }
 }

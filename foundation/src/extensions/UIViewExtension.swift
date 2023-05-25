@@ -11,6 +11,28 @@ extension UIView {
         UIView.animate(withDuration: 0.2) { self.alpha = 0 }
     }
     
+    func fadeAndScaleOut(duration:TimeInterval = 0.2){
+        UIView.animate(withDuration: duration,
+                       delay:0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5,
+                       options: .curveEaseOut)
+        { [unowned self] in
+            transform = CGAffineTransform.identity.scaledBy(x: 0.4, y: 0.4)
+            alpha     = 0
+        } completion: { [unowned self] _ in
+            isHidden = true
+        }
+    }
+    
+    func fadeAndScaleIn(duration:TimeInterval = 0.2){
+        isHidden = false
+        UIView.animate(withDuration: duration, delay:0,
+                       usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5,
+                       options: .curveEaseOut) { [unowned self] in
+            transform = CGAffineTransform.identity
+            alpha     = 1
+        }
+    }
+    
     public func shake(){
         DispatchQueue.main.async {
             //let duration = 0.3
@@ -48,6 +70,19 @@ extension UIView {
         return self
     }
     
+    @discardableResult public func roundCorners(corners:UIRectCorner, radius: CGFloat) -> Self {
+        DispatchQueue.main.async {
+            let path = UIBezierPath(roundedRect: self.bounds,
+                                    byRoundingCorners: corners,
+                                    cornerRadii: CGSize(width: radius, height: radius))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = self.bounds
+            maskLayer.path = path.cgPath
+            self.layer.mask = maskLayer
+        }
+        return self
+    }
+    
     @discardableResult public func circle() -> Self{
         clipsToBounds = true
         layer.cornerRadius = bounds.size.width / 2
@@ -60,7 +95,7 @@ extension UIView {
         return self
     }
     
-    func findViewController() -> UIViewController? {
+    public func findViewController() -> UIViewController? {
         if let nextResponder = self.next as? UIViewController {
             return nextResponder
         }

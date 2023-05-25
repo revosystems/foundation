@@ -263,4 +263,47 @@ extension String{
         }
         return ranges
     }
+    
+    public func chunked(_ count:Int) -> [String] {
+        var result:[String] = []
+        var position = 0;
+        while position < self.count {
+            result.append(
+                String(self.suffix(self.count - position).prefix(count))
+            )
+            position += count;
+        }
+        return result
+    }
+    
+    public func versionCompare(_ otherVersion: String) -> ComparisonResult {
+        compare(otherVersion, options: .numeric)
+    }
+    
+    public func lineWrap(maxSize:Int, separator:String = " ") -> [String]{
+        let words = split(separator: " ")
+        var result:[String] = []
+        var current = ""
+        words.forEach {
+            if current.count + $0.count < maxSize {
+                current += " " + $0
+            } else {
+                result.append(current.trim())
+                current = String($0)
+            }
+        }
+        if current.count > 0 {
+            result.append(current.trim())
+        }
+        return result
+    }
+
+    /**
+     The startsWith method determines if the given string begins with one value of the given array:
+     */
+    public func startsWith(_ array : [String]) -> Bool {
+        array.first { element in
+            self.startsWith(element)
+        } != nil
+    }
 }
