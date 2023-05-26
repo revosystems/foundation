@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		321FE24F2A1F6A50006D55EF /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321FE24E2A1F6A50006D55EF /* UIViewControllerExtension.swift */; };
-		321FE2512A1F7632006D55EF /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321FE2502A1F7632006D55EF /* UICollectionViewExtension.swift */; };
 		7699DD0C235077180054A008 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7699DD0B235077180054A008 /* UITableViewCellExtension.swift */; };
 		7699DD0E23510B330054A008 /* DateExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7699DD0D23510B330054A008 /* DateExtensionTest.swift */; };
 		7699DD1223564F410054A008 /* StringCollectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7699DD1123564F410054A008 /* StringCollectionTest.swift */; };
@@ -67,8 +65,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		321FE24E2A1F6A50006D55EF /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		321FE2502A1F7632006D55EF /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		7699DD0B235077180054A008 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 		7699DD0D23510B330054A008 /* DateExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTest.swift; sourceTree = "<group>"; };
 		7699DD1123564F410054A008 /* StringCollectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCollectionTest.swift; sourceTree = "<group>"; };
@@ -224,8 +220,6 @@
 				EACEC52427883A3100B1FF01 /* NSNumber+Comparable.swift */,
 				EACEC52627883AEF00B1FF01 /* IntExtension.swift */,
 				EAEC2F4B27BE5CB700CF3F38 /* UITableViewExtension.swift */,
-				321FE24E2A1F6A50006D55EF /* UIViewControllerExtension.swift */,
-				321FE2502A1F7632006D55EF /* UICollectionViewExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -364,12 +358,10 @@
 				8D37F9FD2337BDAC0075CFC9 /* ViewController.swift in Sources */,
 				BBAFBFF423F41D07000F8C68 /* DateTimeExtension.swift in Sources */,
 				8D37FA3E2337C5340075CFC9 /* Cache.swift in Sources */,
-				321FE24F2A1F6A50006D55EF /* UIViewControllerExtension.swift in Sources */,
 				7699DD0C235077180054A008 /* UITableViewCellExtension.swift in Sources */,
 				8D37F9F92337BDAC0075CFC9 /* AppDelegate.swift in Sources */,
 				8D37FA332337C5340075CFC9 /* StringDateExtension.swift in Sources */,
 				BB13AE1525515BCE000D30E3 /* DataExtension.swift in Sources */,
-				321FE2512A1F7632006D55EF /* UICollectionViewExtension.swift in Sources */,
 				8DAD81E0234F6E35003A6025 /* Sound.swift in Sources */,
 				8D37FA372337C5340075CFC9 /* ColorExtension.swift in Sources */,
 				8D37FA3A2337C5340075CFC9 /* CodableExtension.swift in Sources */,
