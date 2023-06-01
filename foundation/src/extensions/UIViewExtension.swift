@@ -2,6 +2,11 @@ import UIKit
 
 extension UIView {
     
+    public var isVisible:Bool {
+        set { isHidden = !newValue}
+        get { !isHidden }
+    }
+    
     public func fadeIn() {
         self.alpha = 0;
         UIView.animate(withDuration: 0.2) { self.alpha = 1 }
