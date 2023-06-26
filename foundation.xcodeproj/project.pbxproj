@@ -42,6 +42,7 @@
 		BB0D4A802579352500F8DCA6 /* ArraySortExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D4A7F2579352500F8DCA6 /* ArraySortExtension.swift */; };
 		BB13AE1525515BCE000D30E3 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13AE1425515BCE000D30E3 /* DataExtension.swift */; };
 		BB6E64A02502575E00DFE518 /* CharacterSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E649F2502575E00DFE518 /* CharacterSetExtension.swift */; };
+		BB7A8D7A2A49E1CE00284EB3 /* ArrayAsyncCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A8D792A49E1CE00284EB3 /* ArrayAsyncCollection.swift */; };
 		BB7EFD342412687600439821 /* StringCryptoExtension.swif.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7EFD332412687600439821 /* StringCryptoExtension.swif.swift */; };
 		BBAFBFE423EC2343000F8C68 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFE323EC2343000F8C68 /* PageViewController.swift */; };
 		BBAFBFF423F41D07000F8C68 /* DateTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFBFF323F41D07000F8C68 /* DateTimeExtension.swift */; };
@@ -106,6 +107,7 @@
 		BB0D4A7F2579352500F8DCA6 /* ArraySortExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraySortExtension.swift; sourceTree = "<group>"; };
 		BB13AE1425515BCE000D30E3 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		BB6E649F2502575E00DFE518 /* CharacterSetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSetExtension.swift; sourceTree = "<group>"; };
+		BB7A8D792A49E1CE00284EB3 /* ArrayAsyncCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayAsyncCollection.swift; sourceTree = "<group>"; };
 		BB7EFD332412687600439821 /* StringCryptoExtension.swif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCryptoExtension.swif.swift; sourceTree = "<group>"; };
 		BBAFBFE323EC2343000F8C68 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		BBAFBFF323F41D07000F8C68 /* DateTimeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeExtension.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				8D37FA252337C5340075CFC9 /* StringDateExtension.swift */,
 				8D37FA262337C5340075CFC9 /* StringCollection.swift */,
 				8D37FA272337C5340075CFC9 /* ArrayCollection.swift */,
+				BB7A8D792A49E1CE00284EB3 /* ArrayAsyncCollection.swift */,
 				8D37FA282337C5340075CFC9 /* UIViewExtension.swift */,
 				8D37FA292337C5340075CFC9 /* ColorExtension.swift */,
 				8D37FA2B2337C5340075CFC9 /* UIActivityIndicatorExtension.swift */,
@@ -382,6 +385,7 @@
 				BBAFBFE423EC2343000F8C68 /* PageViewController.swift in Sources */,
 				8D37FA362337C5340075CFC9 /* UIViewExtension.swift in Sources */,
 				8D37F9FB2337BDAC0075CFC9 /* SceneDelegate.swift in Sources */,
+				BB7A8D7A2A49E1CE00284EB3 /* ArrayAsyncCollection.swift in Sources */,
 				8D37FA392337C5340075CFC9 /* UIActivityIndicatorExtension.swift in Sources */,
 				EACEC52727883AEF00B1FF01 /* IntExtension.swift in Sources */,
 				EACEC52527883A3100B1FF01 /* NSNumber+Comparable.swift in Sources */,
