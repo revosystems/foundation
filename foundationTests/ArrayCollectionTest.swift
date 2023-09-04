@@ -736,15 +736,25 @@ class ArrayCollectionTest: XCTestCase {
         
         let result = array.sorted(using: .keyPath(\.name), .keyPath(\.surname), .keyPath(\.age))
         XCTAssertEqual([a,c,d,b], result)
-        
-        
     }
     
-    /*func test_sum(){
-        let collection = [1, 2, 3, 4, 5]
+    func test_can_sort_array_with_multiple_keypahts_and_custom_order(){
+        struct TestStruct : Equatable {
+            let name:String
+            let surname:String
+            let age:Int
+        }
         
-        XCTAssertEqual(15, collection.sum())
-    }*/
+        let a = TestStruct(name: "ABC", surname: "DEF", age: 10)
+        let b = TestStruct(name: "DEF", surname: "GHI", age: 22)
+        let c = TestStruct(name: "ABC", surname: "GHI", age: 10)
+        let d = TestStruct(name: "DEF", surname: "GHI", age: 10)
+        
+        let array:[TestStruct] = [a,b,c,d]
+        
+        let result = array.sorted(using: .keyPath(\.name, order: .descending), .keyPath(\.surname, order: .ascending), .keyPath(\.age, order: .descending))
+        XCTAssertEqual([b,d,a,c], result)
+    }
     
     func test_all_passes(){
         
@@ -753,7 +763,6 @@ class ArrayCollectionTest: XCTestCase {
         
         let result2 = [10, 11, 12, 13].allPass { $0 > 10}
         XCTAssertFalse(result2)
-        
     }
     
     func test_all_fail(){
