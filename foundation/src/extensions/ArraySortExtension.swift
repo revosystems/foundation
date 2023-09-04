@@ -1,12 +1,12 @@
 import Foundation
 
 //https://www.swiftbysundell.com/articles/sorting-swift-collections/
-struct SortDescriptor<Value> {
+public struct SortDescriptor<Value> {
     var comparator: (Value, Value) -> ComparisonResult
 }
 
 extension SortDescriptor {
-    static func keyPath<T: Comparable>(_ keyPath: KeyPath<Value, T>) -> Self {
+    static public func keyPath<T: Comparable>(_ keyPath: KeyPath<Value, T>, order: SortOrder = .ascending) -> Self {
         Self { rootA, rootB in
             let valueA = rootA[keyPath: keyPath]
             let valueB = rootB[keyPath: keyPath]
@@ -14,19 +14,25 @@ extension SortDescriptor {
             guard valueA != valueB else {
                 return .orderedSame
             }
+            
+            switch order {
+            case .ascending:
+                return valueA < valueB ? .orderedAscending : .orderedDescending
+            case .descending:
+                return valueA > valueB ? .orderedAscending : .orderedDescending
+            }
 
-            return valueA < valueB ? .orderedAscending : .orderedDescending
         }
     }
 }
 
-enum SortOrder {
+public enum SortOrder {
     case ascending
     case descending
 }
 
 extension Sequence {
-    func sorted(using descriptors: [SortDescriptor<Element>], order: SortOrder) -> [Element] {
+    public func sorted(using descriptors: [SortDescriptor<Element>], order: SortOrder = .ascending) -> [Element] {
         sorted { valueA, valueB in
             for descriptor in descriptors {
                 let result = descriptor.comparator(valueA, valueB)
