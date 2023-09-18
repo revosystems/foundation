@@ -65,18 +65,17 @@ func retry(tries:Int = 1, delayMs:UInt32 = 0, block:@escaping(_ succeeded:@escap
     }
 }
 
-enum RetryError: Error, CustomStringConvertible {
+public enum RetryError: Error, CustomStringConvertible {
     case maximumRetriesReached(error:String?)
 
-    var description: String {
+    public var description: String {
         switch self {
             case .maximumRetriesReached(let error): return error ?? "Max retries reached"
         }
     }
 }
 
-@discardableResult
-func retry<T>(tries:Int = 1, delayMs:UInt32 = 0, _ operation: @escaping () async throws -> T,_ currentError : String? = nil) async throws {
+public func retry<T>(tries:Int = 1, delayMs:UInt32 = 0, _ operation: @escaping () async throws -> T,_ currentError : String? = nil) async throws {
     guard tries >= 0 else {
         throw RetryError.maximumRetriesReached(error: currentError)
     }
