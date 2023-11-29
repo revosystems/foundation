@@ -10,6 +10,11 @@ extension Array {
         case NotSameSize
     }
     
+    func dd() -> Self {
+        print(self)
+        return self
+    }
+    
     /**
      Returns a new array without the elements that return true to the block
      */
