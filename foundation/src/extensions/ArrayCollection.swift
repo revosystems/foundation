@@ -10,7 +10,7 @@ extension Array {
         case NotSameSize
     }
     
-    func dd() -> Self {
+    public func dd() -> Self {
         print(self)
         return self
     }
