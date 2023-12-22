@@ -15,6 +15,18 @@ public func topVc() -> UIViewController?{
     return topVc
 }
 
+public func topVcAsync() async -> UIViewController?{
+    await MainActor.run {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              var topVc = windowScene.windows.first?.rootViewController else {
+            return nil
+        }
+        while (topVc.presentedViewController != nil) {
+            topVc = topVc.presentedViewController!
+        }
+        return topVc
+    }
+}
 
 public func isIpad() -> Bool{
     UIDevice().userInterfaceIdiom == .pad
