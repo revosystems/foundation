@@ -57,14 +57,13 @@ extension UIView {
         }
     }
     
-    @discardableResult public func shadow(scale: Bool = true) -> Self {
+    @discardableResult public func shadow(scale: Bool = true, opacity: Float = 0.1) -> Self {
         layer.masksToBounds = false
         layer.shadowColor   = UIColor.black.cgColor
-        layer.shadowOpacity = 0.1
+        layer.shadowOpacity = opacity
         layer.shadowOffset  = CGSize(width: 0, height: 4)
         layer.shadowRadius  = 4
         
-        layer.shadowPath            = UIBezierPath(rect: bounds).cgPath
         layer.shouldRasterize       = true
         layer.rasterizationScale    = scale ? UIScreen.main.scale : 1
         return self;
