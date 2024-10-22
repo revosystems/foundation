@@ -45,7 +45,10 @@ public protocol Schedulable{
         
     @objc @discardableResult public func scheduleNext() -> Scheduler{
         self.cancel();
-        self.perform(#selector(runScheduled), with: nil, afterDelay: self.everySeconds);
+        DispatchQueue.main.asyncAfter(deadline: .now() +
+            Double(self.everySeconds)) { [unowned self] in
+            self.runScheduled()
+        }
         return self;
     }
     
@@ -54,6 +57,7 @@ public protocol Schedulable{
         self.scheduleNext();
     }
 
+    @discardableResult
     @objc func runScheduled() -> Scheduler {
         if (UIApplication.shared.applicationState == .active) {
             self.schedulable.onScheduled();
