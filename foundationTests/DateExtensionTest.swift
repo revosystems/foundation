@@ -92,4 +92,29 @@ class DateExtensionTest: XCTestCase {
                 
         XCTAssertFalse(date3!.sameDayAs(date4!))
     }
+    
+    func test_can_find_difference_in_hours(){
+        
+        let date1 = Date(string: "2024-10-25 15:50:00")
+        let date2 = Date(string: "2024-10-25 16:54:00")
+        
+        XCTAssertEqual(1, date1!.diffInHours(date2!))
+    }
+    
+    func test_can_find_difference_in_minutes(){
+        
+        let date1 = Date(string: "2024-10-25 15:50:00")
+        let date2 = Date(string: "2024-10-25 15:54:00")
+        
+        XCTAssertEqual(4, date1!.diffInMinutes(date2!))
+    }
+    
+    func test_can_find_difference_in_seconds(){
+        
+        let date1 = Date(string: "2024-10-25 15:50:00")
+        let date2 = Date(string: "2024-10-25 15:54:10")
+        
+        XCTAssertEqual(4 * 60 + 10,  date1!.diffInSeconds(date2!))
+        
+    }
 }

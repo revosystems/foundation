@@ -179,4 +179,25 @@ extension Date {
         toDeviceTimezone(.date) == Date().subtract(days: -1)?.toDeviceTimezone(.date)
     }
     
+    
+    //MARK: - Dates diff
+    public func difference(_ date:Date = Date()) -> DateComponents{
+        Calendar.current.dateComponents ([.year, .day, .hour, .minute, .second], from: self, to: date)
+    }
+    
+    public func diffInDays(_ date:Date = Date()) -> Int {
+        Calendar.current.dateComponents ([.day],from: self, to: date).day ?? 0
+    }
+    
+    public func diffInHours(_ date:Date = Date()) -> Int {
+        Calendar.current.dateComponents ([.hour],from: self, to: date).hour ?? 0
+    }
+    
+    public func diffInMinutes(_ date:Date = Date()) -> Int {
+        Calendar.current.dateComponents ([.minute],from: self, to: date).minute ?? 0
+    }
+    
+    public func diffInSeconds(_ date:Date = Date()) -> Int {
+        Calendar.current.dateComponents ([.second],from: self, to: date).second ?? 0
+    }
 }
