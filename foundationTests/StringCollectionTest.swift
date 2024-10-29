@@ -190,7 +190,7 @@ class StringCollectionTest: XCTestCase {
     
     func test_string_subscripts(){
         let string = "hola que tal"
-        let result = string[String.Index(encodedOffset: 2)...]
+        let result = string.suffix(string.count - 2)
         XCTAssertEqual("la que tal", result)
     }
     
