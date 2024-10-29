@@ -4,19 +4,18 @@ import PackageDescription
 let package = Package(
     name: "Http",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v12),
         .macOS(.v11)
     ],
     products: [
         .library(
             name: "Http",
             targets: ["Http"]
-        ),
+        )
     ],
     targets: [
         .target(
             name: "Http",
-            dependencies: []
             path: "foundation/src"
         ),
         .testTarget(
