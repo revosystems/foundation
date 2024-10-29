@@ -2,25 +2,25 @@
 import PackageDescription
 
 let package = Package(
-    name: "Foundation",
+    name: "RevoFoundation",
     platforms: [
         .iOS(.v12),
         .macOS(.v11)
     ],
     products: [
         .library(
-            name: "Foundation",
-            targets: ["Foundation"]
+            name: "RevoFoundation",
+            targets: ["RevoFoundation"]
         )
     ],
     targets: [
         .target(
-            name: "Foundation",
+            name: "RevoFoundation",
             path: "foundation/src"
         ),
         .testTarget(
-            name: "FoundationTests",
-            dependencies: ["Foundation"]
+            name: "RevoFoundationTests",
+            dependencies: ["RevoFoundation"]
         ),
     ]
 )
