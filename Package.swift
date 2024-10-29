@@ -15,7 +15,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Http",
+            name: "Foundation",
             path: "foundation/src"
         ),
         .testTarget(
