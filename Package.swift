@@ -2,15 +2,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "Http",
+    name: "Foundation",
     platforms: [
         .iOS(.v12),
         .macOS(.v11)
     ],
     products: [
         .library(
-            name: "Http",
-            targets: ["Http"]
+            name: "Foundation",
+            targets: ["Foundation"]
         )
     ],
     targets: [
@@ -19,8 +19,8 @@ let package = Package(
             path: "foundation/src"
         ),
         .testTarget(
-            name: "HttpTests",
-            dependencies: ["Http"]
+            name: "FoundationTests",
+            dependencies: ["Foundation"]
         ),
     ]
 )
