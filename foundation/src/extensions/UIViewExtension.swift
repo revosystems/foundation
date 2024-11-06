@@ -16,7 +16,7 @@ extension UIView {
         UIView.animate(withDuration: 0.2) { self.alpha = 0 }
     }
     
-    func fadeAndScaleOut(duration:TimeInterval = 0.2){
+    public func fadeAndScaleOut(duration:TimeInterval = 0.2){
         UIView.animate(withDuration: duration,
                        delay:0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5,
                        options: .curveEaseOut)
@@ -28,7 +28,7 @@ extension UIView {
         }
     }
     
-    func fadeAndScaleIn(duration:TimeInterval = 0.2){
+    public func fadeAndScaleIn(duration:TimeInterval = 0.2){
         isHidden = false
         UIView.animate(withDuration: duration, delay:0,
                        usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5,
