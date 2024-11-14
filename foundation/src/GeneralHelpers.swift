@@ -6,7 +6,7 @@ public func SBController<T>(_ storyBoard:String, _ identifier:String) -> T{
 }
 
 public func topVc() -> UIViewController?{
-    guard var topVc = UIApplication.shared.keyWindow?.rootViewController else { return nil }
+    guard var topVc = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first?.rootViewController else { return nil }
     
     while (topVc.presentedViewController != nil) {
         topVc = topVc.presentedViewController!
@@ -87,7 +87,7 @@ public enum RetryError: Error, CustomStringConvertible {
     }
 }
 
-public func retry<T>(tries:Int = 1, delayMs:UInt32 = 0, _ operation: @escaping () async throws -> T,_ currentError : String? = nil) async throws {
+public func retry(tries:Int = 1, delayMs:UInt32 = 0, _ operation: @escaping () async throws -> Void,_ currentError : String? = nil) async throws {
     guard tries >= 0 else {
         throw RetryError.maximumRetriesReached(error: currentError)
     }
