@@ -32,6 +32,13 @@ public func isIpad() -> Bool{
     UIDevice().userInterfaceIdiom == .pad
 }
 
+public func isiOSAppOnMac() -> Bool {
+  if #available(iOS 14.0, *) {
+    return ProcessInfo.processInfo.isiOSAppOnMac
+  }
+  return false
+}
+
 public func runAfter(_ seconds:Double, block:@escaping() -> Void){
     DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
          block()
@@ -98,4 +105,3 @@ public func retry(tries:Int = 1, delayMs:UInt32 = 0, _ operation: @escaping () a
         try await retry(tries:tries - 1, delayMs: delayMs, operation, "\(error)")
     }
 }
-
