@@ -20,3 +20,15 @@ extension Decodable {
         return try decoder.decode(Self.self, from: data)
     }
 }
+
+extension Encodable where Self: Decodable {
+    public func copy() -> Self? {
+        do {
+            let jsonData = try JSONEncoder().encode(self)
+            return try JSONDecoder().decode(Self.self, from: jsonData)
+        } catch {
+            print("Error copying object: \(error)")
+            return nil
+        }
+    }
+}
