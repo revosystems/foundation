@@ -3,8 +3,8 @@ import Foundation
 
 public class CodableTransformer<T: Codable>: ValueTransformer {
     
-    public static func register(type: T.Type) {
-        ValueTransformer.setValueTransformer(CodableTransformer<T>(), forName: NSValueTransformerName("CodableTransformer"))
+    public static func register(type: T.Type, name: String = "CodableTransformer") {
+        ValueTransformer.setValueTransformer(CodableTransformer<T>(), forName: NSValueTransformerName(name))
     }
     
     public override func transformedValue(_ value: Any?) -> Any? {
