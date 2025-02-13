@@ -11,9 +11,7 @@ public class CodableTransformer<T: Codable>: ValueTransformer {
         guard let value = value as? T else { return nil }
         
         do {
-            let kk = try JSONEncoder().encode(value)
-            print(kk)
-            return kk
+            return try JSONEncoder().encode(value)
         } catch {
             print("Error encoding \(T.self): \(error)")
             return nil
