@@ -3,7 +3,7 @@ import Foundation
 
 public class CodableTransformer<T: Codable>: ValueTransformer {
     
-    public static func register(type: T.Type, name: String) {
+    public static func register(type: T.Type, name: String = "CodableTransformer") {
         ValueTransformer.setValueTransformer(CodableTransformer<T>(), forName: NSValueTransformerName(name))
     }
     
