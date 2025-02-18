@@ -24,4 +24,13 @@ extension Array {
         }
         return newObjects
     }
+    
+    public func asyncFirst(block:(_ object:Element) async -> Bool) async -> Element? {
+        for object in self {
+            if await block(object) {
+                return object
+            }
+        }
+        return nil
+    }
 }
