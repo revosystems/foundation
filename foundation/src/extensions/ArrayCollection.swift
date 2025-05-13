@@ -202,6 +202,22 @@ extension Array {
         return (passing, notPassing)
     }
     
+    /**
+    returns all of the unique items in the collection. The returned collection keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
+    */
+    public func unique<T:Equatable>(_ block:(_ element:Element)->T) -> [Element] {
+        var result:[Element] = []
+        var temp:[T] = []
+        each {
+            let hash = block($0)
+            if (!temp.contains(hash)){
+                result.append($0)
+                temp.append(hash)
+            }
+        }
+        return result
+    }
+
     // MARK: Loops
     /**
      * Wrapper for the swif foreach function
@@ -547,22 +563,6 @@ extension Array where Element:Equatable {
         each {
             if (!result.contains($0)){
                 result.append($0)
-            }
-        }
-        return result
-    }
-    
-    /**
-    returns all of the unique items in the collection. The returned collection keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
-    */
-    public func unique<T:Equatable>(_ block:(_ element:Element)->T) -> [Element] {
-        var result:[Element] = []
-        var temp:[T] = []
-        each {
-            let hash = block($0)
-            if (!temp.contains(hash)){
-                result.append($0)
-                temp.append(hash)
             }
         }
         return result
