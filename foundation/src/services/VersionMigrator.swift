@@ -2,37 +2,36 @@ import Foundation
 
 public class VersionMigrator {
     
-    private static let LAST_APP_VERSION_KEY = "\(Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String)-lastAppVersion"
+    private static let LAST_VERSION_KEY = "\(Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String)-lastVersion"
     
     private let currentVersion: String
-    
-    private let lastAppVersion: String
+    private let lastVersion: String
     
     public init(currentVersion: String) {
         self.currentVersion = currentVersion
-        self.lastAppVersion = Self.getLastAppVersion()
-        debugPrint("[MIGRATOR] Current version:  \(self.currentVersion)")
-        debugPrint("[MIGRATOR] Last app version: \(self.lastAppVersion)")
+        self.lastVersion = Self.getLastVersion()
+        debugPrint("[MIGRATOR] Current version: \(self.currentVersion)")
+        debugPrint("[MIGRATOR] Last version:    \(self.lastVersion)")
     }
     
     public func onFreshInstall(_ then: @escaping () -> Void) {
-        guard lastAppVersion.isEmpty else { return }
+        guard lastVersion.isEmpty else { return }
         
         debugPrint("[MIGRATOR] First install")
         then()
-        saveLastAppVersion()
+        saveLastVersion()
     }
 
     public func onApplicationUpdated(_ then: @escaping () -> Void) {
-        guard !lastAppVersion.isEmpty, lastAppVersion != currentVersion else { return }
+        guard !lastVersion.isEmpty, lastVersion != currentVersion else { return }
         
         debugPrint("[MIGRATOR] Application updated")
         then()
-        saveLastAppVersion()
+        saveLastVersion()
     }
     
     public func migrateTo(_ version: String, then: @escaping () -> Void) {
-        guard currentVersion.versionCompare(lastAppVersion) == .orderedDescending,
+        guard currentVersion.versionCompare(lastVersion) == .orderedDescending,
             currentVersion == version else { return }
         
         debugPrint("[MIGRATOR] Migrating to \(version)")
@@ -40,18 +39,18 @@ public class VersionMigrator {
     }
     
     public func reset() {
-        resetLastAppVersion()
+        resetLastVersion()
     }
     
-    private static func getLastAppVersion() -> String {
-        UserDefaults.standard.string(forKey: Self.LAST_APP_VERSION_KEY) ?? ""
+    private static func getLastVersion() -> String {
+        UserDefaults.standard.string(forKey: Self.LAST_VERSION_KEY) ?? ""
     }
     
-    private func saveLastAppVersion() {
-        UserDefaults.standard.setValue(currentVersion, forKey: Self.LAST_APP_VERSION_KEY)
+    private func saveLastVersion() {
+        UserDefaults.standard.setValue(currentVersion, forKey: Self.LAST_VERSION_KEY)
     }
     
-    private func resetLastAppVersion() {
-        UserDefaults.standard.setValue(nil, forKey: Self.LAST_APP_VERSION_KEY)
+    private func resetLastVersion() {
+        UserDefaults.standard.setValue(nil, forKey: Self.LAST_VERSION_KEY)
     }
 }
