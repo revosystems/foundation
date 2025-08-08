@@ -20,7 +20,8 @@ let package = Package(
         ),
         .testTarget(
             name: "RevoFoundationTests",
-            dependencies: ["RevoFoundation"]
+            dependencies: ["RevoFoundation"],
+            path: "foundationTests",
         ),
     ]
 )
