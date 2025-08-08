@@ -1,17 +1,17 @@
 import Foundation
 
 public class VersionMigrator {
-    
-    private lazy var LAST_VERSION_KEY: String = {
-        "\(bundleId)-lastVersion"
-    }()
         
-    private let bundleId: String
+    private let LAST_VERSION_KEY: String
     private let currentVersion: String
     private var lastVersion: String
     
-    public init(bundleId: String? = nil, currentVersion: String) {
-        self.bundleId = bundleId ?? Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
+    public init(lastVersionKey: String? = nil, currentVersion: String) {
+        if let lastVersionKey {
+            self.LAST_VERSION_KEY = lastVersionKey
+        } else {
+            self.LAST_VERSION_KEY = "\(Bundle.main.bundleIdentifier!)-lastVersion"
+        }
         self.currentVersion = currentVersion
         self.lastVersion = ""
         self.lastVersion = getLastVersion()
