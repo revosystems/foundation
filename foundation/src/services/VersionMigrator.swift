@@ -1,17 +1,20 @@
 import Foundation
 
 public class VersionMigrator {
-    
-    private static let LAST_VERSION_KEY = "\(Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String)-lastVersion"
-    
+        
+    private let LAST_VERSION_KEY: String
     private let currentVersion: String
-    private let lastVersion: String
+    private var lastVersion: String
     
-    public init(currentVersion: String) {
+    public init(lastVersionKey: String? = nil, currentVersion: String) {
+        if let lastVersionKey {
+            self.LAST_VERSION_KEY = lastVersionKey
+        } else {
+            self.LAST_VERSION_KEY = "\(Bundle.main.bundleIdentifier!)-lastVersion"
+        }
         self.currentVersion = currentVersion
-        self.lastVersion = Self.getLastVersion()
-        debugPrint("[MIGRATOR] Current version: \(self.currentVersion)")
-        debugPrint("[MIGRATOR] Last version:    \(self.lastVersion)")
+        self.lastVersion = ""
+        self.lastVersion = getLastVersion()
     }
     
     public func onFreshInstall(_ then: @escaping () -> Void) {
@@ -42,15 +45,15 @@ public class VersionMigrator {
         resetLastVersion()
     }
     
-    private static func getLastVersion() -> String {
-        UserDefaults.standard.string(forKey: Self.LAST_VERSION_KEY) ?? ""
+    private func getLastVersion() -> String {
+        Container.shared.resolve(UserDefaults.self)!.string(forKey: LAST_VERSION_KEY) ?? ""
     }
     
     private func saveLastVersion() {
-        UserDefaults.standard.setValue(currentVersion, forKey: Self.LAST_VERSION_KEY)
+        Container.shared.resolve(UserDefaults.self)!.set(currentVersion, forKey: LAST_VERSION_KEY)
     }
     
     private func resetLastVersion() {
-        UserDefaults.standard.setValue(nil, forKey: Self.LAST_VERSION_KEY)
+        Container.shared.resolve(UserDefaults.self)!.removeObject(forKey: LAST_VERSION_KEY)
     }
 }
