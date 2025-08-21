@@ -24,7 +24,7 @@ class VersionMigratorTest: XCTestCase {
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.0.0")
         var wasCalled = false
         
-        migrator.onFreshInstall {
+        migrator.whenFreshInstall {
             wasCalled = true
         }
         
@@ -32,11 +32,11 @@ class VersionMigratorTest: XCTestCase {
     }
     
     func test_onFreshInstall_does_not_call_closure_when_previous_version_exists() {
-        defaults.defaults.set("0.9.0", forKey: lastVersionKey)
+        defaults.set(value: "0.9.0", key: lastVersionKey)
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.0.0")
         var wasCalled = false
         
-        migrator.onFreshInstall {
+        migrator.whenFreshInstall {
             wasCalled = true
         }
         
@@ -46,11 +46,11 @@ class VersionMigratorTest: XCTestCase {
     // MARK: - Application Update Tests
     
     func test_onApplicationUpdated_calls_closure_when_version_changed() {
-        defaults.defaults.set("1.0.0", forKey: lastVersionKey)
+        defaults.set(value: "1.0.0", key: lastVersionKey)
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.1.0")
         var wasCalled = false
         
-        migrator.onApplicationUpdated {
+        migrator.whenApplicationUpdated {
             wasCalled = true
         }
         
@@ -58,11 +58,11 @@ class VersionMigratorTest: XCTestCase {
     }
     
     func test_onApplicationUpdated_does_not_call_closure_when_version_same() {
-        defaults.defaults.set("1.0.0", forKey: lastVersionKey)
+        defaults.set(value: "1.0.0", key: lastVersionKey)
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.0.0")
         var wasCalled = false
         
-        migrator.onApplicationUpdated {
+        migrator.whenApplicationUpdated {
             wasCalled = true
         }
         
@@ -73,7 +73,7 @@ class VersionMigratorTest: XCTestCase {
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.0.0")
         var wasCalled = false
         
-        migrator.onApplicationUpdated {
+        migrator.whenApplicationUpdated {
             wasCalled = true
         }
         
@@ -83,11 +83,11 @@ class VersionMigratorTest: XCTestCase {
     // MARK: - Migration Tests
     
     func test_migrateTo_calls_closure_when_migrating_to_current_version() {
-        defaults.defaults.set("1.0.0", forKey: lastVersionKey)
+        defaults.set(value: "1.0.0", key: lastVersionKey)
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.1.0")
         var wasCalled = false
         
-        migrator.onApplicationUpdated {
+        migrator.whenApplicationUpdated {
             migrator.migrateTo("1.1.0") {
                 wasCalled = true
             }
@@ -97,11 +97,11 @@ class VersionMigratorTest: XCTestCase {
     }
     
     func test_migrateTo_does_not_call_closure_when_target_version_not_current() {
-        defaults.defaults.set("1.0.0", forKey: lastVersionKey)
+        defaults.set(value: "1.0.0", key: lastVersionKey)
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.1.0")
         var wasCalled = false
         
-        migrator.onApplicationUpdated {
+        migrator.whenApplicationUpdated {
             migrator.migrateTo("1.2.0") {
                 wasCalled = true
             }
@@ -111,11 +111,11 @@ class VersionMigratorTest: XCTestCase {
     }
     
     func test_migrateTo_does_not_call_closure_when_current_version_not_greater_than_last() {
-        defaults.defaults.set("1.1.0", forKey: lastVersionKey)
+        defaults.set(value: "1.1.0", key: lastVersionKey)
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.0.0")
         var wasCalled = false
         
-        migrator.onApplicationUpdated {
+        migrator.whenApplicationUpdated {
             migrator.migrateTo("1.0.0") {
                 wasCalled = true
             }
@@ -128,7 +128,7 @@ class VersionMigratorTest: XCTestCase {
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.0.0")
         var wasCalled = false
         
-        migrator.onApplicationUpdated {
+        migrator.whenApplicationUpdated {
             migrator.migrateTo("1.0.0") {
                 wasCalled = true
             }
@@ -140,7 +140,7 @@ class VersionMigratorTest: XCTestCase {
     // MARK: - Reset Tests
     
     func test_reset_clears_last_version() {
-        defaults.defaults.set("1.0.0", forKey: lastVersionKey)
+        defaults.set(value: "1.0.0", key: lastVersionKey)
         let migrator = VersionMigrator(lastVersionKey: lastVersionKey, currentVersion: "1.1.0")
         
         XCTAssertNotNil(defaults.defaults.string(forKey: lastVersionKey))

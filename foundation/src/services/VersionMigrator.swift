@@ -6,6 +6,10 @@ public class VersionMigrator {
     private let currentVersion: String
     private var lastVersion: String
     
+    lazy var defaults: UserDefaults = {
+        Defaults().defaults
+    }()
+    
     public init(lastVersionKey: String? = nil, currentVersion: String) {
         if let lastVersionKey {
             self.LAST_VERSION_KEY = lastVersionKey
@@ -17,7 +21,7 @@ public class VersionMigrator {
         self.lastVersion = getLastVersion()
     }
     
-    public func onFreshInstall(_ then: @escaping () -> Void) {
+    public func whenFreshInstall(_ then: @escaping () -> Void) {
         guard lastVersion.isEmpty else { return }
         
         debugPrint("[MIGRATOR] First install")
@@ -25,7 +29,7 @@ public class VersionMigrator {
         saveLastVersion()
     }
 
-    public func onApplicationUpdated(_ then: @escaping () -> Void) {
+    public func whenApplicationUpdated(_ then: @escaping () -> Void) {
         guard !lastVersion.isEmpty, lastVersion != currentVersion else { return }
         
         debugPrint("[MIGRATOR] Application updated")
@@ -46,14 +50,14 @@ public class VersionMigrator {
     }
     
     private func getLastVersion() -> String {
-        Container.shared.resolve(UserDefaults.self)!.string(forKey: LAST_VERSION_KEY) ?? ""
+        defaults.string(forKey: LAST_VERSION_KEY) ?? ""
     }
     
     private func saveLastVersion() {
-        Container.shared.resolve(UserDefaults.self)!.set(currentVersion, forKey: LAST_VERSION_KEY)
+        defaults.set(currentVersion, forKey: LAST_VERSION_KEY)
     }
     
     private func resetLastVersion() {
-        Container.shared.resolve(UserDefaults.self)!.removeObject(forKey: LAST_VERSION_KEY)
+        defaults.removeObject(forKey: LAST_VERSION_KEY)
     }
 }

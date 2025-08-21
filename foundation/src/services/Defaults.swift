@@ -1,7 +1,7 @@
 import Foundation
 
 
-extension UserDefaults : @retroactive Resolvable {
+extension UserDefaults : Resolvable {
 }
 
 
@@ -22,13 +22,13 @@ open class Defaults {
     
     open func set(value:Any?, key:String) {
         if value == nil {
-            return defaults.removeObject(forKey: key)
+            return remove(key)
         }
         defaults.setValue(value, forKey: key)
     }
 
     open func remove(_ key:String) {
-        return defaults.removeObject(forKey: key)
+        defaults.removeObject(forKey: key)
     }
 
     open func value(for key:String) -> Any? {
