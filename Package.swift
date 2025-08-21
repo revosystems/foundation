@@ -21,7 +21,7 @@ let package = Package(
         .testTarget(
             name: "RevoFoundationTests",
             dependencies: ["RevoFoundation"],
-            path: "foundationTests",
+            path: "foundationTests"
         ),
     ]
 )
