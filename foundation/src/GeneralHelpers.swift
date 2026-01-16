@@ -45,6 +45,11 @@ public func runAfter(_ seconds:Double, block:@escaping() -> Void){
      }
 }
 
+public func runOnUi(block:@escaping() -> Void){
+    if Thread.isMainThread { return block() }
+    DispatchQueue.main.sync(execute: block)
+}
+
 @discardableResult
 public func tap<T>(_ value:T, _ block:(_ value:T) -> Void) -> T{
     block(value)

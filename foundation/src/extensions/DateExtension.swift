@@ -200,4 +200,19 @@ extension Date {
     public func diffInSeconds(_ date:Date = Date()) -> Int {
         Calendar.current.dateComponents ([.second],from: self, to: date).second ?? 0
     }
+    
+    public func startOfMonth() -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month], from: self)
+        return calendar.date(from: components)!
+    }
+    
+    public func endOfMonth() -> Date {
+        let calendar = Calendar.current
+        if let startOfNextMonth = calendar.date(byAdding: DateComponents(month: 1), to: startOfMonth()) {
+            // Subtract one second to get the end of the current month.
+            return calendar.date(byAdding: .second, value: -1, to: startOfNextMonth)!
+        }
+        return self
+    }
 }

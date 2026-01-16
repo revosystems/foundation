@@ -13,11 +13,21 @@ extension Encodable {
     public func encodedString(with encoder: JSONEncoder = JSONEncoder()) throws -> String {
         try String(data: encoder.encode(self), encoding: .utf8)!
     }
+    
+    public func toDict() -> [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        return try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any]
+    }
 }
 
 extension Decodable {
     public static func decode(with decoder: JSONDecoder = JSONDecoder(), from data: Data) throws -> Self {
         return try decoder.decode(Self.self, from: data)
+    }
+    
+    public static func from(_ dict: [String: Any]) -> Self? {
+        guard let data = try? JSONSerialization.data(withJSONObject: dict, options: []) else { return nil }
+        return try? Self.decode(from: data)
     }
 }
 
