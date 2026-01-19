@@ -1,6 +1,6 @@
 import XCTest
 
-final class PresenceTest: XCTestCase {
+final class IntExtensionTest: XCTestCase {
     
     func test_asTime_formats_duration_equal_to_60_minutes() throws {
         XCTAssertEqual(60.asTime, "01:00")
