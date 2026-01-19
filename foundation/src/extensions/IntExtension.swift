@@ -17,6 +17,10 @@ public extension Int {
             return "\(self) min"
         }
         
+        return asTime
+    }
+    
+    var asTime:String {
         let hours   = "\(self / 60)".lpad(toLength: 2, withPad: "0")
         let minutes = "\(self % 60)".lpad(toLength: 2, withPad: "0")
         
