@@ -241,17 +241,19 @@ extension Array {
      * Runs the block for all elements and when they all finishes the allFinished is called.
      * To know the block is finished the then() must be called in the async block
      */
-    public func eachAsync(_ body:(_ element:Element, _ index:Int, _ then:@escaping()->Void) -> Void, allFinished:@escaping(()->Void)){
+    public func eachAsync(_ body:(_ element:Element, _ index:Int, _ then:@escaping()->Void) -> Void, allFinished:@escaping(()->Void), delayFactor:Float=100){
         let group = DispatchGroup()
         for (index, element) in self.enumerated() {
             group.enter()
-            body(element, index) {
-                group.leave()
+            run_after(Double(index/delayFactor)) {
+                body(element, index) {
+                    group.leave()
+                }
             }
         }
         group.notify(queue: .main) { allFinished() }
     }
-    
+        
     /**
      * Same as map but providing the index of the element in the array
      */
